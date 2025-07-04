@@ -17,3 +17,12 @@ We need to sort the values of a **Stack** (Stack A) in ascending order. We have 
 - **rra** (reverse rotate a) : move last element to 1st, shift 1down all other elems
 - **rrb** (reverse rotate b) : same as rra but for **B**
 - **rrr** : **rra** and **rrb** at the same time
+
+## brainstorm
+
+I'm gonna need to read the arguments and convert them to ints with an ft_atoi while simultaneously sending them to a list-like structure acting as **A**.
+
+Each node of the list will contain an int (which we will use to compare with the other ints in the other nodes and organize them accordingly) and a pointer to the address of the next node and another the the address of the previous node.
+
+### swap:
+
