@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:12:40 by manmaria          #+#    #+#             */
-/*   Updated: 2025/07/07 21:15:23 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/07/09 20:11:06 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	ft_atoi(const char *s)
 
 int	main(int ac, char **av)
 {
+	int	*arr;
 	int	node;
 	int	i;
 
@@ -47,7 +48,11 @@ int	main(int ac, char **av)
 	i = 0;
 	if (ac > 1)
 	{
+		arr = malloc(sizeof(int) * (ac - 1));
 		while (av[++i])
+		{
+			
+		}
 	}
 	printf("\n");
 	return (0);
