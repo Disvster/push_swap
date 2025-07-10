@@ -1,10 +1,18 @@
 # to-do list
 
+## 10/07
+
+libft port almost done, still need to:
+- [ ] create a Makefile that compiles everything;
+- [ ] double check that everything is portable and possible conflicts between projects
+
+- [ ] start writing my push_swap logic detailed yesterday
+
 ## 09/07
 
-- need to finish ft_printf port to libft
-- then add libft to push_swap
-- optional: port gnl as well
+- [X] need to finish ft_printf port to libft
+- [X] then add libft to push_swap
+- [X] optional: port gnl as well
 
 regarding push_swap:
 - when converting args to ints:
@@ -13,7 +21,7 @@ regarding push_swap:
     - an index which will refer to its organized position
     - the value which it must hold, the arg conv to int
 
-How will I determine the correct indexes? my organizing the int array with sort_int_tab and when I need to know were a node should be,
+How will I determine the correct indexes? By organizing the int array with sort_int_tab and when I need to know were a node should be,
 I will do a number search of the value which that node holds in the sorted array, then set the index var inside that node to the index
 of the number in the array.
 
