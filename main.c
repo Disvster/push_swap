@@ -6,31 +6,51 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:12:40 by manmaria          #+#    #+#             */
-/*   Updated: 2025/07/09 20:11:06 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/07/13 17:06:09 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *s)
-{
-	int	sign;
-	int	res;
+#include "push_swap.h"
 
-	sign = 1;
-	res = 0;
-	while (*s == 32 || (*s >= 9 && *s<= 13))
-		s++;
-	if (*s == '-' || *s == '+')
+int	*paramArr(int ac, char **av)
+{
+	int	*arr;
+	int	node;
+	int	i;
+
+	node = 0;
+	i = 0;
+	arr = malloc(sizeof(int) * (ac - 1));
+	if (!arr)
+		return (NULL);
+	while (av[++i])
+		arr[i - 1] = ft_atoi(av[i - 1]);
+	return (arr);
+}
+
+t_stack	*createStackA(int ac, char **av)
+{
+	int		*arr;
+	int		size;
+	t_stack ola;
+
+	size = ac - 1;
+	arr = paramArr(ac, av);
+	if (!arr)
+		return (NULL);
+	while (--size >= 0)
 	{
-		if (*s == '-')
-			sign *= -1;
-		s++;
+		// ill create the stack A list starting from the bottom and adding each new node
+		// to the back of the previous
+		// so for 4 Arguments:
+		// node4 <- node3 <- node2 <- node1
 	}
-	while (*s >= '0' && *s <= '9')
-	{
-		res = res * 10 + *s - 48;
-		s++;
-	}
-	return (res * sign);
+	// depois de criar a stackA vou fazer um sort_int_tab no int array
+	// tendo o array organizado, vou iterar cada node sob uma funcao que faz o nbr search
+	// no array e atribuir um valor de index correto a esse node;
+	// a funcao que cria o array pode organiza-lo logo, depois crio aqui a lista baseada no ac/av
+	// como fiz para o array e imediatamento procuro pelo index, assim escuso de iterar pela lista
+	// depois de a criar, faco tudo ao mesmo tempo instead.
 }
 
 // TODO:
@@ -48,11 +68,6 @@ int	main(int ac, char **av)
 	i = 0;
 	if (ac > 1)
 	{
-		arr = malloc(sizeof(int) * (ac - 1));
-		while (av[++i])
-		{
-			
-		}
 	}
 	printf("\n");
 	return (0);
