@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	ft_sort_int_tab(int *tab, int size)
+int	ft_sort_tab(long *tab, int size)
 {
 	int	i;
 	int j;
@@ -25,33 +25,41 @@ void	ft_sort_int_tab(int *tab, int size)
 		j = i + 1;
 		while (j < size)
 		{
-			if (tab[i] > tab[j]) // NOTE: posso chekar aqui por numeros iguais
+			if (tab[i] > tab[j])
 			{
 				tmp = tab[i];
 				tab[i] = tab[j];
 				tab[j] = tmp;
 				j = i;
 			}
+			else if (tab[i] == tab[j] || (tab[j] > INT_MAX || tab [j] < INT_MIN))
+				return (0);
 			j++;
 		}
 		i++;
 	}
+	return (1);
 }
 
-int	*paramArr(int ac, char **av)
+long	*create_arr(int ac, char **av)
 {
-	int	*arr;
-	int	i;
+	long	*arr;
+	int		i;
+	char	check;
 
 	i = 0;
 	arr = malloc(sizeof(int) * (ac - 1));
 	if (!arr)
 		return (NULL);
 	while (av[++i])
-		arr[i - 1] = /*ft_*/atoi(av[i]);
-	ft_sort_int_tab(arr, ac - 1);
+		arr[i - 1] = /*ft_*/atoi(av[i]); // FIX: atoi -> ft_atoi or ft_atol
+	check = ft_sort_tab(arr, ac - 1);
+	if (check == 0)
+		return (0);
 	return (arr);
 }
+
+/*	To test the sort int tab func	*/
 
 	// printf("{");
 	// i = 0;
@@ -64,18 +72,17 @@ int	*paramArr(int ac, char **av)
 	// }
 	// printf("}\n");
 
-t_stack	*createStackA(int ac, char **av)
+t_stack	*create_sa(int ac, char **av, long *arr)
 {
-	int		*arr;
 	int		size;
-	t_stack ola;
+	t_stack	ola;
 
 	size = ac;
-	arr = paramArr(ac, av);
 	if (!arr)
 		return (NULL);
-	while (--size >= 0)
+	while (--size > 0)
 	{
+		t_stack
 		// ill create the stack A list starting from the bottom and adding each new node
 		// to the back of the previous
 		// so for 4 Arguments:
@@ -92,12 +99,24 @@ t_stack	*createStackA(int ac, char **av)
 //
 // // TODO:
 // In case of error, it must display "Error" followed by an ’\n’ on the standard error.
-// Errors include, for example: some arguments not being integers, some arguments
-// exceeding the integer limits, and/or the presence of duplicates.
+// Errors include, for example: !some arguments not being integers!, -some arguments
+// exceeding the integer limits-, -and/or the presence of duplicates-.
+
+/*
+ * After Stack A is created I can organize each node according to where they are vs where they should be.
+ * I iterate through the stack and compare the real index of where they are (`i`) with the value stored as
+ * `final_index`.
+ * I can also send bunches of nodes to stack B, organized them there and send them back to A, then do
+ * the same again but instead of a bunch of nodes send a bunch of buches of organized nodes.
+ * Like start with (idk) 3 (I heard that 3 is hard-coded) nodes to B, organize them there. ex:
+ * 5-6-7 then 2-3-4 then 8-9-10
+ * Then :
+ * (2-3-4)-(5-6-7)-(8-9-10)
+ */
 
 int	main(int ac, char **av)
 {
-	//int	*arr;
+	long *arr;
 	// int	node;
 	// int	i;
 	//
@@ -105,8 +124,19 @@ int	main(int ac, char **av)
 	// i = 0;
 	if (ac > 1)
 	{
-		paramArr(ac, av);
+		arr = create_arr(ac, av);
+		if (arr == 0 || !arr)
+		{
+			/*ft_*/printf("Error\n"); // FIX: printf -> ft_printf or maybe write to StdError
+			return (1);
+		}
+		create_sa(ac, av, arr);
 	}
+	else 
+		{
+			/*ft_*/printf("Error\n"); // FIX: same as above
+			return (1);
+		}
 	printf("\n");
 	return (0);
 }

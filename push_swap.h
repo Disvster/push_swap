@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <limits.h>
 # include "libft/incs/libft.h"
 
 typedef struct s_stack
