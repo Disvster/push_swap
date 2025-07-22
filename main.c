@@ -72,17 +72,49 @@ long	*create_arr(int ac, char **av)
 	// }
 	// printf("}\n");
 
+t_list	*st_newnode(int	value, int index)
+{
+	t_stack	*new_node;
+
+	new_node = (t_stack *)malloc(sizeof(t_stack));
+	if (!new_node)
+		return (NULL);
+	new_node->value = value;
+	new_node->index = index;
+	new_node->next = NULL;
+	return (new_node);
+}
+
+int	ft_fdindex(long *tab, int size,int nbr)
+{
+	int		i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (tab[i] == nbr)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
 t_stack	*create_sa(int ac, char **av, long *arr)
 {
-	int		size;
-	t_stack	ola;
+	int			size;
+	int			nbr;
+	t_stack	**stack_a;
+	t_stack		*new;
 
 	size = ac;
-	if (!arr)
-		return (NULL);
 	while (--size > 0)
 	{
-		t_stack
+		nbr = /*ft*/atoi(av[size]);
+		new = st_newnode(nbr, ft_fdindex(arr, ac - 1, nbr));
+		if (!new || ft_fdindex(arr, ac - 1, nbr))
+			return (NULL);
+		*stack_a = new;
+		ft_lstadd_front((t_list **)stack_a, (t_list *)new);
 		// ill create the stack A list starting from the bottom and adding each new node
 		// to the back of the previous
 		// so for 4 Arguments:
