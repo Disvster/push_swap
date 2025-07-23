@@ -6,127 +6,35 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:12:40 by manmaria          #+#    #+#             */
-/*   Updated: 2025/07/13 17:06:09 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/07/23 18:19:08 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_sort_tab(long *tab, int size)
-{
-	int	i;
-	int j;
-	int	tmp;
-
-	i = 0;
-	j = 0;
-	while (i < (size - 1))
-	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (tab[i] > tab[j])
-			{
-				tmp = tab[i];
-				tab[i] = tab[j];
-				tab[j] = tmp;
-				j = i;
-			}
-			else if (tab[i] == tab[j] || (tab[j] > INT_MAX || tab [j] < INT_MIN))
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
-}
-
-long	*create_arr(int ac, char **av)
-{
-	long	*arr;
-	int		i;
-	char	check;
-
-	i = 0;
-	arr = malloc(sizeof(int) * (ac - 1));
-	if (!arr)
-		return (NULL);
-	while (av[++i])
-		arr[i - 1] = /*ft_*/atoi(av[i]); // FIX: atoi -> ft_atoi or ft_atol
-	check = ft_sort_tab(arr, ac - 1);
-	if (check == 0)
-		return (0);
-	return (arr);
-}
-
-/*	To test the sort int tab func	*/
-
-	// printf("{");
-	// i = 0;
-	// while ((ac - 1) > 0)
-	// {
-	// 	printf("%d", arr[i++]);
-	// 	if ((ac - 1) != 1)
-	// 		printf(", ");
-	// 	ac--;
-	// }
-	// printf("}\n");
-
-t_list	*st_newnode(int	value, int index)
-{
-	t_stack	*new_node;
-
-	new_node = (t_stack *)malloc(sizeof(t_stack));
-	if (!new_node)
-		return (NULL);
-	new_node->value = value;
-	new_node->index = index;
-	new_node->next = NULL;
-	return (new_node);
-}
-
-int	ft_fdindex(long *tab, int size,int nbr)
-{
-	int		i;
-
-	i = 0;
-	while (i < size)
-	{
-		if (tab[i] == nbr)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
-
-t_stack	*create_sa(int ac, char **av, long *arr)
+t_stack	**create_stack_a(int ac, char **av, long *arr)
 {
 	int			size;
 	int			nbr;
-	t_stack	**stack_a;
-	t_stack		*new;
+	int			node_id;
+	t_stack		**stack_a;
+	t_stack		*new_nd;
 
 	size = ac;
 	while (--size > 0)
 	{
 		nbr = /*ft*/atoi(av[size]);
-		new = st_newnode(nbr, ft_fdindex(arr, ac - 1, nbr));
-		if (!new || ft_fdindex(arr, ac - 1, nbr))
+		node_id = ft_find_index(arr, ac - 1, nbr);
+		new_nd = stack_newnode(nbr, node_id);
+		if (!new_nd || node_id == -1)
 			return (NULL);
-		*stack_a = new;
-		ft_lstadd_front((t_list **)stack_a, (t_list *)new);
-		// ill create the stack A list starting from the bottom and adding each new node
-		// to the back of the previous
+		*stack_a = new_nd;
+		stack_add_front(stack_a, new_nd);
+		// creating the stack A in reverse and adding each new node;
 		// so for 4 Arguments:
-		// node4 <- node3 <- node2 <- node1
+		// 1st-node3 -> size-- -> 2nd-node2 -> size-- -> 3rd-node1
 	}
-	//TODO:
-	// depois de criar a stackA vou fazer um sort_int_tab no int array
-	// tendo o array organizado, vou iterar cada node sob uma funcao que faz o nbr search
-	// no array e atribuir um valor de index correto a esse node;
-	// a funcao que cria o array pode organiza-lo logo, depois crio aqui a lista baseada no ac/av
-	// como fiz para o array e imediatamento procuro pelo index, assim escuso de iterar pela lista
-	// depois de a criar, faco tudo ao mesmo tempo instead.
+	return (stack_a);
 }
 //
 // // TODO:
@@ -148,7 +56,7 @@ t_stack	*create_sa(int ac, char **av, long *arr)
 
 int	main(int ac, char **av)
 {
-	long *arr;
+	long *ltab;
 	// int	node;
 	// int	i;
 	//
@@ -156,13 +64,13 @@ int	main(int ac, char **av)
 	// i = 0;
 	if (ac > 1)
 	{
-		arr = create_arr(ac, av);
-		if (arr == 0 || !arr)
+		ltab = create_ltab(ac, av);
+		if (ltab == 0 || !ltab)
 		{
 			/*ft_*/printf("Error\n"); // FIX: printf -> ft_printf or maybe write to StdError
 			return (1);
 		}
-		create_sa(ac, av, arr);
+		create_sa(ac, av, ltab);
 	}
 	else 
 		{
