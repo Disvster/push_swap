@@ -32,7 +32,7 @@ int	ft_sort_ltab(long *tab, int size)
 				tab[j] = tmp;
 				j = i;
 			}
-			else if (tab[i] == tab[j] || (tab[j] > INT_MAX || tab [j] < INT_MIN))
+			else if (tab[i] == tab[j] || (tab[j] > INT_MAX || tab [j] < INT_MIN)) // && over Long Limits
 				return (0);
 			j++;
 		}
@@ -48,14 +48,18 @@ long	*create_ltab(int ac, char **av)
 	char	check;
 
 	i = 0;
-	ltab = malloc(sizeof(int) * (ac - 1));
+	ltab = malloc(sizeof(long) * (ac - 1));
 	if (!ltab)
 		return (NULL);
+	// TODO: check if is digit or '-' only at start with digit in front
 	while (av[++i])
 		ltab[i - 1] = /*ft_*/atol(av[i]); // FIX: atol -> ft_atol
 	check = ft_sort_ltab(ltab, ac - 1);
 	if (check == 0)
+	{
+		free(ltab);
 		return (0);
+	}
 	return (ltab);
 }
 
@@ -72,7 +76,7 @@ long	*create_ltab(int ac, char **av)
 	// }
 	// printf("}\n");
 
-int	ft_find_index(long *tab, int size,int nbr)
+int	ft_find_index(long *tab, int size, int nbr)
 {
 	int		i;
 

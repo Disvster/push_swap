@@ -31,3 +31,20 @@ void	stack_add_front(t_stack **stack, t_stack *new_nd)
 	new_nd->next = *stack;
 	*stack = new_nd;
 }
+
+void	ft_stack_clear(t_stack **lst)
+{
+	t_stack	*tmp;
+	t_stack	*node;
+
+	if (!lst)
+		return ;
+	node = *lst;
+	while (node)
+	{
+		tmp = node->next;
+		free(node);
+		node = tmp;
+	}
+	*lst = NULL;
+}

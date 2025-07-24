@@ -31,5 +31,6 @@ long	*create_ltab(int ac, char **av);
 
 void	stack_add_front(t_stack **stack, t_stack *new_nd);
 t_stack	*stack_newnode(int	value, int index);
+void	ft_stack_clear(t_stack **lst);
 
 #endif

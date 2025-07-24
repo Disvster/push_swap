@@ -12,29 +12,33 @@
 
 #include "push_swap.h"
 
-t_stack	**create_stack_a(int ac, char **av, long *arr)
+t_stack	*create_stack_a(int ac, char **av, long *arr)
 {
 	int			size;
 	int			nbr;
 	int			node_id;
-	t_stack		**stack_a;
 	t_stack		*new_nd;
+	t_stack		*temp;
 
 	size = ac;
+	temp = NULL;
+	new_nd = NULL;
 	while (--size > 0)
 	{
 		nbr = /*ft*/atoi(av[size]);
 		node_id = ft_find_index(arr, ac - 1, nbr);
-		new_nd = stack_newnode(nbr, node_id);
-		if (!new_nd || node_id == -1)
+		temp = stack_newnode(nbr, node_id);
+		if (!temp || node_id == -1)
 			return (NULL);
-		*stack_a = new_nd;
-		stack_add_front(stack_a, new_nd);
+		if (new_nd)
+			temp->next = new_nd;
+		new_nd = temp;
+		//stack_add_front(stack_a, temp);
 		// creating the stack A in reverse and adding each new node;
-		// so for 4 Arguments:
-		// 1st-node3 -> size-- -> 2nd-node2 -> size-- -> 3rd-node1
+		// so for 4 Arguments: 1st-node3 -> size-- -> 2nd-node2 -> size-- -> 3rd-node1
 	}
-	return (stack_a);
+	free(arr);
+	return (new_nd);
 }
 //
 // // TODO:
@@ -54,14 +58,28 @@ t_stack	**create_stack_a(int ac, char **av, long *arr)
  * (2-3-4)-(5-6-7)-(8-9-10)
  */
 
+void	print_sa(t_stack *sa, int ac)
+{
+	int		size;
+	int		i;
+	t_stack *tmp;
+
+	size = ac - 1;
+	i = 0;
+	tmp = sa;
+	while (tmp)
+	{
+		printf("node[%d]:\nvalue -> %d\nindex -> %d\n", i, tmp->value, tmp->index);
+		i++;
+		tmp = tmp->next;
+	}
+}
+
 int	main(int ac, char **av)
 {
-	long *ltab;
-	// int	node;
-	// int	i;
-	//
-	// node = 0;
-	// i = 0;
+	long		*ltab;
+	t_stack	*stack_a;
+
 	if (ac > 1)
 	{
 		ltab = create_ltab(ac, av);
@@ -70,13 +88,17 @@ int	main(int ac, char **av)
 			/*ft_*/printf("Error\n"); // FIX: printf -> ft_printf or maybe write to StdError
 			return (1);
 		}
-		create_sa(ac, av, ltab);
+		stack_a = create_stack_a(ac, av, ltab);
+		if (!stack_a)
+			return (1);
+		print_sa(stack_a, ac);
+		ft_stack_clear(&stack_a);
 	}
 	else 
-		{
-			/*ft_*/printf("Error\n"); // FIX: same as above
-			return (1);
-		}
+	{
+		/*ft_*/printf("Error\n"); // FIX: same as above
+		return (1);
+	}
 	printf("\n");
 	return (0);
 }
