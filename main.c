@@ -33,14 +33,14 @@ t_stack	*create_stack_a(int ac, char **av, long *arr)
 		if (new_nd)
 			temp->next = new_nd;
 		new_nd = temp;
-		//stack_add_front(stack_a, temp);
+		// stack_add_front(stack_a, temp);
 		// creating the stack A in reverse and adding each new node;
 		// so for 4 Arguments: 1st-node3 -> size-- -> 2nd-node2 -> size-- -> 3rd-node1
 	}
 	free(arr);
 	return (new_nd);
 }
-//
+
 // // TODO:
 // In case of error, it must display "Error" followed by an ’\n’ on the standard error.
 // Errors include, for example: !some arguments not being integers!, -some arguments
@@ -78,14 +78,15 @@ void	print_sa(t_stack *sa, int ac)
 int	main(int ac, char **av)
 {
 	long		*ltab;
-	t_stack	*stack_a;
+	t_stack		*stack_a;
 
 	if (ac > 1)
 	{
 		ltab = create_ltab(ac, av);
 		if (ltab == 0 || !ltab)
 		{
-			/*ft_*/printf("Error\n"); // FIX: printf -> ft_printf or maybe write to StdError
+			//printf("Error\n");
+			write(1, "Error\n", 6);
 			return (1);
 		}
 		stack_a = create_stack_a(ac, av, ltab);
@@ -96,7 +97,7 @@ int	main(int ac, char **av)
 	}
 	else 
 	{
-		/*ft_*/printf("Error\n"); // FIX: same as above
+		write(2, "Error\n", 6);
 		return (1);
 	}
 	printf("\n");

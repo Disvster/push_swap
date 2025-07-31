@@ -22,9 +22,13 @@ int	ft_sort_ltab(long *tab, int size)
 	j = 0;
 	while (i < (size - 1))
 	{
+		if (tab[i] > INT_MAX || tab [i] < INT_MIN) // && over Long Limits
+			return (0);
 		j = i + 1;
 		while (j < size)
 		{
+			if (tab[i] == tab[j] || tab[j] > INT_MAX || tab [j] < INT_MIN) // && over Long Limits
+				return (0);
 			if (tab[i] > tab[j])
 			{
 				tmp = tab[i];
@@ -32,8 +36,6 @@ int	ft_sort_ltab(long *tab, int size)
 				tab[j] = tmp;
 				j = i;
 			}
-			else if (tab[i] == tab[j] || (tab[j] > INT_MAX || tab [j] < INT_MIN)) // && over Long Limits
-				return (0);
 			j++;
 		}
 		i++;
