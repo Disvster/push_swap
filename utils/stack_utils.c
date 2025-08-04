@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:09:04 by manmaria          #+#    #+#             */
-/*   Updated: 2025/07/23 18:18:05 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/08/04 20:08:37 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,16 @@ void	ft_stack_clear(t_stack **lst)
 		node = tmp;
 	}
 	*lst = NULL;
+}
+
+t_stack	*ft_stacklast(t_stack *lst)
+{
+	t_stack	*tmp;
+
+	tmp = lst;
+	if (!lst)
+		return (NULL);
+	while (tmp->next)
+		tmp = tmp->next;
+	return (tmp);
 }
