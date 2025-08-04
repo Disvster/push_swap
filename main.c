@@ -46,17 +46,6 @@ t_stack	*create_stack_a(int ac, char **av, long *arr)
 // Errors include, for example: !some arguments not being integers!, -some arguments
 // exceeding the integer limits-, -and/or the presence of duplicates-.
 
-/*
- * After Stack A is created I can organize each node according to where they are vs where they should be.
- * I iterate through the stack and compare the real index of where they are (`i`) with the value stored as
- * `final_index`.
- * I can also send bunches of nodes to stack B, organized them there and send them back to A, then do
- * the same again but instead of a bunch of nodes send a bunch of buches of organized nodes.
- * Like start with (idk) 3 (I heard that 3 is hard-coded) nodes to B, organize them there. ex:
- * 5-6-7 then 2-3-4 then 8-9-10
- * Then :
- * (2-3-4)-(5-6-7)-(8-9-10)
- */
 
 void	print_sa(t_stack *sa, int ac)
 {
