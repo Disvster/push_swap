@@ -42,7 +42,21 @@ t_stack	**ft_stack_revrotate(t_stack **top)
 	t_stack *last;
 
 	first = *top;
+	temp = *top;
 	if (!first->next)
 		return (top);
+	while (temp->next->next)
+		temp = temp->next;
+	last = ft_stacklast(first);
+	last->next = first;
+	temp->next = NULL;
+	*top = last;
 	return (top);
+}
+
+void	ft_revrotate_both(t_stack **topa, t_stack **topb)
+{
+	topa = ft_stack_revrotate(topa);
+	topb = ft_stack_revrotate(topb);
+	ft_printf("rrr\n");
 }
