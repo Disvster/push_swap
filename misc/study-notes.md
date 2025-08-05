@@ -34,4 +34,3 @@ Like start with (idk) 3 (I heard that 3 is hard-coded) nodes to B, organize them
 - 5-6-7 then 2-3-4 then 8-9-10
 Then :
 - (1-3-4)-(5-6-7)-(8-9-10)
-
