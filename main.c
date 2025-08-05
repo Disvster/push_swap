@@ -47,27 +47,79 @@ t_stack	*create_stack_a(int ac, char **av, long *arr)
 // exceeding the integer limits-, -and/or the presence of duplicates-.
 
 
-void	print_sa(t_stack *sa, int ac)
+/* ---TEST--- <> -FUNCTIONS- */
+
+void	print_st(t_stack **st)
 {
-	int		size;
 	int		i;
 	t_stack *tmp;
 
-	size = ac - 1;
+	if (!st || !*st)
+	{
+		printf("Stack is empty\n");
+		return ;
+	}
 	i = 0;
-	tmp = sa;
+	tmp = *st;
 	while (tmp)
 	{
-		printf("node[%d]:\nvalue -> %d\nindex -> %d\n", i, tmp->value, tmp->index);
+		//value -> %d\n // before index
+		printf("node[%d]:\nindex -> %d", i, tmp->index);
 		i++;
 		tmp = tmp->next;
+		if (tmp)
+			printf("\n");
 	}
 }
+
+void	test_movements(t_stack	**pa)
+{
+	t_stack	**tmp_a;
+	t_stack	**tmp_b;
+
+	tmp_a = pa;
+	tmp_b = NULL;
+	// NORMAL STACK
+	printf("\n-*-*-*-*-*-*-\n==> Before Movements:\n\n-< Stack A >-\n");
+	print_st(pa);
+	printf("\n\n-< Stack B >-\n");
+	print_st(tmp_b);
+	
+	// SWAP A
+	printf("-*-*-*-*-*-*-\n\n-*-*-<sa>-*-*-\n==> After SwapA:\n");
+	pa = ft_stack_swap(tmp_a);
+	printf("\n-< Stack A >-\n");
+	print_st(pa);
+
+	// PUSH A (b -> a)
+	printf("\n-*-*-<sa>-*-*-\n\n-*-*-<pa>-*-*-\n==> After Push (top of B to) A:\n");
+	pa = ft_stack_push(tmp_a, tmp_b);
+	printf("\n-< Stack A >-\n");
+	print_st(pa);
+	printf("\n\n-< Stack B >-\n");
+	print_st(tmp_b);
+
+	//PUSH B (a -> b)
+	printf("-*-*-<pa>-*-*-\n\n-*-*-<pb>-*-*-\n==> After Push (top of A to) B:\n");
+	tmp_b = ft_stack_push(tmp_b, tmp_a);
+	printf("\n-< Stack A >-\n");
+	print_st(pa);
+	printf("\n\n-< Stack B >-\n");
+	print_st(tmp_b);
+	printf("\n-*-*-<pb>-*-*-\n");
+
+	// ROTATE A (1st goes last)
+	
+	//REVERSE ROTATE A (last goes 1st)
+}
+
+/* ---------- <> ---------- */
 
 int	main(int ac, char **av)
 {
 	long		*ltab;
-	t_stack		*stack_a;
+	t_stack		*sa;
+	t_stack		**pa;
 
 	if (ac > 1)
 	{
@@ -78,11 +130,12 @@ int	main(int ac, char **av)
 			write(1, "Error\n", 6);
 			return (1);
 		}
-		stack_a = create_stack_a(ac, av, ltab);
-		if (!stack_a)
+		sa = create_stack_a(ac, av, ltab);
+		if (!sa)
 			return (1);
-		print_sa(stack_a, ac);
-		ft_stack_clear(&stack_a);
+		pa = &sa;
+		test_movements(pa);
+		ft_stack_clear(pa);
 	}
 	else 
 	{

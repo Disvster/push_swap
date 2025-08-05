@@ -17,10 +17,20 @@ t_stack	**ft_stack_push(t_stack **topa, t_stack **topb)
 	t_stack *tempa;
 	t_stack *tempb;
 
-	if (!*topb)
+	if (!topb)
 		return (topa);
-	tempa = *topa;
 	tempb = *topb;
+	if (!topa)
+	{
+		tempa = stack_newnode(tempb->value, tempb->index);
+		topa = &tempa;
+		*topb = tempb->next;
+		free(tempb);
+		tempb = NULL;
+		return (topa);
+
+	}
+	tempa = *topa;
 	*topb = tempb->next;
 	tempb->next = tempa;
 	*topa = tempb;

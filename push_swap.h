@@ -32,15 +32,17 @@ long	*create_ltab(int ac, char **av);
 
 /*/  Stack Related Functions  /*/
 void	stack_add_front(t_stack **stack, t_stack *new_nd);
-t_stack	*stack_newnode(int	value, int index);
+t_stack	*stack_newnode(int value, int index);
 t_stack	*ft_stacklast(t_stack *lst);
 void	ft_stack_clear(t_stack **lst);
 
 /*/  Movements/Operations Functions  /*/
-t_stack	*ft_stack_swap(t_stack *top);
+t_stack	**ft_stack_swap(t_stack **top);
 void	ft_swap_both(t_stack **topa, t_stack **topb);
 t_stack	**ft_stack_push(t_stack **topa, t_stack **topb);
 t_stack	**ft_stack_rotate(t_stack **top);
 void	ft_rotate_both(t_stack **topa, t_stack **topb);
+t_stack	**ft_stack_revrotate(t_stack **top);
+void	ft_revrotate_both(t_stack **topa, t_stack **topb);
 
 #endif
