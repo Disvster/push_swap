@@ -12,7 +12,6 @@
 
 #include "../push_swap.h"
 
-
 t_stack	*stack_newnode(int value, int index)
 {
 	t_stack	*new_node;

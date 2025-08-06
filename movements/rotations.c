@@ -15,7 +15,7 @@
 t_stack	**ft_stack_rotate(t_stack **top)
 {
 	t_stack	*first;
-	t_stack *last;
+	t_stack	*last;
 
 	first = *top;
 	if (!first->next)
@@ -31,14 +31,13 @@ void	ft_rotate_both(t_stack **topa, t_stack **topb)
 {
 	topa = ft_stack_rotate(topa);
 	topb = ft_stack_rotate(topb);
-	//ft_printf("rr\n");
 }
 
 t_stack	**ft_stack_revrotate(t_stack **top)
 {
 	t_stack	*temp;
 	t_stack	*first;
-	t_stack *last;
+	t_stack	*last;
 
 	first = *top;
 	temp = *top;
@@ -57,5 +56,4 @@ void	ft_revrotate_both(t_stack **topa, t_stack **topb)
 {
 	topa = ft_stack_revrotate(topa);
 	topb = ft_stack_revrotate(topb);
-	//ft_printf("rrr\n");
 }

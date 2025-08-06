@@ -25,18 +25,18 @@ typedef struct s_stack
 	struct s_stack	*next;
 }					t_stack;
 
-/*/  Array Related Functions  /*/
-int		ft_find_index(long *tab, int size,int nbr);
+/*  Array Related Functions  */
+int		ft_find_index(long *tab, int size, int nbr);
 int		ft_sort_ltab(long *tab, int size);
 long	*create_ltab(int ac, char **av);
 
-/*/  Stack Related Functions  /*/
+/*  Stack Related Functions  */
 void	stack_add_front(t_stack **stack, t_stack *new_nd);
 t_stack	*stack_newnode(int value, int index);
 t_stack	*ft_stacklast(t_stack *lst);
 void	ft_stack_clear(t_stack **lst);
 
-/*/  Movements/Operations Functions  /*/
+/*  Movements/Operations Functions  */
 t_stack	**ft_stack_swap(t_stack **top);
 void	ft_swap_both(t_stack **topa, t_stack **topb);
 t_stack	**ft_stack_push(t_stack **topa, t_stack **topb);

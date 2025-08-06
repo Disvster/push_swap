@@ -31,5 +31,4 @@ void	ft_swap_both(t_stack **topa, t_stack **topb)
 {
 	topa = ft_stack_swap(topa);
 	topb = ft_stack_swap(topb);
-	//ft_printf("ss\n");
 }

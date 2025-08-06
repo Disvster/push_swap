@@ -46,13 +46,12 @@ t_stack	*create_stack_a(int ac, char **av, long *arr)
 // Errors include, for example: !some arguments not being integers!, -some arguments
 // exceeding the integer limits-, -and/or the presence of duplicates-.
 
-
 /* ---TEST--- <> -FUNCTIONS- */
 
 void	print_st(t_stack **st)
 {
 	int		i;
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	if (!st || !*st)
 	{
@@ -79,6 +78,7 @@ void	test_movements(t_stack	**pa)
 
 	tmp_a = pa;
 	tmp_b = NULL;
+	
 	// NORMAL STACK
 	printf("\n-*-*-*-*-*-*-\n==> Before Movements:\n\n-< Stack A >-\n");
 	print_st(pa);
@@ -147,7 +147,7 @@ int	main(int ac, char **av)
 		test_movements(pa);
 		ft_stack_clear(pa);
 	}
-	else 
+	else
 	{
 		write(2, "Error\n", 6);
 		return (1);

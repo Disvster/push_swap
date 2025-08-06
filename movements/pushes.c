@@ -14,8 +14,8 @@
 
 t_stack	**ft_stack_push(t_stack **topa, t_stack **topb)
 {
-	t_stack *tempa;
-	t_stack *tempb;
+	t_stack	*tempa;
+	t_stack	*tempb;
 
 	if (!topb)
 		return (topa);
@@ -28,7 +28,6 @@ t_stack	**ft_stack_push(t_stack **topa, t_stack **topb)
 		free(tempb);
 		tempb = NULL;
 		return (topa);
-
 	}
 	tempa = *topa;
 	*topb = tempb->next;

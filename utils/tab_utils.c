@@ -15,7 +15,7 @@
 int	ft_sort_ltab(long *tab, int size)
 {
 	int	i;
-	int j;
+	int	j;
 	int	tmp;
 
 	i = 0;
