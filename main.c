@@ -91,6 +91,20 @@ void	test_movements(t_stack	**pa)
 	printf("\n-< Stack A >-\n");
 	print_st(pa);
 
+	// ROTATE A (1st goes last)
+	printf("\n\n-*-*-<ra>-*-*-\n==> After Rotate A (1st goes last):\n");
+	pa = ft_stack_rotate(tmp_a);
+	printf("\n-< Stack A >-\n");
+	print_st(pa);
+	printf("\n-*-*-<ra>-*-*-\n");
+	
+	//REVERSE ROTATE A (last goes 1st)
+	printf("\n-*-*-<rra>-*-*-\n==> After Reverse Rotate A (last goes 1st):\n");
+	pa = ft_stack_revrotate(tmp_a);
+	printf("\n-< Stack A >-\n");
+	print_st(pa);
+	printf("\n-*-*-<ra>-*-*-\n");
+
 	// PUSH A (b -> a)
 	printf("\n-*-*-<sa>-*-*-\n\n-*-*-<pa>-*-*-\n==> After Push (top of B to) A:\n");
 	pa = ft_stack_push(tmp_a, tmp_b);
@@ -107,10 +121,6 @@ void	test_movements(t_stack	**pa)
 	printf("\n\n-< Stack B >-\n");
 	print_st(tmp_b);
 	printf("\n-*-*-<pb>-*-*-\n");
-
-	// ROTATE A (1st goes last)
-	
-	//REVERSE ROTATE A (last goes 1st)
 }
 
 /* ---------- <> ---------- */
