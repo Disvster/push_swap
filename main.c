@@ -41,7 +41,7 @@ t_stack	*create_stack_a(int ac, char **av, long *arr)
 	return (new_nd);
 }
 
-// // TODO:
+// TODO:
 // In case of error, it must display "Error" followed by an ’\n’ on the standard error.
 // Errors include, for example: !some arguments not being integers!, -some arguments
 // exceeding the integer limits-, -and/or the presence of duplicates-.
