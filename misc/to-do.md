@@ -1,5 +1,15 @@
 # to-do list
 
+## 06/08
+
+- [X] ground-work for actual algorythm creation is done
+- [X] movement functions done (writing each instruction eg "ra" will be done after movementfunction is called)
+    - [X] created a tester function for movements
+    - [X] Stack B is created when empty and PushB is called
+
+- [ ] libft/gnl/pf port missing Makefile
+- [ ] start working on actual push_swap logic
+
 ## 10/07
 
 libft port almost done, still need to:
