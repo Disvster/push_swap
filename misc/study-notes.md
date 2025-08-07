@@ -22,14 +22,14 @@ We need to sort the values of a **Stack** (Stack A) in ascending order. We have 
 
 I'm gonna need to read the arguments and convert them to ints with an ft_atoi while simultaneously sending them to a list-like structure acting as **A**.
 
-Each node of the list will contain an int (which we will use to compare with the other ints in the other nodes and organize them accordingly) and a pointer to the address of the next node and another the the address of the previous node.
+Each node of the list will contain an int (which we will use to compare with the other ints in the other nodes and organize them accordingly) and a pointer to the address of the next node and another the address of the previous node.
 
 ### swap:
 
 After Stack A is created I can organize each node according to where they are vs where they should be.
 I iterate through the stack and compare the real index of where they are (`i`) with the value stored as `final_index`.
 I can also send bunches of nodes to stack B, organized them there and send them back to A, then do
-the same again but instead of a bunch of nodes send a bunch of buches of organized nodes.
+the same again but instead of a bunch of nodes send a bunch of bunches of organized nodes.
 Like start with (idk) 3 (I heard that 3 is hard-coded) nodes to B, organize them there. ex:
 - 5-6-7 then 2-3-4 then 8-9-10
 Then :
