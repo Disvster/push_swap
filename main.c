@@ -55,7 +55,7 @@ void	print_st(t_stack **st)
 
 	if (!st || !*st)
 	{
-		printf("Stack is empty\n");
+		ft_printf("Stack is empty\n");
 		return ;
 	}
 	i = 0;
@@ -63,11 +63,11 @@ void	print_st(t_stack **st)
 	while (tmp)
 	{
 		//value -> %d\n // before index
-		printf("node[%d]:\nindex -> %d", i, tmp->index);
+		ft_printf("node[%d]:\nindex -> %d", i, tmp->index);
 		i++;
 		tmp = tmp->next;
 		if (tmp)
-			printf("\n");
+			ft_printf("\n");
 	}
 }
 
@@ -80,47 +80,49 @@ void	test_movements(t_stack	**pa)
 	tmp_b = NULL;
 	
 	// NORMAL STACK
-	printf("\n-*-*-*-*-*-*-\n==> Before Movements:\n\n-< Stack A >-\n");
+	ft_printf("\n-*-*-*-*-*-*-\n==> Before Movements:\n\n-< Stack A >-\n");
 	print_st(pa);
-	printf("\n\n-< Stack B >-\n");
+	ft_printf("\n\n-< Stack B >-\n");
 	print_st(tmp_b);
 	
 	// SWAP A
-	printf("-*-*-*-*-*-*-\n\n-*-*-<sa>-*-*-\n==> After SwapA:\n");
+	ft_printf("-*-*-*-*-*-*-\n\n-*-*-<sa>-*-*-\n==> After SwapA:\n");
 	pa = ft_stack_swap(tmp_a);
-	printf("\n-< Stack A >-\n");
+	ft_printf("\n-< Stack A >-\n");
 	print_st(pa);
 
 	// ROTATE A (1st goes last)
-	printf("\n\n-*-*-<ra>-*-*-\n==> After Rotate A (1st goes last):\n");
+	ft_printf("\n\n-*-*-<ra>-*-*-\n==> After Rotate A (1st goes last):\n");
 	pa = ft_stack_rotate(tmp_a);
-	printf("\n-< Stack A >-\n");
+	ft_printf("\n-< Stack A >-\n");
 	print_st(pa);
-	printf("\n-*-*-<ra>-*-*-\n");
+	ft_printf("\n-*-*-<ra>-*-*-\n");
 	
 	//REVERSE ROTATE A (last goes 1st)
-	printf("\n-*-*-<rra>-*-*-\n==> After Reverse Rotate A (last goes 1st):\n");
+	ft_printf("\n-*-*-<rra>-*-*-\n==> After Reverse Rotate A (last goes 1st):\n");
 	pa = ft_stack_revrotate(tmp_a);
-	printf("\n-< Stack A >-\n");
+	ft_printf("\n-< Stack A >-\n");
 	print_st(pa);
-	printf("\n-*-*-<ra>-*-*-\n");
+	ft_printf("\n-*-*-<ra>-*-*-\n");
 
 	// PUSH A (b -> a)
-	printf("\n-*-*-<sa>-*-*-\n\n-*-*-<pa>-*-*-\n==> After Push (top of B to) A:\n");
+	ft_printf("\n-*-*-<sa>-*-*-\n\n-*-*-<pa>-*-*-\n==> After Push (top of B to) A:\n");
 	pa = ft_stack_push(tmp_a, tmp_b);
-	printf("\n-< Stack A >-\n");
+	ft_printf("\n-< Stack A >-\n");
 	print_st(pa);
-	printf("\n\n-< Stack B >-\n");
+	ft_printf("\n\n-< Stack B >-\n");
 	print_st(tmp_b);
 
 	//PUSH B (a -> b)
-	printf("-*-*-<pa>-*-*-\n\n-*-*-<pb>-*-*-\n==> After Push (top of A to) B:\n");
+	ft_printf("-*-*-<pa>-*-*-\n\n-*-*-<pb>-*-*-\n==> After Push (top of A to) B:\n");
 	tmp_b = ft_stack_push(tmp_b, tmp_a);
-	printf("\n-< Stack A >-\n");
+	ft_printf("\n-< Stack A >-\n");
 	print_st(pa);
-	printf("\n\n-< Stack B >-\n");
+	ft_printf("\n\n-< Stack B >-\n");
 	print_st(tmp_b);
-	printf("\n-*-*-<pb>-*-*-\n");
+	ft_printf("\n-*-*-<pb>-*-*-\n");
+
+	ft_stack_clear(tmp_b);
 }
 
 /* ---------- <> ---------- */
@@ -137,7 +139,7 @@ int	main(int ac, char **av)
 		if (ltab == 0 || !ltab)
 		{
 			//printf("Error\n");
-			write(1, "Error\n", 6);
+			write(2, "Error\n", 6);
 			return (1);
 		}
 		sa = create_stack_a(ac, av, ltab);
