@@ -1,5 +1,12 @@
 # to-do list
 
+## 08/08
+
+- [X] libft Makefile
+    - needs work, very rough atm
+
+- [ ] valgrind reports conditional jumps when testing movements
+
 ## 06/08
 
 - [X] ground-work for actual algorythm creation is done
