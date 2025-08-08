@@ -24,11 +24,11 @@
 char	*get_next_line(int fd);
 char	*ft_strdup_gnl(const char *src);
 char	*ft_calloc_gnl(size_t nmemb, size_t size);
-size_t	ft_strlcat(char *dst, const char *src, size_t size);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+//size_t	ft_strlcat(char *dst, const char *src, size_t size);
+//size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	*ft_trimbuffer(char *buf);
 size_t	ft_strclen(const char *s, int c);
 char	*ft_substr_gnl(char const *s, unsigned int start, size_t len);
-char	*ft_strjoin(char const *s1, char const *s2);
+//char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif

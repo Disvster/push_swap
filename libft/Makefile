@@ -1,3 +1,8 @@
+FNAMES = find -type f -wholename '*srcs/*.c' -exec basename -s '.c' {} \; | tr '\n' ' '
+SRCS = find -type f -wholename '*srcs/*.c' | tr '\n' ' '
+OBJS = $(FNAMES:=.o)
+DIR_OBJS = ./objs
+
 # vou fazer este Makefile que vai correr make de cada projeto
 # mandar os ficheiros .o para uma pasta e arquivar tudo num ficheiro .a
 # que vai ficar na root da dir libft/
