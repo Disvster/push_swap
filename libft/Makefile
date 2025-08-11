@@ -12,12 +12,11 @@ RM = rm -f
 # fnames:
 # 	find -type f -wholename '*srcs/*.c' -exec basename -s '.c' {} \; | tr '\n' ' '
 
+$(NAME): compile
+	$(ARRCS) $(NAME) $(OBJS_DIR)/*.o
 compile:
 	$(CC) $(CFLAGS) *srcs/*.c -I incs/
 	mv *.o $(OBJS_DIR)/
-
-$(NAME): compile
-	$(ARRCS) $(NAME) $(OBJS_DIR)/*.o
 
 all: $(NAME)
 	
