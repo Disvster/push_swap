@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:09:04 by manmaria          #+#    #+#             */
-/*   Updated: 2025/08/04 20:08:37 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/08/11 20:42:45 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,21 @@ void	stack_add_front(t_stack **stack, t_stack *new_nd)
 	*stack = new_nd;
 }
 
-void	ft_stack_clear(t_stack **lst)
+void	ft_stack_clear(t_stack *lst)
 {
 	t_stack	*tmp;
 	t_stack	*node;
 
 	if (!lst)
 		return ;
-	node = *lst;
+	node = lst;
 	while (node)
 	{
 		tmp = node->next;
 		free(node);
 		node = tmp;
 	}
-	*lst = NULL;
+	lst = NULL;
 }
 
 t_stack	*ft_stacklast(t_stack *lst)

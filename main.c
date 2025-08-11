@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:12:40 by manmaria          #+#    #+#             */
-/*   Updated: 2025/07/23 18:19:08 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/08/11 21:00:03 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	print_st(t_stack **st)
 	int		i;
 	t_stack	*tmp;
 
-	if (!st || !*st)
+	if (!st) // || !*st)
 	{
 		ft_printf("Stack is empty\n");
 		return ;
@@ -116,13 +116,17 @@ void	test_movements(t_stack	**pa)
 	//PUSH B (a -> b)
 	ft_printf("-*-*-<pa>-*-*-\n\n-*-*-<pb>-*-*-\n==> After Push (top of A to) B:\n");
 	tmp_b = ft_stack_push(tmp_b, tmp_a);
+	ft_printf("\n before print_st: %p, %p", tmp_b, *tmp_b);
 	ft_printf("\n-< Stack A >-\n");
 	print_st(pa);
 	ft_printf("\n\n-< Stack B >-\n");
 	print_st(tmp_b);
+	// NOTE: *tmp_b is changing address after entering print_st
+	//	check valgrind errors, might be related
+	ft_printf("\nafter print_st: %p, %p", tmp_b, *tmp_b);
 	ft_printf("\n-*-*-<pb>-*-*-\n");
 
-	ft_stack_clear(tmp_b);
+	//ft_stack_clear(*tmp_b);
 }
 
 /* ---------- <> ---------- */
@@ -147,7 +151,7 @@ int	main(int ac, char **av)
 			return (1);
 		pa = &sa;
 		test_movements(pa);
-		ft_stack_clear(pa);
+		ft_stack_clear(*pa);
 	}
 	else
 	{
