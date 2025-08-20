@@ -25,7 +25,7 @@ t_stack	*create_stack_a(int ac, char **av, long *arr)
 	new_nd = NULL;
 	while (--size > 0)
 	{
-		nbr = /*ft*/atoi(av[size]);
+		nbr = ft_atoi(av[size]);
 		node_id = ft_find_index(arr, ac - 1, nbr);
 		temp = stack_newnode(nbr, node_id);
 		if (!temp || node_id == -1)
