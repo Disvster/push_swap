@@ -1,5 +1,16 @@
 # to-do list
 
+## 19/08
+
+- [ ] continue chunking sort logic (see  chunking.c and copilot chat)
+- [X] started learning binary search, using it in
+    * chunk logic calculation
+    * searching for numbers in tab to get their indexes
+
+Note!
+- don't get lost in the sauce, stop researching if it is not gonna be applicable
+- evaluate your progress aka pick up the pace
+
 ## 08/08
 
 - [X] libft Makefile
@@ -14,16 +25,16 @@
     - [X] created a tester function for movements
     - [X] Stack B is created when empty and PushB is called
 
-- [ ] libft/gnl/pf port missing Makefile
-- [ ] start working on actual push_swap logic
+- [X] libft/gnl/pf port missing Makefile
+- [X] start working on actual push_swap logic
 
 ## 10/07
 
 libft port almost done, still need to:
-- [ ] create a Makefile that compiles everything;
-- [ ] double check that everything is portable and possible conflicts between projects
+- [X] create a Makefile that compiles everything;
+- [X] double check that everything is portable and possible conflicts between projects
 
-- [ ] start writing my push_swap logic detailed yesterday
+- [X] start writing my push_swap logic detailed yesterday
 
 ## 09/07
 
