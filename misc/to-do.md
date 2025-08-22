@@ -1,8 +1,13 @@
 # to-do list
 
+## 23/08
+
+- [X] created a sqrt_floor fucntion to determine chunksize
+- [ ] still need to add chunk id to each node, according to its index
+
 ## 19/08
 
-- [ ] continue chunking sort logic (see  chunking.c and copilot chat)
+- [X] continue chunking sort logic (see  chunking.c and copilot chat)
 - [X] started learning binary search, using it in
     * chunk logic calculation
     * searching for numbers in tab to get their indexes

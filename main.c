@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:12:40 by manmaria          #+#    #+#             */
-/*   Updated: 2025/08/11 21:00:03 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/08/22 20:17:53 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,29 @@ t_stack	*create_stack_a(int ac, char **av, long *arr)
 	int			node_id;
 	t_stack		*new_nd;
 	t_stack		*temp;
+	t_chunk		chunki;
 
 	size = ac;
 	temp = NULL;
 	new_nd = NULL;
+	chunki = ft_chunkinit(size - 1);
 	while (--size > 0)
 	{
 		nbr = ft_atoi(av[size]);
 		node_id = ft_find_index(arr, ac - 1, nbr);
-		temp = stack_newnode(nbr, node_id);
+		temp = stack_newnode(nbr, node_id, chunki.size);
 		if (!temp || node_id == -1)
 			return (NULL);
 		if (new_nd)
 			temp->next = new_nd;
 		new_nd = temp;
-		// stack_add_front(stack_a, temp);
-		// creating the stack A in reverse and adding each new node;
-		// so for 4 Arguments: 1st-node3 -> size-- -> 2nd-node2 -> size-- -> 3rd-node1
 	}
 	free(arr);
 	return (new_nd);
 }
+
+	// creating the stack A in reverse and adding each new node;
+	// so for 4 Arguments: 1st-node3 -> size-- -> 2nd-node2 -> size-- -> 3rd-node1
 
 // TODO:
 // In case of error, it must display "Error" followed by an ’\n’ on the standard error.
@@ -63,7 +65,8 @@ void	print_st(t_stack **st)
 	while (tmp)
 	{
 		//value -> %d\n // before index
-		ft_printf("node[%d]:\nindex -> %d", i, tmp->index);
+		ft_printf("address -> %p\n", tmp);
+		ft_printf("node[%d]:\nindex -> %d\nnext-> %p\n", i, tmp->value, tmp->next);
 		i++;
 		tmp = tmp->next;
 		if (tmp)

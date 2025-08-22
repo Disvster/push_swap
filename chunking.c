@@ -1,61 +1,40 @@
-#include <math.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   chunking.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/22 19:09:01 by manmaria          #+#    #+#             */
+/*   Updated: 2025/08/22 20:02:29 by manmaria         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <stdlib.h>
+#include "push_swap.h"
 
-	// unsigned int	n;
-	//
-	// n = 1;
-	// if (nb <= 0)
-	// 	return (0);
-	// while (n * n < (unsigned int)nb)
-	// 	n++;
-	// if (n * n == (unsigned int)nb)
-	// 	return (n);
-	// return (0)
 
-// double	ft_sqrt(int nb)
-// {
-//     double  sq;
-//
-//     // sq = (double)nb;
-//     sq = 1;
-//     if (nb < 4)
-//     {
-//         while ((sq * sq) < nb)
-//             sq++;
-// 	return (sq);
-//     }
-//     sq = (double)nb / 2;
-//     for (int i = 
-// 	if (sq * sq == nb)
-// 	    return (sq);
-// 	else
-// 	    return (ft_sqrt(sq));
-// }
-int ft_sqrt_binary(int nb)
+int ft_sqrt_floor(int nb)
 {
     int low;
     int high;
     int mid;
     int result;
 
-    if (nb <= 0)
-        return (0);
-    if (nb == 1)
-        return (1);
+    if (nb <= 1)
+        return (nb == 1); // returns 0 if condition is false
     low = 1;
-    high = nb / 2;  // For nb >= 4, sqrt(nb) <= nb/2
+    high = nb / 2;
     result = 0;
-    
     while (low <= high)
     {
-        mid = low + (high - low) / 2;  // Avoid overflow
-        
+        mid = low + (high - low) / 2;
         if (mid * mid == nb)
-            return (mid);  // Perfect square
+            return (mid);
         else if (mid * mid < nb)
         {
-            result = mid;  // Store the largest valid answer
+            result = mid;
             low = mid + 1;
         }
         else
@@ -63,14 +42,15 @@ int ft_sqrt_binary(int nb)
     }
     return (result);
 }
+
 // Calculate chunk size using floor of square root
-int calculate_chunk_size(int stack_size)
+int calc_chunk_size(int stack_size)
 {
-    return (int)floor(sqrt(stack_size));
+    return (ft_sqrt_floor(stack_size));
 }
 
 // Calculate total number of chunks needed
-int calculate_chunk_count(int stack_size, int chunk_size)
+int calc_chunk_count(int stack_size, int chunk_size)
 {
     return (stack_size + chunk_size - 1) / chunk_size;  // Ceiling division
 }
@@ -88,11 +68,33 @@ int is_in_chunk(int index, int chunk_number, int chunk_size, int stack_size)
     int chunk_end = chunk_start + chunk_size - 1;
     
     // Handle the last chunk which might be larger
-    if (chunk_number == calculate_chunk_count(stack_size, chunk_size) - 1){
+    if (chunk_number == calc_chunk_count(stack_size, chunk_size) - 1){
         chunk_end = stack_size - 1;}
 	printf("\nchunk_start = %d, chunk_end = %d\n", chunk_start, chunk_end);
     
     return (index >= chunk_start && index <= chunk_end);
+}
+
+t_chunk    ft_schunkinit(int stack_size)
+{
+    t_chunk	chunki;
+
+    chunki.size = calc_chunk_size(stack_size);
+    chunki.count = calc_chunk_count(stack_size, chunki.size);
+    printf("Stack size: %d\n", stack_size);
+    printf("Stack size squared: %d\n", ft_sqrt_floor(stack_size));
+    printf("Chunk size: %d\n", chunki.size);
+    printf("Number of chunks: %d\n", chunki.count);
+    return (chunki);
+}
+
+t_chunk	ft_chunkinit(int stack_size)
+{
+	t_chunk	chunki;
+
+	chunki.size = calc_chunk_size(stack_size);
+	chunki.count = calc_chunk_count(stack_size, chunki.size);
+	return (chunki);
 }
 
 // Example usage
@@ -100,11 +102,11 @@ int main(int ac, char **av)
 {
     (void)ac;
     int stack_size = atoi(av[1]);
-    int chunk_size = calculate_chunk_size(stack_size);
-    int chunk_count = calculate_chunk_count(stack_size, chunk_size);
+    int chunk_size = calc_chunk_size(stack_size);
+    int chunk_count = calc_chunk_count(stack_size, chunk_size);
 
     printf("Stack size: %d\n", stack_size);
-    printf("Stack size squared: %d\n", ft_sqrt_binary(stack_size));
+    printf("Stack size squared: %d\n", ft_sqrt_floor(stack_size));
     printf("Chunk size: %d\n", chunk_size);
     printf("Number of chunks: %d\n", chunk_count);
 
