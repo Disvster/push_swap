@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:54:14 by manmaria          #+#    #+#             */
-/*   Updated: 2025/07/23 18:04:52 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/08/22 20:00:37 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,13 +121,5 @@ int	ft_find_index(long *tab, int size, int nbr)
 		else if (nbr < tab[mid])
 			high = mid - 1;
 	}
-	return (-1); // number not found
+	return (-1);
 }
-
-	// while (i < size)
-	// {
-	// 	if (tab[i] == nbr)
-	// 		return (i);
-	// 	i++;
-	// }
-	// return (-1);

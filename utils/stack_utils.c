@@ -6,13 +6,13 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:09:04 by manmaria          #+#    #+#             */
-/*   Updated: 2025/08/11 20:42:45 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/08/22 20:15:42 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-t_stack	*stack_newnode(int value, int index)
+t_stack	*stack_newnode(int value, int index, int chunk_size)
 {
 	t_stack	*new_node;
 
@@ -21,6 +21,7 @@ t_stack	*stack_newnode(int value, int index)
 		return (NULL);
 	new_node->value = value;
 	new_node->index = index;
+	new_node->chunkid = index / chunk_size;
 	new_node->next = NULL;
 	return (new_node);
 }
