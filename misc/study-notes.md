@@ -34,3 +34,36 @@ Like start with (idk) 3 (I heard that 3 is hard-coded) nodes to B, organize them
 - 5-6-7 then 2-3-4 then 8-9-10
 Then :
 - (1-3-4)-(5-6-7)-(8-9-10)
+
+## more brainstorming 24/05
+
+I can use the LIS (longest increasing or decreasing subsequence) for sorting.
+
+If I commit to organizing each chunk then I need to always check for **rr** and **rrr** when I'm rotating Stack B.
+If this is the case then SB will be rotating for organization purposes and SA will be rotating to prepare the nodes in the next chunk to be processed, so that they can be pushed to B when B is done organizing itself.
+
+I can also implement a type of **Binary Search** but instead of searching I'll be **Binary Sorting**. This is basically quick sort I think.
+
+My initial idea was attribute a chunk number to each node. The floored square root determines the size of each chunk and how many chunks I'll have.
+Having the values divided into groups I theorized it would be easier to sort each group individually at a time.
+E.g.: If I have 16 disorganized numbers then I'll have 4 chunks (from 0 - 3). I would start with chunk 3, meaning that I would look for all nodes containing the chunk-id == 3 in A and push them to B. I would then organize B in descending order. A would be used as a helper stack for B when needed.
+Then look for nodes with chunk-id == 2 and repeat the process. In the end I would have a B organized in descending order and an empty A. I would push everything to A and it would end up being organized in ascending order.
+
+### 2 things to note here:
+1. inefficiency when searching for nodes in to-be-processed chunk:
+    * node/chunk search in A would be based on 1st, 2nd and last node (ra-rra-sa);
+2. still no algorithm for organizing, just a chunk dream;
+
+### Solutions:
+1. determine costs:
+    * create like a hash map of all the numbers I'm looking for in the node that I'm processing;
+    * **pa** based on cost from least to biggest (this would be calculated to determine which node I would move in that instance, every time I need to make a node-to-be-pushed decision);
+2. sort based on LIS and/or Binary Sorting:
+    * LIS - I would get the longest (in my case) decreasing sequence, in order to organize B and possibly ignoring completely other numbers from previous organized chunks. This would mean having some sort of node-targeting-another-node based on adjacent values logic OR
+    * B.S. - binary sorting whatever I wanted, be it a whole stack and ditching my chunk logic or binary sorting within the bounds of a node. This would mean I would keep diving stack or chunk into smaller, halved sized sections with an anchor point. One halve < another side >= than anchor until I end up with 1 (?); 
+
+### What to do next:
+- get to a point where you have all nodes in A associated with their respective chunks;
+- create a function which pushes these chunks into B.
+
+When I have this, I can then start working on the sorting part and test how and if chunk sorting will work.
