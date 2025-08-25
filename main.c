@@ -65,8 +65,8 @@ void	print_stack(t_stack **st)
 	while (tmp)
 	{
 		//value -> %d\n // before index
-		ft_printf("address -> %p\n", tmp);
-		ft_printf("node[%d]:\nindex -> %d\nnext-> %p\n", i, tmp->value, tmp->next);
+		//ft_printf("address -> %p\n", tmp);
+		ft_printf("node[%d]:\nvalue -> %d\nindex -> %d\nin chunk -> %d\n", i, tmp->value, tmp->index, tmp->chunkid);
 		i++;
 		tmp = tmp->next;
 		if (tmp)
