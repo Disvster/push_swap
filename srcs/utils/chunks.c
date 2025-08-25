@@ -6,11 +6,11 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 19:48:56 by manmaria          #+#    #+#             */
-/*   Updated: 2025/08/22 20:16:34 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/08/25 15:00:32 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../../push_swap.h"
 
 int ft_sqrt_floor(int nb)
 {
@@ -45,6 +45,6 @@ t_chunk	ft_chunkinit(int stack_size)
 	t_chunk	chunki;
 
 	chunki.size = ft_sqrt_floor(stack_size);
-	chunki.count = (stack_size + chunki.size - 1) / chunki.count;
+	chunki.count = (stack_size + chunki.size - 1) / chunki.size;
 	return (chunki);
 }

@@ -6,11 +6,11 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:54:14 by manmaria          #+#    #+#             */
-/*   Updated: 2025/08/22 20:00:37 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/08/25 15:00:32 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../../push_swap.h"
 
 int	ft_atol(const char *nptr)
 {

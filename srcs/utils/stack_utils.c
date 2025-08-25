@@ -6,11 +6,11 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:09:04 by manmaria          #+#    #+#             */
-/*   Updated: 2025/08/22 20:15:42 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/08/25 15:00:32 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../../push_swap.h"
 
 t_stack	*stack_newnode(int value, int index, int chunk_size)
 {
