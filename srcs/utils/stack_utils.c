@@ -60,3 +60,23 @@ t_stack	*ft_stacklast(t_stack *lst)
 		tmp = tmp->next;
 	return (tmp);
 }
+
+int	ft_check_sort(t_stack *s, long *tab, int order)
+{
+	// this func should now if I want to check the full order or just
+	// a specific range in the long array
+	int	bcheck;
+	int	i;
+
+	bcheck = 0;
+	i = 0;
+	// pseudo code
+	if (order == 1) // check for ascending order
+
+	else if (order == 0) // check for descending order
+	{
+			if (/*check in specific range */)
+			else // check the whole stack
+	}	
+	return (bcheck);
+}

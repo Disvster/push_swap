@@ -36,7 +36,6 @@ t_stack	*create_stack_a(int ac, char **av, long *arr)
 			temp->next = new_nd;
 		new_nd = temp;
 	}
-	free(arr);
 	return (new_nd);
 }
 
@@ -155,6 +154,7 @@ int	main(int ac, char **av)
 		pa = &sa;
 		// test_movements(pa);
 		print_stack(pa);
+		free(ltab);
 		ft_stack_clear(*pa);
 	}
 	else
