@@ -81,3 +81,40 @@ void	test_movements(t_stack	**pa)
 
 	//ft_stack_clear(*tmp_b);
 }
+/*
+// range will either be stack_size if we want to check the whole stack. or chunk size for chunk sort check
+char	ft_check_sort(t_stack *s, long *tab, int asc, int range)
+{
+	t_stack	*tmp;
+	int		i;
+
+	//NOTE: figure out if array will be needed; if not then remove from params
+	//		i can use the nodes index as array comparison instead of comparing with the next
+	(void)tab; 
+	tmp = s;
+	i = -1;
+	if (asc == 1) // check for ascending order
+	{
+		while (++i < range && tmp->next)
+		{
+			ft_printf("%d<%d-[i%d] ", tmp->index, tmp->next->index, i);
+			if (tmp->index > tmp->next->index)
+				return (0);
+			tmp = tmp->next;
+		}
+	}
+	else if (asc == 0) // check for descending order
+	{
+		while (++i < range && tmp->next)
+		{
+			ft_printf("[%d][i%d]", tmp->index, i);
+			if (tmp->index < tmp->next->index)
+				return (0);
+			tmp = tmp->next;
+		}
+	}
+	ft_printf("\nrange = %d, i = %d, bool = %d\n", range, i, (i == range - 1));
+	return (i);
+}
+// 1 if we went through the whole range OK, 0 if not (if there was still node in there)
+*/

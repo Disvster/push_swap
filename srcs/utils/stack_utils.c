@@ -61,31 +61,30 @@ t_stack	*ft_stacklast(t_stack *lst)
 	return (tmp);
 }
 
-char	ft_check_sort(t_stack *s, long *tab, int asc, int range)
-{	// range will either be stack_size if we want to check the whole stack. or chunk size for chunk sort check
+char	ft_check_sort(t_stack *s, int asc, int range)
+{
 	t_stack	*tmp;
-	char	bcheck;
 	int		i;
 
 	tmp = s;
-	i = 0;
+	i = -1;
 	if (asc == 1) // check for ascending order
 	{
-		while (i < range && tmp && (tmp->index < tmp->next->index))
+		while (++i < range && tmp->next)
 		{
+			if (tmp->index > tmp->next->index)
+				return (0);
 			tmp = tmp->next;
-			i++;
 		}
 	}
 	else if (asc == 0) // check for descending order
 	{
-		while (i < range && tmp && (tmp->index > tmp->next->index))
+		while (++i < range && tmp->next)
 		{
+			if (tmp->index < tmp->next->index)
+				return (0);
 			tmp = tmp->next;
-			i++;
 		}
 	}
-	bcheck = (i == range && tmp); // 1 if we went through the whole range OK, 0 if not (if there was still node in there;
-								 // this can also be in the return statment
-	return (bcheck);
+	return (1);
 }

@@ -68,9 +68,9 @@ int	main(int ac, char **av)
 		pa = &sa;
 		// test_movements(pa);
 		print_stack(pa);
-		if (ft_check_sort(*pa, ltab, 1, ac - 1))
+		if (ft_check_sort(*pa, 1, ac - 1))
 			ft_printf("stack is sorted in ascending order\n");
-		else if (ft_check_sort(*pa, ltab, 0, ac - 1))
+		else if (ft_check_sort(*pa, 0, ac - 1))
 			ft_printf("stack is sorted in descending order\n");
 		else
 			ft_printf("stack is not sorted\n");
