@@ -61,10 +61,10 @@ t_stack	*ft_stacklast(t_stack *lst)
 	return (tmp);
 }
 
-int	ft_check_sort(t_stack *s, long *tab, int asc, int range)
+char	ft_check_sort(t_stack *s, long *tab, int asc, int range)
 {	// range will either be stack_size if we want to check the whole stack. or chunk size for chunk sort check
 	t_stack	*tmp;
-	int		bcheck;
+	char	bcheck;
 	int		i;
 
 	tmp = s;

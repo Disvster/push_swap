@@ -47,7 +47,7 @@ t_stack	*stack_newnode(int value, int index, int chunk_size);
 t_stack	*ft_stacklast(t_stack *lst);
 void	ft_stack_clear(t_stack *lst);
 t_chunk	ft_chunkinit(int stack_size);
-int	ft_check_sort(t_stack *s, long *tab, int asc, int range);
+char	ft_check_sort(t_stack *s, long *tab, int asc, int range);
 
 /*  Movements/Operations Functions  */
 t_stack	**ft_stack_swap(t_stack **top);
