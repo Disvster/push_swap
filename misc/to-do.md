@@ -1,5 +1,12 @@
 # to-do list
 
+## 25/08
+
+- [X] added chunk id to each node when creating Stack A
+- [ ] finish funciton to check for sorted stack
+- [ ] function to search for nodes in Stack A that knows what chunk we want to process and push to Stack B
+- [ ] function that works with the one above that pushes nodes to B and does the necessary movements to do so, doing so in the most effiecient way possible (possible as in my capabilities [and my time])
+
 ## 23/08
 
 - [X] created a sqrt_floor fucntion to determine chunksize
