@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../push_swap.h"
+#include "../../incs/push_swap.h"
 
 t_stack	*stack_newnode(int value, int index, int chunk_size)
 {

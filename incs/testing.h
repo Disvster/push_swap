@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swaps.c                                            :+:      :+:    :+:   */
+/*   testing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/31 19:07:40 by manmaria          #+#    #+#             */
-/*   Updated: 2025/08/04 20:08:30 by manmaria         ###   ########.fr       */
+/*   Created: 2025/08/26 16:53:04 by manmaria          #+#    #+#             */
+/*   Updated: 2025/08/26 16:56:10 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/push_swap.h"
+#ifndef TESTING_H
+# define TESTING_H
 
-t_stack	**ft_stack_swap(t_stack **top)
-{
-	t_stack	*n1;
-	t_stack	*n2;
+# include "push_swap.h"
 
-	n1 = *top;
-	if (!n1 || !n1->next)
-		return (top);
-	n2 = n1->next;
-	n1->next = n2->next;
-	n2->next = n1;
-	*top = n2;
-	return (top);
-}
+void	print_stack(t_stack **st);
+void	test_movements(t_stack	**pa);
 
-void	ft_swap_both(t_stack **topa, t_stack **topb)
-{
-	topa = ft_stack_swap(topa);
-	topb = ft_stack_swap(topb);
-}
+#endif 

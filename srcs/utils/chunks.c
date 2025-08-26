@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../push_swap.h"
+#include "../../incs/push_swap.h"
 
 int ft_sqrt_floor(int nb)
 {

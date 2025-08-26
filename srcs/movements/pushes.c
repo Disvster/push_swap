@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../push_swap.h"
+#include "../../incs/push_swap.h"
 
 t_stack	**ft_stack_push(t_stack **topa, t_stack **topb)
 {
