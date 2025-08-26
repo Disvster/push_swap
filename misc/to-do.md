@@ -1,5 +1,10 @@
 # to-do list
 
+## 26/08
+
+- completed ft_check_sort
+- todo from yesterday
+
 ## 25/08
 
 - [X] added chunk id to each node when creating Stack A
@@ -10,7 +15,7 @@
 ## 23/08
 
 - [X] created a sqrt_floor fucntion to determine chunksize
-- [ ] still need to add chunk id to each node, according to its index
+- [X] still need to add chunk id to each node, according to its index
 
 ## 19/08
 
