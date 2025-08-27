@@ -78,9 +78,10 @@ int	main(int ac, char **av)
 			ft_printf("stack is sorted in descending order\n");
 		else
 			ft_printf("stack is not sorted\n");
-		t_stack *tmp2 = ft_targetnode(*pa, ft_sqrt_floor(ac - 1));
+		t_stack *tmp2;
+		tmp2 = ft_targetnode(*pa, ft_sqrt_floor(ac - 1));
 		ft_printf("for chunk [%d] cheapest node is:\n", ft_sqrt_floor(ac - 1));
-		if (!tmp2)
+		if (tmp2 == NULL)
 			ft_printf("not found\n");
 		ft_printf("value -> %d\nindex -> %d\nin chunk -> %d\n\n", tmp2->value, tmp2->index, tmp2->chunkid);
 		free(ltab);
