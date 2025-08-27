@@ -42,12 +42,12 @@ int		ft_sqrt_floor(int nb);
 
 
 /*  Stack Related Functions  */
-void	stack_add_front(t_stack **stack, t_stack *new_nd);
-t_stack	*stack_newnode(int value, int index, int chunk_size);
+void	ft_stack_addfront(t_stack **stack, t_stack *new_nd);
+t_stack	*ft_stack_newnode(int value, int index, int chunk_size);
 t_stack	*ft_stacklast(t_stack *lst);
 void	ft_stack_clear(t_stack *lst);
 t_chunk	ft_chunkinit(int stack_size);
-char	ft_check_sort(t_stack *s, int asc, int range);
+char	ft_checksort(t_stack *s, int asc, int range);
 
 /*  Movements/Operations Functions  */
 t_stack	**ft_stack_swap(t_stack **top);

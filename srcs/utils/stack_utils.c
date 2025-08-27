@@ -12,7 +12,7 @@
 
 #include "../../incs/push_swap.h"
 
-t_stack	*stack_newnode(int value, int index, int chunk_size)
+t_stack	*ft_stack_newnode(int value, int index, int chunk_size)
 {
 	t_stack	*new_node;
 
@@ -26,7 +26,7 @@ t_stack	*stack_newnode(int value, int index, int chunk_size)
 	return (new_node);
 }
 
-void	stack_add_front(t_stack **stack, t_stack *new_nd)
+void	ft_stack_addfront(t_stack **stack, t_stack *new_nd)
 {
 	new_nd->next = *stack;
 	*stack = new_nd;
@@ -61,7 +61,7 @@ t_stack	*ft_stacklast(t_stack *lst)
 	return (tmp);
 }
 
-char	ft_check_sort(t_stack *s, int asc, int range)
+char	ft_checksort(t_stack *s, int asc, int range)
 {
 	t_stack	*tmp;
 	int		i;

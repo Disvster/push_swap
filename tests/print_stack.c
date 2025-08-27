@@ -83,7 +83,7 @@ void	test_movements(t_stack	**pa)
 }
 /*
 // range will either be stack_size if we want to check the whole stack. or chunk size for chunk sort check
-char	ft_check_sort(t_stack *s, long *tab, int asc, int range)
+char	ft_checksort(t_stack *s, long *tab, int asc, int range)
 {
 	t_stack	*tmp;
 	int		i;

@@ -2,7 +2,7 @@
 
 ## 26/08
 
-- completed ft_check_sort
+- [X] completed ft_checksort
 - todo from yesterday
 
 ## 25/08

@@ -22,7 +22,7 @@ t_stack	**ft_stack_push(t_stack **topa, t_stack **topb)
 	tempb = *topb;
 	if (!topa)
 	{
-		tempa = stack_newnode(tempb->value, tempb->index, tempb->chunkid);
+		tempa = ft_stack_newnode(tempb->value, tempb->index, tempb->chunkid);
 		topa = &tempa;
 		*topb = tempb->next;
 		free(tempb);
