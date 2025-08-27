@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 20:09:11 by manmaria          #+#    #+#             */
-/*   Updated: 2025/08/22 20:16:04 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/08/27 16:38:55 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ t_stack	*ft_stacklast(t_stack *lst);
 void	ft_stack_clear(t_stack *lst);
 t_chunk	ft_chunkinit(int stack_size);
 char	ft_checksort(t_stack *s, int asc, int range);
+int		ft_stack_size(t_stack *top);
+t_stack	*ft_stack_middle(t_stack *start);
 
 /*  Movements/Operations Functions  */
 t_stack	**ft_stack_swap(t_stack **top);

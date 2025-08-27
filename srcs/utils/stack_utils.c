@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 17:09:04 by manmaria          #+#    #+#             */
-/*   Updated: 2025/08/25 15:00:32 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/08/27 16:57:47 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_stack	*ft_stack_newnode(int value, int index, int chunk_size)
 	return (new_node);
 }
 
-void	ft_stack_addfront(t_stack **stack, t_stack *new_nd)
+void	ft_stack_addfront(t_stack **stack, t_stack *new_nd) // NOTE: not using atm
 {
 	new_nd->next = *stack;
 	*stack = new_nd;
@@ -87,4 +87,44 @@ char	ft_checksort(t_stack *s, int asc, int range)
 		}
 	}
 	return (1);
+}
+
+int	ft_stack_size(t_stack *top)
+{
+	int		size;
+	t_stack	*tmp;
+
+	size = 0;
+	tmp = top;
+	if (!tmp)
+		return (0);
+	while (tmp)
+	{
+		tmp = tmp->next;
+		size++;
+	}
+	return (size);
+}
+
+t_stack	*ft_stack_middle(t_stack *start)
+{
+	int		mid;
+	int		size;
+	int		i;
+	t_stack	*tmp;
+	
+	if (!start)
+		return (NULL);
+	mid = ft_stack_size(start) / 2;
+	size = ft_stack_size(start);
+	i = 0;
+	tmp = start;
+	if (size % 2 == 0)
+		mid -= 1;
+	while (i < mid)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	return (tmp);
 }

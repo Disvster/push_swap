@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:12:40 by manmaria          #+#    #+#             */
-/*   Updated: 2025/08/22 20:17:53 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/08/27 16:45:53 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	main(int ac, char **av)
 {
 	long		*ltab;
 	t_stack		*sa;
+	t_stack		*tmp;
 	t_stack		**pa;
 
 	if (ac > 1)
@@ -68,12 +69,16 @@ int	main(int ac, char **av)
 		pa = &sa;
 		// test_movements(pa);
 		print_stack(pa);
+		ft_printf("\nmiddle node:\n");
+		tmp = ft_stack_middle(*pa);
+		ft_printf("value -> %d\nindex -> %d\nin chunk -> %d\n\n", tmp->value, tmp->index, tmp->chunkid);
 		if (ft_checksort(*pa, 1, ac - 1))
 			ft_printf("stack is sorted in ascending order\n");
 		else if (ft_checksort(*pa, 0, ac - 1))
 			ft_printf("stack is sorted in descending order\n");
 		else
 			ft_printf("stack is not sorted\n");
+
 		free(ltab);
 		ft_stack_clear(*pa);
 	}
