@@ -60,4 +60,6 @@ void	ft_rotate_both(t_stack **topa, t_stack **topb);
 t_stack	**ft_stack_revrotate(t_stack **top);
 void	ft_revrotate_both(t_stack **topa, t_stack **topb);
 
+t_stack	*ft_targetnode(t_stack *start, int chunk);
+
 #endif

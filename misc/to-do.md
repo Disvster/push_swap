@@ -1,9 +1,14 @@
 # to-do list
 
+## 27/08
+
+- [ ] debug ft_targetnode, segfaulting in some cases;
+- [ ] try to do push operations without using malloc;
+
 ## 26/08
 
 - [X] completed ft_checksort
-- todo from yesterday
+- [ ] todo from yesterday
 
 ## 25/08
 
