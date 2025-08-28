@@ -2,23 +2,25 @@
 
 ## 28/08
 
+- [ ] debug ft_chunkcost and ft_sendchunk, A stays unchanged and B is empty, maybe i dont need double pointers
+- [ ] start sorting B
 
 ## 27/08
 
 - [X] debug ft_targetnode, segfaulting in some cases;
-- [ ] try to do push operations without using malloc;
+- [X] try to do push operations without using malloc;
 
 ## 26/08
 
 - [X] completed ft_checksort
-- [ ] todo from yesterday
+- [X] todo from yesterday
 
 ## 25/08
 
 - [X] added chunk id to each node when creating Stack A
 - [X] finish function to check for sorted stack
-- [ ] function to search for nodes in Stack A that knows what chunk we want to process and push to Stack B
-- [ ] function that works with the one above that pushes nodes to B and does the necessary movements to do so, doing so in the most effiecient way possible (possible as in my capabilities [and my time])
+- [X] function to search for nodes in Stack A that knows what chunk we want to process and push to Stack B
+- [X] [sorta] function that works with the one above that pushes nodes to B and does the necessary movements to do so, doing so in the most effiecient way possible (possible as in my capabilities [and my time])
 
 ## 23/08
 

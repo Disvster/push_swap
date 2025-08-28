@@ -45,7 +45,8 @@ void	ft_stack_push(t_stack **a, t_stack **b)
 		return ;
 	noda = *a;
 	*a = noda->next;
-	noda->next = *b;
-	*b = noda;
+	if (b)
+		noda->next = *b;
+	b = &noda;
 	return ;
 }

@@ -53,6 +53,7 @@ int	main(int ac, char **av)
 	t_stack		*sa;
 	t_stack		*tmp;
 	t_stack		**pa;
+	t_stack		**pb = NULL;
 
 	if (ac > 1)
 	{
@@ -69,23 +70,36 @@ int	main(int ac, char **av)
 		pa = &sa;
 		// test_movements(pa);
 		print_stack(pa);
+
+		/* STACK DIVISION TESTING */
 		ft_printf("\nmiddle node:\n");
 		tmp = ft_stack_middle(*pa);
 		ft_printf("value -> %d\nindex -> %d\nin chunk -> %d\n\n", tmp->value, tmp->index, tmp->chunkid);
+
+		/* SORT CHECK TESTING */
 		if (ft_checksort(*pa, 1, ac - 1))
 			ft_printf("stack is sorted in ascending order\n");
 		else if (ft_checksort(*pa, 0, ac - 1))
 			ft_printf("stack is sorted in descending order\n");
 		else
 			ft_printf("stack is not sorted\n");
-		t_stack *tmp2;
-		tmp2 = ft_targetnode(*pa, ft_sqrt_floor(ac - 1) - 1);
-		ft_printf("for chunk [%d] cheapest node is:\n", ft_sqrt_floor(ac - 1) - 1);
-		if (tmp2 == NULL)
-			ft_printf("not found\n");
-		ft_printf("value -> %d\nindex -> %d\nin chunk -> %d\n\n", tmp2->value, tmp2->index, tmp2->chunkid);
+
+		/* CHUNK PUSH TO B TESTING */
+		int chunk = ft_sqrt_floor(ac - 1) - 1;
+		ft_sendchunk(pa, pb, chunk);
+		ft_printf("All Nodes from chunk [%d] were pushed to B\n", chunk);
+		ft_printf("Stack B:\n");
+		print_stack(pb);
+		ft_printf("Stack A:\n");
+		print_stack(pa);
+		
+		// ft_printf("for chunk [%d] cheapest node is:\n", ft_sqrt_floor(ac - 1) - 1);
+		// ft_printf("value -> %d\nindex -> %d\nin chunk -> %d\n\n", tmp->value, tmp->index, tmp->chunkid);
+
 		free(ltab);
 		ft_stack_clear(*pa);
+		if (*pb)
+			ft_stack_clear(*pb);
 	}
 	else
 	{

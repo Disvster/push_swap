@@ -26,60 +26,59 @@ void	print_stack(t_stack **st)
 
 void	test_movements(t_stack	**pa)
 {
-	t_stack	**tmp_a;
-	t_stack	**tmp_b;
+	t_stack	**pb;
 
-	tmp_a = pa;
-	tmp_b = NULL;
+	pa = pa;
+	pb = NULL;
 	
 	// NORMAL STACK
 	ft_printf("\n-*-*-*-*-*-*-\n==> Before Movements:\n\n-< Stack A >-\n");
 	print_stack(pa);
 	ft_printf("\n\n-< Stack B >-\n");
-	print_stack(tmp_b);
+	print_stack(pb);
 	
 	// SWAP A
 	ft_printf("-*-*-*-*-*-*-\n\n-*-*-<sa>-*-*-\n==> After SwapA:\n");
-	pa = ft_stack_swap(tmp_a);
+	ft_stack_swap(pa);
 	ft_printf("\n-< Stack A >-\n");
 	print_stack(pa);
 
 	// ROTATE A (1st goes last)
 	ft_printf("\n\n-*-*-<ra>-*-*-\n==> After Rotate A (1st goes last):\n");
-	pa = ft_stack_rotate(tmp_a);
+	ft_stack_rotate(pa);
 	ft_printf("\n-< Stack A >-\n");
 	print_stack(pa);
 	ft_printf("\n-*-*-<ra>-*-*-\n");
 	
 	//REVERSE ROTATE A (last goes 1st)
 	ft_printf("\n-*-*-<rra>-*-*-\n==> After Reverse Rotate A (last goes 1st):\n");
-	pa = ft_stack_revrotate(tmp_a);
+	ft_stack_revrotate(pa);
 	ft_printf("\n-< Stack A >-\n");
 	print_stack(pa);
 	ft_printf("\n-*-*-<ra>-*-*-\n");
 
 	// PUSH A (b -> a)
 	ft_printf("\n-*-*-<sa>-*-*-\n\n-*-*-<pa>-*-*-\n==> After Push (top of B to) A:\n");
-	pa = ft_stack_push(tmp_a, tmp_b);
+	ft_stack_push(pa, pb);
 	ft_printf("\n-< Stack A >-\n");
 	print_stack(pa);
 	ft_printf("\n\n-< Stack B >-\n");
-	print_stack(tmp_b);
+	print_stack(pb);
 
 	//PUSH B (a -> b)
 	ft_printf("-*-*-<pa>-*-*-\n\n-*-*-<pb>-*-*-\n==> After Push (top of A to) B:\n");
-	tmp_b = ft_stack_push(tmp_b, tmp_a);
-	ft_printf("\n before print_stack: %p, %p", tmp_b, *tmp_b);
+	ft_stack_push(pb, pa);
+	ft_printf("\n before print_stack: %p, %p", pb, *pb);
 	ft_printf("\n-< Stack A >-\n");
 	print_stack(pa);
 	ft_printf("\n\n-< Stack B >-\n");
-	print_stack(tmp_b);
-	// NOTE: *tmp_b is changing address after entering print_stack
+	print_stack(pb);
+	// NOTE: *pb is changing address after entering print_stack
 	//	check valgrind errors, might be related
-	ft_printf("\nafter print_stack: %p, %p", tmp_b, *tmp_b);
+	ft_printf("\nafter print_stack: %p, %p", pb, *pb);
 	ft_printf("\n-*-*-<pb>-*-*-\n");
 
-	//ft_stack_clear(*tmp_b);
+	//ft_stack_clear(pb);
 }
 /*
 // range will either be stack_size if we want to check the whole stack. or chunk size for chunk sort check

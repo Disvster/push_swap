@@ -41,7 +41,6 @@ int		ft_find_index(long *tab, int size, int nbr);
 
 int		ft_sqrt_floor(int nb);
 
-
 /*  Stack Related Functions  */
 void	ft_stack_addfront(t_stack **stack, t_stack *new_nd);
 t_stack	*ft_stack_newnode(int value, int index, int chunk_size);
@@ -52,7 +51,7 @@ char	ft_checksort(t_stack *s, int asc, int range);
 int		ft_stack_size(t_stack *top);
 t_stack	*ft_stack_middle(t_stack *start);
 
-/*  Movements/Operations Functions  */
+/*  Movement Functions  */
 void	ft_stack_swap(t_stack **top);
 void	ft_swap_both(t_stack **topa, t_stack **topb);
 void	ft_stack_push(t_stack **topa, t_stack **topb);
@@ -61,6 +60,8 @@ void	ft_rotate_both(t_stack **topa, t_stack **topb);
 void	ft_stack_revrotate(t_stack **top);
 void	ft_revrotate_both(t_stack **topa, t_stack **topb);
 
+/*  Operation Functions  */
 void	ft_chunkcost(t_stack **midup, t_stack **midown, int chunk);
+void	ft_sendchunk(t_stack **a, t_stack **b, int chunk);
 
 #endif

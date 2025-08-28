@@ -41,7 +41,7 @@ void	ft_chunkcost(t_stack **midup, t_stack **midown, int chunk)
 		bot->cost = INT_MAX;
 }
 
-void	ft_sendchunk(t_stack **a, t_stack **b, int chunk)
+void	ft_sendchunk(t_stack **a, t_stack **b, int chunk) // FIX: size
 {
 	t_stack	*top;
 	t_stack	*bot;
