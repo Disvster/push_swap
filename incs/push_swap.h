@@ -23,6 +23,7 @@ typedef struct s_stack
 	int				value;
 	int				index;
 	int				chunkid;
+	int				cost;
 	struct s_stack	*next;
 }					t_stack;
 
@@ -60,6 +61,6 @@ void	ft_rotate_both(t_stack **topa, t_stack **topb);
 void	ft_stack_revrotate(t_stack **top);
 void	ft_revrotate_both(t_stack **topa, t_stack **topb);
 
-t_stack	*ft_targetnode(t_stack *start, int chunk);
+void	ft_chunkcost(t_stack **midup, t_stack **midown, int chunk);
 
 #endif

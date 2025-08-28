@@ -12,37 +12,63 @@
 
 #include "../../incs/push_swap.h"
 
-t_stack	*ft_targetnode(t_stack *start, int chunk)
+void	ft_chunkcost(t_stack **midup, t_stack **midown, int chunk)
 {
 	t_stack *top;
 	t_stack *bot;
-	int		ctop;
-	int		cbot;
 	
-	if (!start)
-		return (NULL);
-	ctop = 0;
-	cbot = 1;
-	top = start;
-	bot = ft_stack_middle(start);
-	bot = bot->next;
+	if (!*midup || !*midown)
+		return ;
+	top = *midup;
+	bot = *midown;
 	while (top)
 	{
 		if (top->chunkid == chunk || top->next == bot)
 			break ;
 		top = top->next;
-		ctop++;
+		top->cost++;
 	}
 	while (bot)
 	{
-		if (bot->chunkid == chunk && !bot->next)
+		if (bot->chunkid == chunk || !bot->next)
 			break ;
 		bot = bot->next;
-		cbot++;
+		bot->cost++;
 	}
-	if (ctop <= cbot && top->chunkid == chunk)
-		return (top);
-	else if (cbot < ctop && bot->chunkid == chunk)
-		return (bot);
-	return (start);
+	if (top->chunkid != chunk)  // NOTE: no protection if top->chunkid
+		top->cost = INT_MAX;                                                
+	if (bot->chunkid != chunk)  // NOTE: AND bot->chunkid are both != chunk
+		bot->cost = INT_MAX;
+}
+
+void	ft_sendchunk(t_stack **a, t_stack **b, int chunk)
+{
+	t_stack	*top;
+	t_stack	*bot;
+
+	top = *a;
+	bot = ft_stack_middle(*a);
+	bot = bot->next;
+	top->cost = 0;
+	bot->cost = 1;
+	ft_chunkcost(&top, &bot, chunk);
+	if (top->cost < bot->cost)
+	{
+		while (*a != top)
+		{
+			ft_stack_rotate(a);
+			// TODO: check here for rr
+			ft_printf("ra\n");
+		}
+	}
+	else if (bot->cost < top->cost)
+	{
+		while (*a != bot)
+		{
+			ft_stack_revrotate(a);
+			// TODO: check here for rrr
+			ft_printf("rra\n");
+		}
+	}
+	ft_stack_push(a, b);
 }
