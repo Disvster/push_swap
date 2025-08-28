@@ -12,48 +12,50 @@
 
 #include "../../incs/push_swap.h"
 
-t_stack	**ft_stack_rotate(t_stack **top)
+void	ft_stack_rotate(t_stack **top)
 {
 	t_stack	*first;
 	t_stack	*last;
 
+	if (!top || !*top)
+		return ;
 	first = *top;
 	if (!first->next)
-		return (top);
+		return ;
 	last = ft_stacklast(first);
-	last->next = first;
 	*top = first->next;
+	last->next = first;
 	first->next = NULL;
-	return (top);
 }
 
 void	ft_rotate_both(t_stack **topa, t_stack **topb)
 {
-	topa = ft_stack_rotate(topa);
-	topb = ft_stack_rotate(topb);
+	ft_stack_rotate(topa);
+	ft_stack_rotate(topb);
 }
 
-t_stack	**ft_stack_revrotate(t_stack **top)
+void	ft_stack_revrotate(t_stack **top)
 {
 	t_stack	*temp;
 	t_stack	*first;
 	t_stack	*last;
 
+	if (!top || !*top)
+		return ;
 	first = *top;
 	temp = *top;
 	if (!first->next)
-		return (top);
+		return ;
 	while (temp->next->next)
 		temp = temp->next;
 	last = ft_stacklast(first);
 	last->next = first;
 	temp->next = NULL;
 	*top = last;
-	return (top);
 }
 
 void	ft_revrotate_both(t_stack **topa, t_stack **topb)
 {
-	topa = ft_stack_revrotate(topa);
-	topb = ft_stack_revrotate(topb);
+	ft_stack_revrotate(topa);
+	ft_stack_revrotate(topb);
 }

@@ -12,23 +12,24 @@
 
 #include "../../incs/push_swap.h"
 
-t_stack	**ft_stack_swap(t_stack **top)
+void ft_stack_swap(t_stack **top)
 {
 	t_stack	*n1;
 	t_stack	*n2;
 
+	if (!top || !*top)
+		return ;
 	n1 = *top;
-	if (!n1 || !n1->next)
-		return (top);
+	if (n1->next == NULL)
+		return ;
 	n2 = n1->next;
 	n1->next = n2->next;
 	n2->next = n1;
 	*top = n2;
-	return (top);
 }
 
 void	ft_swap_both(t_stack **topa, t_stack **topb)
 {
-	topa = ft_stack_swap(topa);
-	topb = ft_stack_swap(topb);
+	ft_stack_swap(topa);
+	ft_stack_swap(topb);
 }

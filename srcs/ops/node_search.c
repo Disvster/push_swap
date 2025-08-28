@@ -44,5 +44,5 @@ t_stack	*ft_targetnode(t_stack *start, int chunk)
 		return (top);
 	else if (cbot < ctop && bot->chunkid == chunk)
 		return (bot);
-	return (NULL);
+	return (start);
 }

@@ -12,7 +12,8 @@
 
 #include "../../incs/push_swap.h"
 
-t_stack	**ft_stack_push(t_stack **topa, t_stack **topb)
+// NOTE: function below is depecrecated
+t_stack	**ft_notstack_push(t_stack **topa, t_stack **topb)
 {
 	t_stack	*tempa;
 	t_stack	*tempb;
@@ -34,4 +35,17 @@ t_stack	**ft_stack_push(t_stack **topa, t_stack **topb)
 	tempb->next = tempa;
 	*topa = tempb;
 	return (topa);
+}
+
+void	ft_stack_push(t_stack **a, t_stack **b)
+{
+	t_stack	*noda;
+
+	if (!a || !*a)
+		return ;
+	noda = *a;
+	*a = noda->next;
+	noda->next = *b;
+	*b = noda;
+	return ;
 }

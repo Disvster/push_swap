@@ -52,12 +52,12 @@ int		ft_stack_size(t_stack *top);
 t_stack	*ft_stack_middle(t_stack *start);
 
 /*  Movements/Operations Functions  */
-t_stack	**ft_stack_swap(t_stack **top);
+void	ft_stack_swap(t_stack **top);
 void	ft_swap_both(t_stack **topa, t_stack **topb);
-t_stack	**ft_stack_push(t_stack **topa, t_stack **topb);
-t_stack	**ft_stack_rotate(t_stack **top);
+void	ft_stack_push(t_stack **topa, t_stack **topb);
+void	ft_stack_rotate(t_stack **top);
 void	ft_rotate_both(t_stack **topa, t_stack **topb);
-t_stack	**ft_stack_revrotate(t_stack **top);
+void	ft_stack_revrotate(t_stack **top);
 void	ft_revrotate_both(t_stack **topa, t_stack **topb);
 
 t_stack	*ft_targetnode(t_stack *start, int chunk);

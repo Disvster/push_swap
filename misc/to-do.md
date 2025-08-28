@@ -1,8 +1,11 @@
 # to-do list
 
+## 28/08
+
+
 ## 27/08
 
-- [ ] debug ft_targetnode, segfaulting in some cases;
+- [X] debug ft_targetnode, segfaulting in some cases;
 - [ ] try to do push operations without using malloc;
 
 ## 26/08
