@@ -45,21 +45,21 @@ void	test_movements(t_stack	**pa)
 
 	// ROTATE A (1st goes last)
 	ft_printf("\n\n-*-*-<ra>-*-*-\n==> After Rotate A (1st goes last):\n");
-	ft_stack_rotate(pa);
+	ft_stack_rotate(pa, 0);
 	ft_printf("\n-< Stack A >-\n");
 	print_stack(pa);
 	ft_printf("\n-*-*-<ra>-*-*-\n");
 	
 	//REVERSE ROTATE A (last goes 1st)
 	ft_printf("\n-*-*-<rra>-*-*-\n==> After Reverse Rotate A (last goes 1st):\n");
-	ft_stack_revrotate(pa);
+	ft_stack_revrotate(pa, 0);
 	ft_printf("\n-< Stack A >-\n");
 	print_stack(pa);
 	ft_printf("\n-*-*-<ra>-*-*-\n");
 
 	// PUSH A (b -> a)
 	ft_printf("\n-*-*-<sa>-*-*-\n\n-*-*-<pa>-*-*-\n==> After Push (top of B to) A:\n");
-	ft_stack_push(pa, pb);
+	ft_stack_push(pa, pb, 0);
 	ft_printf("\n-< Stack A >-\n");
 	print_stack(pa);
 	ft_printf("\n\n-< Stack B >-\n");
@@ -67,7 +67,7 @@ void	test_movements(t_stack	**pa)
 
 	//PUSH B (a -> b)
 	ft_printf("-*-*-<pa>-*-*-\n\n-*-*-<pb>-*-*-\n==> After Push (top of A to) B:\n");
-	ft_stack_push(pb, pa);
+	ft_stack_push(pb, pa, 1);
 	ft_printf("\n before print_stack: %p, %p", pb, *pb);
 	ft_printf("\n-< Stack A >-\n");
 	print_stack(pa);
