@@ -1,5 +1,29 @@
 #include "../incs/testing.h"
 
+void	mini_print_stacks(t_stack **a, t_stack **b)
+{
+	t_stack	*ta;
+	t_stack	*tb;
+
+	ta = *a;
+	tb = *b;
+	ft_printf("\t  A\t\t  B\n");
+	ft_printf("\t------\t\t------\n");
+	while (ta || tb){
+		if (ta){
+			ft_printf("\t %d[%d]\t", ta->index, ta->chunkid);
+			ta = ta->next;
+		}	
+		else
+			ft_printf("\t\t");
+		if (tb){
+			ft_printf("\t %d[%d]", tb->index, tb->chunkid);
+			tb = tb->next;
+		}
+		ft_printf("\n");
+	}
+}
+
 void	print_stack(t_stack **st)
 {
 	int		i;

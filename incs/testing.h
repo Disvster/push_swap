@@ -16,6 +16,7 @@
 # include "push_swap.h"
 
 void	print_stack(t_stack **st);
+void	mini_print_stacks(t_stack **a, t_stack **b);
 void	test_movements(t_stack	**pa);
 
 #endif 
