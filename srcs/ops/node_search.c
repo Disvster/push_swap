@@ -50,14 +50,16 @@ void	ft_chunkcost(t_stack **top, t_stack **bot, int chunk) // FIX: size
 	// ft_printf("\ntop->cost = %d, bot->cost = %d\n", ctop, cbot);
 	// ft_printf("\ntop->cost = %d, bot->cost = %d\n", (*top)->cost, (*bot)->cost);
 
-void	ft_sendchunk(t_stack **a, t_stack **b, int chunk)
+//	TODO: change this name to prepare chunk
+void	ft_sendchunk(t_stack **a, int chunk)
 {
 	t_stack	*top;
 	t_stack	*bot;
 
 	top = *a;
 	bot = ft_stack_middle(*a);
-	bot = bot->next;
+	if (bot && bot->next)
+		bot = bot->next;
 	ft_chunkcost(&top, &bot, chunk);
 	if (top->cost < bot->cost)
 	{
@@ -75,5 +77,4 @@ void	ft_sendchunk(t_stack **a, t_stack **b, int chunk)
 			// TODO: check here for rrr
 		}
 	}
-	ft_stack_push(a, b, 0); // 0 is A
 }

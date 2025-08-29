@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:12:40 by manmaria          #+#    #+#             */
-/*   Updated: 2025/08/27 16:45:53 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/08/29 14:08:28 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_stack	*create_stack_a(int ac, char **av, long *arr)
 	temp = NULL;
 	new_nd = NULL;
 	chunki = ft_chunkinit(size - 1);
+	ft_printf("\nchunki.size = %d , chunki.count = %d\n", chunki.size, chunki.count);
 	while (--size > 0)
 	{
 		nbr = ft_atoi(av[size]);
@@ -87,9 +88,10 @@ int	main(int ac, char **av)
 
 		/* CHUNK PUSH TO B TESTING */
 		b = NULL;
-		int chunk = ft_sqrt_floor(ac - 1) - 1;
-		ft_sendchunk(&sa, &b, chunk);
-		ft_printf("1 Node from chunk [%d] was pushed to B\n", chunk);
+		// int chunk = ft_sqrt_floor(ac - 1) - 1;
+		t_chunk c = ft_chunkinit(ac - 1);
+		ft_chunk_push(&sa, &b, ac - 1);
+		ft_printf("%d Node(s) from chunk [%d] was pushed to B\n", ft_stack_size(b), c.count - 1);
 		ft_printf("\nStack B:\n");
 		print_stack(&b);
 		ft_printf("\nStack A:\n");

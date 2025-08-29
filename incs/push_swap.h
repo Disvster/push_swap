@@ -62,6 +62,7 @@ void	ft_revrotate_both(t_stack **topa, t_stack **topb);
 
 /*  Operation Functions  */
 void	ft_chunkcost(t_stack **top, t_stack **bot, int chunk);
-void	ft_sendchunk(t_stack **a, t_stack **b, int chunk);
+void	ft_sendchunk(t_stack **a, int chunk);
+void	ft_chunk_push(t_stack **a, t_stack **b, int s_size);
 
 #endif
