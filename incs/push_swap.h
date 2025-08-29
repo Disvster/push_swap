@@ -54,14 +54,14 @@ t_stack	*ft_stack_middle(t_stack *start);
 /*  Movement Functions  */
 void	ft_stack_swap(t_stack **top);
 void	ft_swap_both(t_stack **topa, t_stack **topb);
-void	ft_stack_push(t_stack **topa, t_stack **topb);
-void	ft_stack_rotate(t_stack **top);
+void	ft_stack_push(t_stack **topa, t_stack **topb, int which_stack);
+void	ft_stack_rotate(t_stack **top,int which_stack);
 void	ft_rotate_both(t_stack **topa, t_stack **topb);
-void	ft_stack_revrotate(t_stack **top);
+void	ft_stack_revrotate(t_stack **top, int which_stack);
 void	ft_revrotate_both(t_stack **topa, t_stack **topb);
 
 /*  Operation Functions  */
-void	ft_chunkcost(t_stack **midup, t_stack **midown, int chunk);
+void	ft_chunkcost(t_stack **top, t_stack **bot, int chunk);
 void	ft_sendchunk(t_stack **a, t_stack **b, int chunk);
 
 #endif

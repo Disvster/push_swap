@@ -12,7 +12,7 @@
 
 #include "../../incs/push_swap.h"
 
-// NOTE: function below is depecrecated
+// NOTE: function below is depecrecated, no malloc needed
 t_stack	**ft_notstack_push(t_stack **topa, t_stack **topb)
 {
 	t_stack	*tempa;
@@ -37,7 +37,7 @@ t_stack	**ft_notstack_push(t_stack **topa, t_stack **topb)
 	return (topa);
 }
 
-void	ft_stack_push(t_stack **a, t_stack **b)
+void	ft_stack_push(t_stack **a, t_stack **b, int which_stack)
 {
 	t_stack	*noda;
 
@@ -45,8 +45,11 @@ void	ft_stack_push(t_stack **a, t_stack **b)
 		return ;
 	noda = *a;
 	*a = noda->next;
-	if (b)
-		noda->next = *b;
-	b = &noda;
+	noda->next = *b;
+	*b = noda;
+	if (!which_stack)
+		ft_printf("pb\n");
+	else
+		ft_printf("pa\n");
 	return ;
 }
