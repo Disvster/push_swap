@@ -44,12 +44,16 @@ void	ft_chunkcost(t_stack **top, t_stack **bot, int chunk) // FIX: size
 	if ((*bot)->chunkid != chunk)  // NOTE: AND bot->chunkid are both != chunk
 		(*bot)->cost = INT_MAX;
 }
-	// HACK: debug
+	// HACK: debug chunkcost
 	// if ((*bot)->chunkid == chunk || !(*bot)->next || cbot >= ctop)
 	// ft_printf("\ntop = %p \nbot = %p\n", *top, *bot);
 	// ft_printf("\ntop->cost = %d, bot->cost = %d\n", ctop, cbot);
 	// ft_printf("\ntop->cost = %d, bot->cost = %d\n", (*top)->cost, (*bot)->cost);
 
+	// HACK: debug sendchunk
+	// ft_printf("-----> TOP value -> %d, in chunk -> %d\n", top->value, top->chunkid);
+	// ft_printf("-----> BOT1 value -> %d, in chunk -> %d\n", bot->value, bot->chunkid);
+	// ft_printf("-----> top cost -> %d, bot cost -> %d\n", top->cost, bot->cost);
 //	TODO: change this name to prepare chunk
 void	ft_sendchunk(t_stack **a, int chunk)
 {
@@ -58,10 +62,13 @@ void	ft_sendchunk(t_stack **a, int chunk)
 
 	top = *a;
 	bot = ft_stack_middle(*a);
-	if (bot && bot->next)
+	// if (bot && bot->next)// NOTE: ??? not sure why I did this
+	if (ft_stack_size(*a) > 3)
 		bot = bot->next;
 	ft_chunkcost(&top, &bot, chunk);
-	if (top->cost < bot->cost)
+	if (top->cost == bot->cost && top->cost == INT_MAX)
+		return ;
+	if (top->cost <= bot->cost)
 	{
 		while (*a != top)
 		{
