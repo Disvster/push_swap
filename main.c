@@ -71,7 +71,8 @@ int	main(int ac, char **av)
 			return (1);
 		// pa = &sa;
 		// test_movements(pa);
-		print_stack(&sa);
+		// print_stack(&sa);
+		mini_print_stacks(&sa, &b);
 
 		/* STACK DIVISION TESTING */
 		ft_printf("\nmiddle node:\n");
@@ -92,10 +93,11 @@ int	main(int ac, char **av)
 		t_chunk c = ft_chunkinit(ac - 1);
 		ft_chunk_push(&sa, &b, ac - 1);
 		ft_printf("%d Node(s) from chunk [%d] was pushed to B\n", ft_stack_size(b), c.count - 1);
-		ft_printf("\nStack B:\n");
-		print_stack(&b);
-		ft_printf("\nStack A:\n");
-		print_stack(&sa);
+		// ft_printf("\nStack B:\n");
+		// print_stack(&b);
+		// ft_printf("\nStack A:\n");
+		// print_stack(&sa);
+		mini_print_stacks(&sa, &b);
 		
 		// ft_printf("for chunk [%d] cheapest node is:\n", ft_sqrt_floor(ac - 1) - 1);
 		// ft_printf("value -> %d\nindex -> %d\nin chunk -> %d\n\n", tmp->value, tmp->index, tmp->chunkid);
