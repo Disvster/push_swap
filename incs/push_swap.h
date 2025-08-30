@@ -36,13 +36,15 @@ typedef struct s_chunk
 /*  Array Related Functions  */
 int		ft_find_index(long *tab, int size, int nbr);
 int		ft_sort_ltab(long *tab, int size);
-long	*create_ltab(int ac, char **av);
+char	ft_validarg(char *s);
+long	*ft_create_ltab(int ac, char **av);
 int		ft_find_index(long *tab, int size, int nbr);
 
 int		ft_sqrt_floor(int nb);
 
 /*  Stack Related Functions  */
-void	ft_stack_addfront(t_stack **stack, t_stack *new_nd);
+// void	ft_stack_addfront(t_stack **stack, t_stack *new_nd);
+t_stack	*ft_create_stack_a(int ac, char **av, long *arr);
 t_stack	*ft_stack_newnode(int value, int index, int chunk_size);
 t_stack	*ft_stacklast(t_stack *lst);
 void	ft_stack_clear(t_stack *lst);
@@ -52,6 +54,7 @@ int		ft_stack_size(t_stack *top);
 t_stack	*ft_stack_middle(t_stack *start);
 
 /*  Movement Functions  */
+// which_stack: 0 -> A; 1 -> B; 2 -> both; -1 -> prints nothing
 void	ft_stack_swap(t_stack **top);
 void	ft_swap_both(t_stack **topa, t_stack **topb);
 void	ft_stack_push(t_stack **topa, t_stack **topb, int which_stack);

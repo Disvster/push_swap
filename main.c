@@ -13,41 +13,6 @@
 #include "incs/push_swap.h"
 #include "incs/testing.h"
 
-t_stack	*create_stack_a(int ac, char **av, long *arr)
-{
-	int			size;
-	int			nbr;
-	int			node_id;
-	t_stack		*new_nd;
-	t_stack		*temp;
-	t_chunk		chunki;
-
-	size = ac;
-	temp = NULL;
-	new_nd = NULL;
-	chunki = ft_chunkinit(size - 1);
-	ft_printf("\nchunki.size = %d , chunki.count = %d\n", chunki.size, chunki.count);
-	while (--size > 0)
-	{
-		nbr = ft_atoi(av[size]);
-		node_id = ft_find_index(arr, ac - 1, nbr);
-		temp = ft_stack_newnode(nbr, node_id, chunki.size);
-		if (!temp || node_id == -1)
-			return (NULL);
-		if (new_nd)
-			temp->next = new_nd;
-		new_nd = temp;
-	}
-	return (new_nd);
-}
-	// above I'm creating the stack A in reverse and adding each new node;
-	// so for 4 Arguments: 1st-node3 -> size-- -> 2nd-node2 -> size-- -> 3rd-node1
-
-// TODO:
-// In case of error, it must display "Error" followed by an ’\n’ on the standard error.
-// Errors include, for example: !some arguments not being integers!, -some arguments
-// exceeding the integer limits-, -and/or the presence of duplicates-.
-
 int	main(int ac, char **av)
 {
 	long		*ltab;
@@ -59,14 +24,14 @@ int	main(int ac, char **av)
 
 	if (ac > 1)
 	{
-		ltab = create_ltab(ac, av);
+		ltab = ft_create_ltab(ac, av);
 		if (ltab == 0 || !ltab)
 		{
 			//printf("Error\n");
 			write(2, "Error\n", 6);
 			return (1);
 		}
-		sa = create_stack_a(ac, av, ltab);
+		sa = ft_create_stack_a(ac, av, ltab);
 		if (!sa)
 			return (1);
 		// pa = &sa;
@@ -91,6 +56,7 @@ int	main(int ac, char **av)
 		b = NULL;
 		// int chunk = ft_sqrt_floor(ac - 1) - 1;
 		t_chunk c = ft_chunkinit(ac - 1);
+		ft_printf("\nchunki.size = %d , chunki.count = %d\n", c.size, c.count);
 		ft_chunk_push(&sa, &b, ac - 1);
 		ft_printf("%d Node(s) from chunk [%d] was pushed to B\n",
 			ft_stack_size(b), c.count - 1);

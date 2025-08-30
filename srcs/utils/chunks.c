@@ -20,7 +20,7 @@ int ft_sqrt_floor(int nb)
     int result;
 
     if (nb <= 1)
-        return (nb == 1); // returns 0 if condition is false
+        return (nb == 1);
     low = 1;
     high = nb / 2;
     result = 0;

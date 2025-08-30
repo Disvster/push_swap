@@ -43,16 +43,15 @@ int	ft_sort_ltab(long *tab, int size)
 	int	j;
 	int	tmp;
 
-	i = 0;
+	i = -1;
 	j = 0;
-	while (i < (size - 1))
+	while (++i < (size - 1))
 	{
-		if (tab[i] > INT_MAX || tab [i] < INT_MIN) // && over Long Limits
-			return (0);
 		j = i + 1;
 		while (j < size)
 		{
-			if (tab[i] == tab[j] || tab[j] > INT_MAX || tab [j] < INT_MIN) // && over Long Limits
+			if (tab[i] == tab[j] || tab[j] > INT_MAX || tab [j] < INT_MIN
+				|| tab[i] > INT_MAX || tab [i] < INT_MIN)
 				return (0);
 			if (tab[i] > tab[j])
 			{
@@ -63,12 +62,25 @@ int	ft_sort_ltab(long *tab, int size)
 			}
 			j++;
 		}
-		i++;
 	}
 	return (1);
 }
 
-long	*create_ltab(int ac, char **av)
+char	ft_validarg(char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] == 32 || (s[i] >= 9 && s[i] <= 13))
+		i++;
+	if (s[i] == '+' || s[i] == '-')
+		i++;
+	while (ft_isdigit(s[i]))
+		i++;
+	return (i == ft_strlen(s));
+}
+
+long	*ft_create_ltab(int ac, char **av)
 {
 	long	*ltab;
 	int		i;
@@ -78,9 +90,15 @@ long	*create_ltab(int ac, char **av)
 	ltab = malloc(sizeof(long) * (ac - 1));
 	if (!ltab)
 		return (NULL);
-	// TODO: check if is digit or '-' only at start with digit in front
 	while (av[++i])
+	{
+		if (ft_validarg(av[i]) == 0)
+		{
+			free(ltab);
+			return (0);
+		}
 		ltab[i - 1] = ft_atol(av[i]);
+	}
 	check = ft_sort_ltab(ltab, ac - 1);
 	if (check == 0)
 	{

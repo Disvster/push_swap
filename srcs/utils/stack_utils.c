@@ -12,6 +12,35 @@
 
 #include "../../incs/push_swap.h"
 
+t_stack	*ft_create_stack_a(int ac, char **av, long *arr)
+{
+	int			size;
+	int			nbr;
+	int			node_id;
+	t_stack		*new_nd;
+	t_stack		*temp;
+	t_chunk		chunki;
+
+	size = ac;
+	temp = NULL;
+	new_nd = NULL;
+	chunki = ft_chunkinit(size - 1);
+	while (--size > 0)
+	{
+		nbr = ft_atoi(av[size]);
+		node_id = ft_find_index(arr, ac - 1, nbr);
+		temp = ft_stack_newnode(nbr, node_id, chunki.size);
+		if (!temp || node_id == -1)
+			return (NULL);
+		if (new_nd)
+			temp->next = new_nd;
+		new_nd = temp;
+	}
+	return (new_nd);
+}
+	// above I'm creating the stack A in reverse and adding each new node;
+	// so for 4 Arguments: 1st-node3 -> size-- -> 2nd-node2 -> size-- -> 3rd-node1
+
 t_stack	*ft_stack_newnode(int value, int index, int chunk_size)
 {
 	t_stack	*new_node;
@@ -26,11 +55,13 @@ t_stack	*ft_stack_newnode(int value, int index, int chunk_size)
 	return (new_node);
 }
 
-void	ft_stack_addfront(t_stack **stack, t_stack *new_nd) // NOTE: not using atm
-{
-	new_nd->next = *stack;
-	*stack = new_nd;
-}
+// NOTE: not using func below atm
+//
+// void	ft_stack_addfront(t_stack **stack, t_stack *new_nd)
+// {
+// 	new_nd->next = *stack;
+// 	*stack = new_nd;
+// }
 
 void	ft_stack_clear(t_stack *lst)
 {

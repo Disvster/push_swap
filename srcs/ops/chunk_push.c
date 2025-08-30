@@ -24,7 +24,7 @@ void	ft_chunk_push(t_stack **a, t_stack **b, int s_size)
 		ft_chunk_prep(a, target_chunk);
 		if ((*a)->chunkid == target_chunk)
 		{
-			ft_stack_push(a, b, 0); // 0 is A
+			ft_stack_push(a, b, 0);
 			ft_chunk_prep(a, target_chunk);
 			s_size--;
 		}

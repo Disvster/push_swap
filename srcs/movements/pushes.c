@@ -12,31 +12,6 @@
 
 #include "../../incs/push_swap.h"
 
-// NOTE: function below is depecrecated, no malloc needed
-t_stack	**ft_notstack_push(t_stack **topa, t_stack **topb)
-{
-	t_stack	*tempa;
-	t_stack	*tempb;
-
-	if (!topb)
-		return (topa);
-	tempb = *topb;
-	if (!topa)
-	{
-		tempa = ft_stack_newnode(tempb->value, tempb->index, tempb->chunkid);
-		topa = &tempa;
-		*topb = tempb->next;
-		free(tempb);
-		tempb = NULL;
-		return (topa);
-	}
-	tempa = *topa;
-	*topb = tempb->next;
-	tempb->next = tempa;
-	*topa = tempb;
-	return (topa);
-}
-
 void	ft_stack_push(t_stack **a, t_stack **b, int which_stack)
 {
 	t_stack	*noda;
