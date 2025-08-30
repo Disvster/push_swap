@@ -1,11 +1,21 @@
 # to-do list
 
+## 29/08
+- [X] working functions that calculate costs, send nodes in target chunk to top and pushes said nodes
+- [ ] next step is to sort each chunk after they are sent to stack B
+- [ ] for a stack of size 3 program segfaults, need to hard code a sorting for <= 3
+
+## 29/08
+
+- did further work on chunk push
+- [X] created a mini_stack_print function that prints both A and B in a simple more visual format
+
 ## 28/08
 
 - [X] debug ft_chunk_cost and ft_sendchunk, A stays unchanged and B is empty, maybe i dont need double pointers
     - [X]  NOT DONE, BOT IS ACTING LIKE NODE FURTHREST FROM BOTTOM IS BETTER, THIS IS THE OPPOSITE
     - fixed
-- [ ] push all the nodes in target chunk from A to B
+- [X] push all the nodes in target chunk from A to B
 - [ ] start sorting B
 
 ## 27/08
