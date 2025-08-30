@@ -1,6 +1,8 @@
 # to-do list
 
 ## 29/08
+- [X] general cleanup and divided functions with +25  lines
+- [X] added check before long array creation that checks is arguments are digits
 - [X] working functions that calculate costs, send nodes in target chunk to top and pushes said nodes
 - [ ] next step is to sort each chunk after they are sent to stack B
 - [ ] for a stack of size 3 program segfaults, need to hard code a sorting for <= 3
