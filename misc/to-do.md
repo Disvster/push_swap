@@ -2,7 +2,7 @@
 
 ## 28/08
 
-- [X] debug ft_chunkcost and ft_sendchunk, A stays unchanged and B is empty, maybe i dont need double pointers
+- [X] debug ft_chunk_cost and ft_sendchunk, A stays unchanged and B is empty, maybe i dont need double pointers
     - [X]  NOT DONE, BOT IS ACTING LIKE NODE FURTHREST FROM BOTTOM IS BETTER, THIS IS THE OPPOSITE
     - fixed
 - [ ] push all the nodes in target chunk from A to B

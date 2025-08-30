@@ -121,7 +121,7 @@ t_stack	*ft_stack_middle(t_stack *start)
 	tmp = start;
 	if (size % 2 == 0)
 		mid -= 1;
-	while (i < mid)
+	while (i <= mid)
 	{
 		tmp = tmp->next;
 		i++;

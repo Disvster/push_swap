@@ -92,7 +92,8 @@ int	main(int ac, char **av)
 		// int chunk = ft_sqrt_floor(ac - 1) - 1;
 		t_chunk c = ft_chunkinit(ac - 1);
 		ft_chunk_push(&sa, &b, ac - 1);
-		ft_printf("%d Node(s) from chunk [%d] was pushed to B\n", ft_stack_size(b), c.count - 1);
+		ft_printf("%d Node(s) from chunk [%d] was pushed to B\n",
+			ft_stack_size(b), c.count - 1);
 		// ft_printf("\nStack B:\n");
 		// print_stack(&b);
 		// ft_printf("\nStack A:\n");
