@@ -2,6 +2,8 @@
 
 ## 31/08
 
+- [ ] make b have a target node to be at the top as well. it should always be the biggest number from its chunk
+- [ ] rot/rev rot until that target is at the top. Thats when you check for rr/rrr
 
 ## 30/08
 - [X] general cleanup and divided functions with +25  lines
