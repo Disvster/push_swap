@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 16:01:34 by manmaria          #+#    #+#             */
-/*   Updated: 2025/08/27 16:58:45 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/08/31 17:04:29 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_chunk_prep(t_stack **a, int chunk)
 	t_stack	*top;
 	t_stack	*bot;
 
-	if ((*a)->chunkid == chunk)
+	if ((*a)->chunkid == chunk || ft_stack_size(*a) == 1)
 		return ;
 	top = *a;
 	bot = ft_stack_middle(*a);
