@@ -65,8 +65,10 @@ void	ft_revrotate_both(t_stack **topa, t_stack **topb);
 
 /*  Operation Functions  */
 void	ft_chunk_cost(t_stack **top, t_stack **bot, int chunk);
-void	ft_chunk_prep(t_stack **a, int chunk);
+void	ft_chunk_prep(t_stack **a, t_stack **b, int chunk);
 void	ft_chunk_push(t_stack **a, t_stack **b, int s_size);
-void	ft_chunk_sendtop(t_stack **a, t_stack **top, t_stack **bot);
+void	ft_chunk_sendtop(t_stack **a, t_stack **b, t_stack **top, t_stack **bot);
+void	ft_handle_rot(t_stack **a, t_stack **b, t_stack **top_a);
+void	ft_handle_revrot(t_stack **a, t_stack **b, t_stack **bot_a);
 
 #endif

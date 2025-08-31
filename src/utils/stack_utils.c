@@ -100,7 +100,7 @@ char	ft_checksort(t_stack *s, int asc, int range)
 
 	tmp = s;
 	i = -1;
-	if (asc == 1)
+	if (asc == 1 && s)
 	{
 		while (++i < range && tmp->next)
 		{
@@ -109,7 +109,7 @@ char	ft_checksort(t_stack *s, int asc, int range)
 			tmp = tmp->next;
 		}
 	}
-	else if (asc == 0)
+	else if (asc == 0 && s)
 	{
 		while (++i < range && tmp->next)
 		{
@@ -126,6 +126,8 @@ int	ft_stack_size(t_stack *top)
 	int		size;
 	t_stack	*tmp;
 
+	if (!top)
+		return (0);
 	size = 0;
 	tmp = top;
 	if (!tmp)

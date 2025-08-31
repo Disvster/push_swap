@@ -21,11 +21,11 @@ void	ft_chunk_push(t_stack **a, t_stack **b, int s_size)
 	chunki = ft_chunkinit(s_size);
 	while (/*s_size > chunki.size &&*/ i < chunki.count - 1)
 	{
-		ft_chunk_prep(a, i);
+		ft_chunk_prep(a, b, i);
 		if ((*a)->chunkid == i)
 		{
 			ft_stack_push(a, b, 0);
-			ft_chunk_prep(a, i);
+			ft_chunk_prep(a, b, i);
 			s_size--;
 		}
 		else

@@ -41,7 +41,7 @@ void	ft_chunk_cost(t_stack **top, t_stack **bot, int chunk)
 	(*bot)->cost = cbot;
 }
 
-void	ft_chunk_prep(t_stack **a, int chunk)
+void	ft_chunk_prep(t_stack **a, t_stack **b, int chunk)
 {
 	t_stack	*top;
 	t_stack	*bot;
@@ -57,27 +57,33 @@ void	ft_chunk_prep(t_stack **a, int chunk)
 		top->cost = INT_MAX;
 	if (bot->chunkid != chunk)
 		bot->cost = INT_MAX;
-	ft_chunk_sendtop(a, &top, &bot);
+	ft_chunk_sendtop(a, b, &top, &bot);
 }
 
-void	ft_chunk_sendtop(t_stack **a, t_stack **top, t_stack **bot)
+void	ft_chunk_sendtop(t_stack **a, t_stack **b, t_stack **top, t_stack **bot)
 {
 	if ((*top)->cost == (*bot)->cost && (*top)->cost == INT_MAX)
 		return ;
 	if ((*top)->cost <= (*bot)->cost)
 	{
+		// TODO: check here for rr
 		while (*a != (*top))
 		{
-			ft_stack_rotate(a, 0);
-			// TODO: check here for rr
+			if (!ft_checksort(*b, 0, ft_stack_size(*b)))
+				ft_handle_rot(a, b, top);
+			else
+				ft_stack_rotate(a, 0);
 		}
 	}
 	else if ((*bot)->cost < (*top)->cost)
 	{
+		// TODO: check here for rrr
 		while (*a != (*bot))
 		{
-			ft_stack_revrotate(a, 0);
-			// TODO: check here for rrr
+			if (!ft_checksort(*b, 0, ft_stack_size(*b)))
+				ft_handle_revrot(a, b, top);
+			else
+				ft_stack_revrotate(a, 0);
 		}
 	}
 }
