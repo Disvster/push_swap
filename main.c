@@ -37,6 +37,7 @@ int	main(int ac, char **av)
 		// pa = &sa;
 		// test_movements(pa);
 		// print_stack(&sa);
+		b = NULL;
 		mini_print_stacks(&sa, &b);
 
 		/* STACK DIVISION TESTING */
@@ -53,7 +54,6 @@ int	main(int ac, char **av)
 			ft_printf("stack is not sorted\n");
 
 		/* CHUNK PUSH TO B TESTING */
-		b = NULL;
 		// int chunk = ft_sqrt_floor(ac - 1) - 1;
 		t_chunk c = ft_chunkinit(ac - 1);
 		ft_printf("\nchunki.size = %d , chunki.count = %d\n", c.size, c.count);

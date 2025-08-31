@@ -81,13 +81,16 @@ void	ft_chunk_sendtop(t_stack **a, t_stack **top, t_stack **bot)
 		}
 	}
 }
-	// HACK: debug chunkcost
-	// if ((*bot)->chunkid == chunk || !(*bot)->next || cbot >= ctop)
-	// ft_printf("\ntop = %p \nbot = %p\n", *top, *bot);
-	// ft_printf("\ntop->cost = %d, bot->cost = %d\n", ctop, cbot);
-	// ft_printf("\ntop->cost = %d, bot->cost = %d\n", (*top)->cost, (*bot)->cost);
+// HACK: debug chunkcost
+// if ((*bot)->chunkid == chunk || !(*bot)->next || cbot >= ctop)
+// ft_printf("\ntop = %p \nbot = %p\n", *top, *bot);
+// ft_printf("\ntop->cost = %d, bot->cost = %d\n", ctop, cbot);
+// ft_printf("\ntop->cost = %d, bot->cost = %d\n", (*top)->cost,
+// (*bot)->cost);
 
-	// HACK: debug prepchunk
-	// ft_printf("-----> TOP value -> %d, in chunk -> %d\n", top->value, top->chunkid);
-	// ft_printf("-----> BOT1 value -> %d, in chunk -> %d\n", bot->value, bot->chunkid);
-	// ft_printf("-----> top cost -> %d, bot cost -> %d\n", top->cost, bot->cost);
+// HACK: debug prepchunk
+// ft_printf("-----> TOP value -> %d, in chunk -> %d\n",
+// top->value, top->chunkid);
+// ft_printf("-----> BOT1 value -> %d, in chunk -> %d\n",
+// bot->value, bot->chunkid);
+// ft_printf("-----> top cost -> %d, bot cost -> %d\n", top->cost, bot->cost);
