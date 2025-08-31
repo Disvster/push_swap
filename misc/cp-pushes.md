@@ -231,3 +231,65 @@ void	ft_swap_both(t_stack **topa, t_stack **topb)
 ## User ───
 
 
+
+To finish `ft_handle_rot` and `ft_handle_revrot`, you need to:
+
+1. **Check if stack B also needs a rotation/reverse rotation** at the same time as stack A.
+2. **If both need it**, perform `rr` (rotate both) or `rrr` (reverse rotate both).
+3. **If only A needs it**, perform `ra` or `rra` as usual.
+
+Assuming you have functions like `ft_rotate_a`, `ft_rotate_b`, `ft_rotate_ab` (for `rr`), and similar for reverse rotations, your handlers should look like:
+
+```c path=/home/disvster/42Porto/CCore/push_swap/src/movements/rotations.c start_line=1 end_line=20
+void	ft_handle_rot(t_stack *a, t_stack *b, int a_target, int b_target)
+{
+	if (a->top != a_target && b->top != b_target)
+	{
+		ft_rotate_ab(a, b); // rr
+	}
+	else if (a->top != a_target)
+	{
+		ft_rotate_a(a); // ra
+	}
+	else if (b->top != b_target)
+	{
+		ft_rotate_b(b); // rb
+	}
+}
+
+void	ft_handle_revrot(t_stack *a, t_stack *b, int a_target, int b_target)
+{
+	if (a->top != a_target && b->top != b_target)
+	{
+		ft_revrotate_ab(a, b); // rrr
+	}
+	else if (a->top != a_target)
+	{
+		ft_revrotate_a(a); // rra
+	}
+	else if (b->top != b_target)
+	{
+		ft_revrotate_b(b); // rrb
+	}
+}
+```
+
+**You must adapt the logic to your actual stack/node structure and function names.**  
+- `a_target` and `b_target` are the values (or node pointers) you want to bring to the top.
+- The check `a->top != a_target` is a placeholder; use your actual method to check if the target is at the top.
+
+If you provide your stack/node structure and rotation function signatures, I can tailor the code further.
+
+## User (c86de1e2-8b9e-43fb-bff2-06bfe57ab10c)───
+
+> file:`src/movements/rotations.c`
+> file:`src/movements/pushes.c`
+> file:`src/movements/swaps.c`
+> file:`src/utils/tab_utils.c`
+> file:`src/utils/stack_utils.c`
+> file:`src/utils/chunks.c`
+> file:`src/ops/chunk_sort.c`
+> file:`src/ops/node_search.c`
+> file:`src/ops/chunk_push.c`
+
+

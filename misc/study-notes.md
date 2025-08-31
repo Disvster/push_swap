@@ -57,7 +57,7 @@ Then look for nodes with chunk-id == 2 and repeat the process. In the end I woul
 ### Solutions:
 1. determine costs:
     * create like a hash map of all the numbers I'm looking for in the node that I'm processing;
-    * **pa** based on cost from least to biggest (this would be calculated to determine which node I would move in that instance, every time I need to make a node-to-be-pushed decision);
+    * **pb** based on cost from least to biggest (this would be calculated to determine which node I would move in that instance, every time I need to make a node-to-be-pushed decision);
 2. sort based on LIS and/or Binary Sorting:
     * LIS - I would get the longest (in my case) decreasing sequence, in order to organize B and possibly ignoring completely other numbers from previous organized chunks. This would mean having some sort of node-targeting-another-node based on adjacent values logic OR
     * B.S. - binary sorting whatever I wanted, be it a whole stack and ditching my chunk logic or binary sorting within the bounds of a node. This would mean I would keep diving stack or chunk into smaller, halved sized sections with an anchor point. One halve < another side >= than anchor until I end up with 1 (?); 

@@ -1,6 +1,9 @@
 # to-do list
 
-## 29/08
+## 31/08
+
+
+## 30/08
 - [X] general cleanup and divided functions with +25  lines
 - [X] added check before long array creation that checks is arguments are digits
 - [X] working functions that calculate costs, send nodes in target chunk to top and pushes said nodes
