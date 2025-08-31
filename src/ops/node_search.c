@@ -62,6 +62,7 @@ void	ft_chunk_prep(t_stack **a, t_stack **b, int chunk)
 
 void	ft_chunk_sendtop(t_stack **a, t_stack **b, t_stack **top, t_stack **bot)
 {
+	(void)b;
 	if ((*top)->cost == (*bot)->cost && (*top)->cost == INT_MAX)
 		return ;
 	if ((*top)->cost <= (*bot)->cost)
@@ -69,9 +70,9 @@ void	ft_chunk_sendtop(t_stack **a, t_stack **b, t_stack **top, t_stack **bot)
 		// TODO: check here for rr
 		while (*a != (*top))
 		{
-			if (!ft_checksort(*b, 0, ft_stack_size(*b)))
-				ft_handle_rot(a, b, top);
-			else
+			// if (!ft_checksort(*b, 0, ft_stack_size(*b)))
+			// 	ft_handle_rot(a, b, top);
+			// else
 				ft_stack_rotate(a, 0);
 		}
 	}
@@ -80,9 +81,9 @@ void	ft_chunk_sendtop(t_stack **a, t_stack **b, t_stack **top, t_stack **bot)
 		// TODO: check here for rrr
 		while (*a != (*bot))
 		{
-			if (!ft_checksort(*b, 0, ft_stack_size(*b)))
-				ft_handle_revrot(a, b, top);
-			else
+			// if (!ft_checksort(*b, 0, ft_stack_size(*b)))
+			// 	ft_handle_revrot(a, b, top);
+			// else
 				ft_stack_revrotate(a, 0);
 		}
 	}

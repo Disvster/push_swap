@@ -66,6 +66,9 @@ int	main(int ac, char **av)
 		// ft_printf("\nStack A:\n");
 		// print_stack(&sa);
 		mini_print_stacks(&sa, &b);
+		for (int i = 0, s = ft_stack_size(b); i < s; i++)
+			ft_stack_push(&b, &sa, 1);
+		mini_print_stacks(&sa, &b);
 		
 		// ft_printf("for chunk [%d] cheapest node is:\n", ft_sqrt_floor(ac - 1) - 1);
 		// ft_printf("value -> %d\nindex -> %d\nin chunk -> %d\n\n", tmp->value, tmp->index, tmp->chunkid);

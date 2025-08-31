@@ -12,12 +12,13 @@
 
 #include "../../incs/push_swap.h"
 
+//top_a & bot_a ->cost has number of rot/revot needed to put them at the top
 void	ft_handle_rot(t_stack **a, t_stack **b, t_stack **top_a)
 {
-	ft_rotate_both(a, b)
+	ft_rotate_both(a, b);
 }
 
-void	ft_handle_rot(t_stack **a, t_stack **b, t_stack **bot_a)
+void	ft_handle_revrot(t_stack **a, t_stack **b, t_stack **bot_a)
 {
-	ft_revrotate_both(a, b)
+	ft_revrotate_both(a, b);
 }

@@ -1,0 +1,1 @@
+./a.out $(shuf -i 0-500 -n 500 | tr "\n" " ") | grep -e "pb" -e "rra" -e "ra" -e "pa" | wc -l 
