@@ -12,19 +12,17 @@
 
 #include "../../incs/push_swap.h"
 
-t_stack	*ft_create_stack_a(int ac, char **av, long *arr)
+t_stack	*ft_create_stack_a(int ac, char **av, long *arr, t_chunk chunki)
 {
 	int			size;
 	int			nbr;
 	int			node_id;
 	t_stack		*new_nd;
 	t_stack		*temp;
-	t_chunk		chunki;
 
 	size = ac;
 	temp = NULL;
 	new_nd = NULL;
-	chunki = ft_chunkinit(size - 1);
 	while (--size > 0)
 	{
 		nbr = ft_atoi(av[size]);
@@ -38,8 +36,8 @@ t_stack	*ft_create_stack_a(int ac, char **av, long *arr)
 	}
 	return (new_nd);
 }
-	// above I'm creating the stack A in reverse and adding each new node;
-	// so for 4 Arguments: 1st-node3 -> size-- -> 2nd-node2 -> size-- -> 3rd-node1
+// above I'm creating the stack A in reverse and adding each new node;
+// so for 4 Arguments: 1st-node3 -> size-- -> 2nd-node2 -> size-- -> 3rd-node1
 
 t_stack	*ft_stack_newnode(int value, int index, int chunk_size)
 {
@@ -92,6 +90,9 @@ t_stack	*ft_stacklast(t_stack *lst)
 	return (tmp);
 }
 
+// NOTE:
+// if (asc == 1) // check for ascending order
+// else if (asc == 0) // check for descending order
 char	ft_checksort(t_stack *s, int asc, int range)
 {
 	t_stack	*tmp;
@@ -99,7 +100,7 @@ char	ft_checksort(t_stack *s, int asc, int range)
 
 	tmp = s;
 	i = -1;
-	if (asc == 1) // check for ascending order
+	if (asc == 1)
 	{
 		while (++i < range && tmp->next)
 		{
@@ -108,7 +109,7 @@ char	ft_checksort(t_stack *s, int asc, int range)
 			tmp = tmp->next;
 		}
 	}
-	else if (asc == 0) // check for descending order
+	else if (asc == 0)
 	{
 		while (++i < range && tmp->next)
 		{
@@ -143,7 +144,7 @@ t_stack	*ft_stack_middle(t_stack *start)
 	int		size;
 	int		i;
 	t_stack	*tmp;
-	
+
 	if (!start)
 		return (NULL);
 	mid = ft_stack_size(start) / 2;

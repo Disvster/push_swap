@@ -19,6 +19,7 @@ int	main(int ac, char **av)
 	t_stack		*sa;
 	t_stack		*b;
 	t_stack		*tmp;
+	t_chunk		c;
 	// t_stack		**pa;
 	// t_stack		**pb = NULL;
 
@@ -31,7 +32,8 @@ int	main(int ac, char **av)
 			write(2, "Error\n", 6);
 			return (1);
 		}
-		sa = ft_create_stack_a(ac, av, ltab);
+		c = ft_chunkinit(ac - 1);
+		sa = ft_create_stack_a(ac, av, ltab, c);
 		if (!sa)
 			return (1);
 		// pa = &sa;
@@ -55,7 +57,6 @@ int	main(int ac, char **av)
 
 		/* CHUNK PUSH TO B TESTING */
 		// int chunk = ft_sqrt_floor(ac - 1) - 1;
-		t_chunk c = ft_chunkinit(ac - 1);
 		ft_printf("\nchunki.size = %d , chunki.count = %d\n", c.size, c.count);
 		ft_chunk_push(&sa, &b, ac - 1);
 		ft_printf("%d Node(s) from chunk [%d] was pushed to B\n",

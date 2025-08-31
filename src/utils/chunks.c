@@ -21,7 +21,7 @@ t_chunk	ft_chunkinit(int stack_size)
 	return (chunki);
 }
 
-int	ft_sqrt(int nb)
+int	ft_sqrt_floor(int nb)
 {
 	int	low;
 	int	high;

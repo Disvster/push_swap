@@ -44,7 +44,7 @@ int		ft_sqrt_floor(int nb);
 
 /*  Stack Related Functions  */
 // void	ft_stack_addfront(t_stack **stack, t_stack *new_nd);
-t_stack	*ft_create_stack_a(int ac, char **av, long *arr);
+t_stack	*ft_create_stack_a(int ac, char **av, long *arr, t_chunk chunki);
 t_stack	*ft_stack_newnode(int value, int index, int chunk_size);
 t_stack	*ft_stacklast(t_stack *lst);
 void	ft_stack_clear(t_stack *lst);
