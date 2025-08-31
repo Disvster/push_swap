@@ -15,10 +15,28 @@
 //top_a & bot_a ->cost has number of rot/revot needed to put them at the top
 void	ft_handle_rot(t_stack **a, t_stack **b, t_stack **top_a)
 {
-	ft_rotate_both(a, b);
+	int	rota;
+
+	rota = (*top_a)->cost;
+
+	while (rota--)
+	{
+		if (!ft_checksort(*b, 0, ft_stack_size(*b)))
+			
+		ft_rotate_both(a, b);
+	}
 }
 
 void	ft_handle_revrot(t_stack **a, t_stack **b, t_stack **bot_a)
 {
-	ft_revrotate_both(a, b);
+	int	reva;
+
+	reva = (*bot_a)->cost;
+
+	while (reva--)
+	{
+		if (!ft_checksort(*b, 0, ft_stack_size(*b)))
+
+		ft_revrotate_both(a, b);
+	}
 }
