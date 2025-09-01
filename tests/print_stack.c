@@ -52,7 +52,7 @@ void	test_movements(t_stack	**pa)
 {
 	t_stack	**pb;
 
-	pa = pa;
+	// pa = pa;
 	pb = NULL;
 	
 	// NORMAL STACK
@@ -63,7 +63,7 @@ void	test_movements(t_stack	**pa)
 	
 	// SWAP A
 	ft_printf("-*-*-*-*-*-*-\n\n-*-*-<sa>-*-*-\n==> After SwapA:\n");
-	ft_stack_swap(pa);
+	ft_stack_swap(pa, 0);
 	ft_printf("\n-< Stack A >-\n");
 	print_stack(pa);
 

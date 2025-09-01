@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../incs/push_swap.h"
+#include "../../incs/testing.h"
 
 void	ft_chunk_push(t_stack **a, t_stack **b, int s_size)
 {
@@ -29,6 +30,28 @@ void	ft_chunk_push(t_stack **a, t_stack **b, int s_size)
 			s_size--;
 		}
 		else
+		{
+			if (ft_stack_size(*b) == 3)
+				ft_tiny_sort_b(b);
+			else if (ft_stack_size(*b) <= 2)
+				if (!ft_checksort(*b, 1, ft_stack_size(*b)))
+					ft_stack_swap(b, 1);
 			i++;
+			mini_print_stacks(a, b);
+		}
 	}
+	// NOTE: sep below into another func
+	mini_print_stacks(a, b);
+	if (s_size == 3)
+		ft_tiny_sort_a(a);
+	else if (s_size <= 2)
+		if (!ft_checksort(*a, 0, 2))
+			ft_stack_swap(a, 0);
+	if (ft_stack_size(*b) == 3)
+		ft_tiny_sort_b(b);
+	else if (ft_stack_size(*b) <= 2)
+		if (!ft_checksort(*b, 1, ft_stack_size(*b)))
+			ft_stack_swap(b, 1);
+	mini_print_stacks(a, b);
+	
 }

@@ -55,7 +55,7 @@ t_stack	*ft_stack_middle(t_stack *start);
 
 /*  Movement Functions  */
 // which_stack: 0 -> A; 1 -> B; 2 -> both; -1 -> prints nothing
-void	ft_stack_swap(t_stack **top);
+void	ft_stack_swap(t_stack **top, int which_stack);
 void	ft_swap_both(t_stack **topa, t_stack **topb);
 void	ft_stack_push(t_stack **topa, t_stack **topb, int which_stack);
 void	ft_stack_rotate(t_stack **top,int which_stack);
@@ -70,5 +70,9 @@ void	ft_chunk_push(t_stack **a, t_stack **b, int s_size);
 void	ft_chunk_sendtop(t_stack **a, t_stack **b, t_stack **top, t_stack **bot);
 void	ft_handle_rot(t_stack **a, t_stack **b, t_stack **top_a);
 void	ft_handle_revrot(t_stack **a, t_stack **b, t_stack **bot_a);
+int		ft_tiny_sort_a(t_stack **a);
+int		ft_tiny_sort_b(t_stack **b);
+t_stack	*ft_fdhighest(t_stack *a, int chunk);
+t_stack	*ft_fdlowest(t_stack *b, int chunk);
 
 #endif

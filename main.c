@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 	long		*ltab;
 	t_stack		*sa;
 	t_stack		*b;
-	t_stack		*tmp;
+	// t_stack		*tmp;
 	t_chunk		c;
 	// t_stack		**pa;
 	// t_stack		**pb = NULL;
@@ -43,21 +43,21 @@ int	main(int ac, char **av)
 		mini_print_stacks(&sa, &b);
 
 		/* STACK DIVISION TESTING */
-		ft_printf("\nmiddle node:\n");
-		tmp = ft_stack_middle(sa);
-		ft_printf("value -> %d\nindex -> %d\nin chunk -> %d\n\n", tmp->value, tmp->index, tmp->chunkid);
+		// ft_printf("\nmiddle node:\n");
+		// tmp = ft_stack_middle(sa);
+		// ft_printf("value -> %d\nindex -> %d\nin chunk -> %d\n\n", tmp->value, tmp->index, tmp->chunkid);
 
 		/* SORT CHECK TESTING */
-		if (ft_checksort(sa, 1, ac - 1))
+		if (ft_checksort(sa, 0, ac - 1))
 			ft_printf("stack is sorted in ascending order\n");
-		else if (ft_checksort(sa, 0, ac - 1))
+		else if (ft_checksort(sa, 1, ac - 1))
 			ft_printf("stack is sorted in descending order\n");
 		else
 			ft_printf("stack is not sorted\n");
 
 		/* CHUNK PUSH TO B TESTING */
 		// int chunk = ft_sqrt_floor(ac - 1) - 1;
-		ft_printf("\nchunki.size = %d , chunki.count = %d\n", c.size, c.count);
+		// ft_printf("\nchunki.size = %d , chunki.count = %d\n", c.size, c.count);
 		ft_chunk_push(&sa, &b, ac - 1);
 		ft_printf("%d Node(s) from chunk [%d] was pushed to B\n",
 			ft_stack_size(b), c.count - 1);

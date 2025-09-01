@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 16:02:08 by manmaria          #+#    #+#             */
-/*   Updated: 2025/08/31 16:02:43 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/01 20:48:35 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_handle_rot(t_stack **a, t_stack **b, t_stack **top_a)
 
 	while (rota--)
 	{
-		if (!ft_checksort(*b, 0, ft_stack_size(*b)))
+		if (!ft_checksort(*b, 1, ft_stack_size(*b)))
 			
 		ft_rotate_both(a, b);
 	}
@@ -35,7 +35,7 @@ void	ft_handle_revrot(t_stack **a, t_stack **b, t_stack **bot_a)
 
 	while (reva--)
 	{
-		if (!ft_checksort(*b, 0, ft_stack_size(*b)))
+		if (!ft_checksort(*b, 1, ft_stack_size(*b)))
 
 		ft_revrotate_both(a, b);
 	}

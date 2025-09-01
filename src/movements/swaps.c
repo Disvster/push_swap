@@ -12,7 +12,7 @@
 
 #include "../../incs/push_swap.h"
 
-void	ft_stack_swap(t_stack **top)
+void	ft_stack_swap(t_stack **top, int which_stack)
 {
 	t_stack	*n1;
 	t_stack	*n2;
@@ -26,10 +26,19 @@ void	ft_stack_swap(t_stack **top)
 	n1->next = n2->next;
 	n2->next = n1;
 	*top = n2;
+	ft_printf("s");
+	if (which_stack == 0)
+		ft_printf("a\n");
+	else if (which_stack == 1)
+		ft_printf("b\n");
+	else if (which_stack == 2)
+		ft_printf("s\n");
+	else if (which_stack == -1)
+		return ;
 }
 
 void	ft_swap_both(t_stack **topa, t_stack **topb)
 {
-	ft_stack_swap(topa);
-	ft_stack_swap(topb);
+	ft_stack_swap(topa, -1);
+	ft_stack_swap(topb, 2);
 }
