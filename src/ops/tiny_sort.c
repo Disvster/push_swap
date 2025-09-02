@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "incs/push_swap.h"
+#include "../../incs/push_swap.h"
 
 
 t_stack	*ft_fdlowest(t_stack *b, int chunk)
@@ -56,11 +56,11 @@ int	ft_tiny_sort_b(t_stack **b)
 	// 	lowest->value, lowest->index, lowest->chunkid);
 
 	if (*b == lowest)
-		ft_stack_rotate(b, 1);
-		// movement += 1;// I want to rotate b
+		// ft_stack_rotate(b, 1);
+		movement += 1;// I want to rotate b
 	else if ((*b)->next == lowest)
-		ft_stack_revrotate(b, 1);
-		// movement += -1;// I want to rev rotate b
+		// ft_stack_revrotate(b, 1);
+		movement += -1;// I want to rev rotate b
 	if ((*b)->index < (*b)->next->index)
 		ft_stack_swap(b, 1);
 	return (movement);

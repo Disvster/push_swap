@@ -68,22 +68,34 @@ void	ft_chunk_sendtop(t_stack **a, t_stack **b, t_stack **top, t_stack **bot)
 	if ((*top)->cost <= (*bot)->cost)
 	{
 		// TODO: check here for rr
+		// check if ft_sortb wants to rotate as well
+		// if it does then (rr)
+		// if either one finishes rotating first:
+		//		if b: b is sorted, exit ft_sortb
+		//		if a: finish sort in b, exit ft_sortb
+		// if it doesnt then (rrb) until b is sorted then exit
 		while (*a != (*top))
 		{
-			// if (!ft_checksort(*b, 0, ft_stack_size(*b)))
-			// 	ft_handle_rot(a, b, top);
-			// else
+			if (!ft_checksort(*b, 0, ft_stack_size(*b)))
+				ft_handle_rot(a, b, (*top)->cost);
+			else
 				ft_stack_rotate(a, 0);
 		}
 	}
 	else if ((*bot)->cost < (*top)->cost)
 	{
 		// TODO: check here for rrr
+		// check if ft_sortb wants to rev rotate as well
+		// if it does then (rrr)
+		// if either one finishes rotating first:
+		//		if b: b is sorted, exit ft_sortb
+		//		if a: finish sort in b, exit ft_sortb
+		// if it doesnt then (rb) until b is sorted then exit
 		while (*a != (*bot))
 		{
-			// if (!ft_checksort(*b, 0, ft_stack_size(*b)))
-			// 	ft_handle_revrot(a, b, top);
-			// else
+			if (!ft_checksort(*b, 0, ft_stack_size(*b)))
+				ft_handle_revrot(a, b, (*bot)->cost);
+			else
 				ft_stack_revrotate(a, 0);
 		}
 	}
