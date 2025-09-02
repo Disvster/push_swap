@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 16:01:34 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/01 20:48:28 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:55:24 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void	ft_chunk_sendtop(t_stack **a, t_stack **b, t_stack **top, t_stack **bot)
 		// if it doesnt then (rrb) until b is sorted then exit
 		while (*a != (*top))
 		{
-			if (!ft_checksort(*b, 0, ft_stack_size(*b)))
-				ft_handle_rot(a, b, (*top)->cost);
-			else
+			// if (!ft_checksort(*b, 0, ft_stack_size(*b)))
+			// 	ft_handle_rot(a, b, (*top)->cost);
+			// else
 				ft_stack_rotate(a, 0);
 		}
 	}
@@ -93,9 +93,9 @@ void	ft_chunk_sendtop(t_stack **a, t_stack **b, t_stack **top, t_stack **bot)
 		// if it doesnt then (rb) until b is sorted then exit
 		while (*a != (*bot))
 		{
-			if (!ft_checksort(*b, 0, ft_stack_size(*b)))
-				ft_handle_revrot(a, b, (*bot)->cost);
-			else
+			// if (!ft_checksort(*b, 0, ft_stack_size(*b)))
+			// 	ft_handle_revrot(a, b, (*bot)->cost);
+			// else
 				ft_stack_revrotate(a, 0);
 		}
 	}

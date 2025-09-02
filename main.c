@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:12:40 by manmaria          #+#    #+#             */
-/*   Updated: 2025/08/29 14:08:28 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:59:19 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,24 @@ int	main(int ac, char **av)
 		/* CHUNK PUSH TO B TESTING */
 		// int chunk = ft_sqrt_floor(ac - 1) - 1;
 		// ft_printf("\nchunki.size = %d , chunki.count = %d\n", c.size, c.count);
+		int	size_a = ft_stack_size(sa);
+		if (size_a <= 5)
+		{
+			if (size_a > 3)
+				ft_sort_five_a(&sa, &b);
+			else
+				ft_tiny_sort_a(&sa);
+		}
+		if (ft_checksort(sa, 0, ac - 1))
+		{
+			// FIX:
+			// ./a.out 0 4 2 1 3  
+			// this one sends my prog in infinite loop
+			// prob is in node search
+			mini_print_stacks(&sa, &b);
+			ft_printf("stack is sorted in ascending order\n");
+			return (0);
+		}
 		ft_chunk_push(&sa, &b, ac - 1);
 		ft_printf("%d Node(s) from chunk [%d] was pushed to B\n",
 			ft_stack_size(b), c.count - 1);

@@ -67,3 +67,8 @@ Then look for nodes with chunk-id == 2 and repeat the process. In the end I woul
 - create a function which pushes these chunks into B.
 
 When I have this, I can then start working on the sorting part and test how and if chunk sorting will work.
+
+## Resources:
+
+https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a
+

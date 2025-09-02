@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 20:09:11 by manmaria          #+#    #+#             */
-/*   Updated: 2025/08/27 16:38:55 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:56:16 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,11 @@ void	ft_chunk_push(t_stack **a, t_stack **b, int s_size);
 void	ft_chunk_sendtop(t_stack **a, t_stack **b, t_stack **top, t_stack **bot);
 void	ft_handle_rot(t_stack **a, t_stack **b, t_stack **top);
 void	ft_handle_revrot(t_stack **a, t_stack **b, t_stack **bot);
-int		ft_tiny_sort_a(t_stack **a);
-int		ft_tiny_sort_b(t_stack **b);
 t_stack	*ft_fdhighest(t_stack *a, int chunk);
 t_stack	*ft_fdlowest(t_stack *b, int chunk);
+int		ft_tiny_sort_a(t_stack **a);
+int		ft_tiny_sort_b(t_stack **b);
+void	ft_sort_five_a(t_stack **a, t_stack **b);
+int		ft_node_cost(t_stack *top, t_stack *target);
 
 #endif

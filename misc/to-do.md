@@ -1,16 +1,28 @@
 # to-do list
 
+## 02/09
+
+- [ ] check medium post on chunk sorting, in study-notes.md
+- [ ] fix sort_five
+
+## 01/09
+
+- [X] tiny sort done
+- [ ] ft_big_sort missing
+- [ ] A and B are not using (rr) and (rrr)
+
 ## 31/08
 
 - [ ] make b have a target node to be at the top as well. it should always be the biggest number from its chunk
 - [ ] rot/rev rot until that target is at the top. Thats when you check for rr/rrr
 
 ## 30/08
+
 - [X] general cleanup and divided functions with +25  lines
 - [X] added check before long array creation that checks is arguments are digits
 - [X] working functions that calculate costs, send nodes in target chunk to top and pushes said nodes
 - [ ] next step is to sort each chunk after they are sent to stack B
-- [ ] for a stack of size 3 program segfaults, need to hard code a sorting for <= 3
+- [X] for a stack of size 3 program segfaults, need to hard code a sorting for <= 3
 
 ## 29/08
 

@@ -6,40 +6,11 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 20:08:42 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/01 20:48:35 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:56:08 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/push_swap.h"
-
-
-t_stack	*ft_fdlowest(t_stack *b, int chunk)
-{
-	t_stack	*temp;
-	t_stack	*lowest;
-
-	temp = b;
-	lowest = NULL;
-	if (chunk == -1 && b)
-	{
-		while (temp)
-		{
-			if (!lowest || temp->index < lowest->index)
-				lowest = temp;
-			temp = temp->next;
-		}
-	}
-	else if (chunk >= 0 && b)
-	{
-		while (temp && temp->chunkid == chunk)
-		{
-			if (!lowest || temp->index < lowest->index)
-				lowest = temp;
-			temp = temp->next;
-		}
-	}
-	return (lowest);
-}
 
 int	ft_tiny_sort_b(t_stack **b)
 {
@@ -49,12 +20,6 @@ int	ft_tiny_sort_b(t_stack **b)
 	movement = 0;
 	lowest = ft_fdlowest(*b, -1);
 	
-	// // HACK:
-	// ft_printf("topb: value -> %d\nindex -> %d\nin chunk -> %d\n\n",
-	// 	(*b)->value, (*b)->index, (*b)->chunkid);
-	// ft_printf("lowest: value -> %d\nindex -> %d\nin chunk -> %d\n\n",
-	// 	lowest->value, lowest->index, lowest->chunkid);
-
 	if (*b == lowest)
 		// ft_stack_rotate(b, 1);
 		movement += 1;// I want to rotate b
@@ -65,34 +30,11 @@ int	ft_tiny_sort_b(t_stack **b)
 		ft_stack_swap(b, 1);
 	return (movement);
 }
-
-t_stack	*ft_fdhighest(t_stack *a, int chunk)
-{
-	t_stack	*temp;
-	t_stack	*highest;
-
-	temp = a;
-	highest = NULL;
-	if (chunk == -1 && a)
-	{
-		while (temp)
-		{
-			if (!highest || highest->index < temp->index)
-				highest = temp;
-			temp = temp->next;
-		}
-	}
-	else if (chunk >= 0 && a)
-	{
-		while (temp && temp->chunkid == chunk)
-		{
-			if (!highest || highest->index < temp->index)
-				highest = temp;
-			temp = temp->next;
-		}
-	}
-	return (highest);
-}
+	// HACK: tiny_sort_b debug
+	// ft_printf("topb: value -> %d\nindex -> %d\nin chunk -> %d\n\n",
+	// 	(*b)->value, (*b)->index, (*b)->chunkid);
+	// ft_printf("lowest: value -> %d\nindex -> %d\nin chunk -> %d\n\n",
+	// 	lowest->value, lowest->index, lowest->chunkid);
 
 int	ft_tiny_sort_a(t_stack **a)
 {
@@ -110,4 +52,61 @@ int	ft_tiny_sort_a(t_stack **a)
 	if ((*a)->index > (*a)->next->index)
 		ft_stack_swap(a, 0);
 	return (movement);
+}
+
+int	ft_node_cost(t_stack *top, t_stack *target)
+{
+	int		ctop;
+	int		cbot;
+	t_stack	*bot;
+
+	if (!top)
+		return (0);
+	ctop = 0;
+	cbot = (ft_stack_size(top) / 2) + 1;
+	bot = ft_stack_middle(top);
+	if (bot->next)
+		bot = bot->next;
+	while (top)
+	{
+		if (top == target || top->next == bot)
+			break ;
+		top = top->next;
+		ctop += 1;
+	}
+	while (bot)
+	{
+		if (bot == target)
+			break ;
+		bot = bot->next;
+		cbot--;
+	}
+	top->cost = ctop;
+	if (bot)
+		bot->cost = cbot;
+	return (ctop >= cbot);
+}
+
+void	ft_sort_five_a(t_stack **a, t_stack **b)
+{
+	int		size;
+	t_stack *lowest;
+
+	size = ft_stack_size(*a);
+	while (size-- > 3)
+	{
+		lowest = ft_fdlowest(*a, -1);
+		while (*a != lowest)
+		{
+			if (ft_node_cost(*a, lowest))
+				ft_stack_rotate(a, 0);
+			else
+				ft_stack_revrotate(a, 0);
+		}
+		ft_stack_push(a, b, 0);
+	}
+	ft_tiny_sort_a(a);
+	size = ft_stack_size(*b);
+	while (size--)
+		ft_stack_push(b, a, 1);
 }

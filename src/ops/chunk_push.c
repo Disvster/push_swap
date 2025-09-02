@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 13:28:53 by manmaria          #+#    #+#             */
-/*   Updated: 2025/08/31 16:56:06 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:57:45 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,4 @@ void	ft_chunk_push(t_stack **a, t_stack **b, int s_size)
 		if (!ft_checksort(*b, 1, ft_stack_size(*b)))
 			ft_stack_swap(b, 1);
 	mini_print_stacks(a, b);
-	
 }

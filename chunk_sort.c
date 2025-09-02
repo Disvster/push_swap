@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 16:02:08 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/01 20:48:35 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/02 16:59:17 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,33 +90,4 @@ int	ft_big_sort_b(t_stack **b, int *rot, int target_chunk, int direction)
 //	idk I'm just riffing, somebody get the tabs
 // 
 //
-
-void	ft_node_cost(t_stack **top, t_stack **bot, int lowest)
-{
-	int		ctop;
-	int		cbot;
-	t_stack	*curr;
-
-	ctop = 0;
-	cbot = (ft_stack_size(*top) / 2) + 1;
-	curr = *bot;
-	if (!*top)
-		return ;
-	while (*top)
-	{
-		if ((*top)->value == lowest || (*top)->next == *bot)
-			break ;
-		(*top) = (*top)->next;
-		ctop += 1;
-	}
-	while (curr)
-	{
-		if (curr->value == lowest)
-			(*bot) = curr;
-		curr = curr->next;
-		cbot--;
-	}
-	(*top)->cost = ctop;
-	(*bot)->cost = cbot;
-}
 
