@@ -3,8 +3,8 @@
 ## 02/09
 
 - [ ] check medium post on chunk sorting, in study-notes.md
-- [ ] fix sort_five
-- [ ] working or 4 numbers, not working for 5
+- [X] fix sort_five
+    - [X] working for 4 numbers, not working for 5
 
 ## 01/09
 
