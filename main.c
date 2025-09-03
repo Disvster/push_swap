@@ -66,11 +66,13 @@ int	main(int ac, char **av)
 			else
 				ft_tiny_sort_a(&sa);
 			mini_print_stacks(&sa, &b);
+			if (ft_checksort(sa, 0, ac - 1))
+				ft_printf("stack is sorted in ascending order\n");
+			else
+				ft_printf("stack is not sorted\n");
+			free(ltab);
+			ft_stack_clear(sa);
 			return (0);
-		}
-		if (ft_checksort(sa, 0, ac - 1))
-		{
-			ft_printf("\nstack is sorted in ascending order\n");
 		}
 		ft_chunk_push(&sa, &b, ac - 1);
 		ft_printf("%d Node(s) from chunk [%d] was pushed to B\n",
@@ -89,8 +91,8 @@ int	main(int ac, char **av)
 
 		free(ltab);
 		ft_stack_clear(sa);
-		if (b)
-			ft_stack_clear(b);
+		// if (b)
+		// 	ft_stack_clear(b);
 	}
 	else
 	{
