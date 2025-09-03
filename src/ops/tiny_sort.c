@@ -65,7 +65,7 @@ int	ft_node_cost(t_stack *top, t_stack *target)
 	ctop = 0;
 	cbot = (ft_stack_size(top) / 2) + 1;
 	bot = ft_stack_middle(top);
-	if (bot->next)
+	if (bot->next && bot != target)
 		bot = bot->next;
 	while (top)
 	{
@@ -96,13 +96,10 @@ void	ft_sort_five_a(t_stack **a, t_stack **b)
 	while (size-- > 3)
 	{
 		lowest = ft_fdlowest(*a, -1);
-		while (*a != lowest)
-		{
-			if (ft_node_cost(*a, lowest))
-				ft_stack_rotate(a, 0);
-			else
-				ft_stack_revrotate(a, 0);
-		}
+		if (ft_node_cost(*a, lowest))
+			ft_stack_rotate(a, 0);
+		else
+			ft_stack_revrotate(a, 0);
 		ft_stack_push(a, b, 0);
 	}
 	ft_tiny_sort_a(a);

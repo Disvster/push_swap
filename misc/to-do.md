@@ -4,6 +4,7 @@
 
 - [ ] check medium post on chunk sorting, in study-notes.md
 - [ ] fix sort_five
+- [ ] working or 4 numbers, not working for 5
 
 ## 01/09
 

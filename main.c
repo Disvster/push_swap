@@ -65,16 +65,12 @@ int	main(int ac, char **av)
 				ft_sort_five_a(&sa, &b);
 			else
 				ft_tiny_sort_a(&sa);
+			mini_print_stacks(&sa, &b);
+			return (0);
 		}
 		if (ft_checksort(sa, 0, ac - 1))
 		{
-			// FIX:
-			// ./a.out 0 4 2 1 3  
-			// this one sends my prog in infinite loop
-			// prob is in node search
-			mini_print_stacks(&sa, &b);
-			ft_printf("stack is sorted in ascending order\n");
-			return (0);
+			ft_printf("\nstack is sorted in ascending order\n");
 		}
 		ft_chunk_push(&sa, &b, ac - 1);
 		ft_printf("%d Node(s) from chunk [%d] was pushed to B\n",
