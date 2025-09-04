@@ -13,6 +13,18 @@
 #include "../../incs/push_swap.h"
 #include "../../incs/testing.h"
 
+char	chunk_search(t_stack *a, int chunk)
+{
+	while (a)
+	{
+		if (a->chunkid == chunk)
+			return (1);
+		a = a->next;
+	}
+	return (0);
+}
+// TODO: a stack B ta a ser ordenada em ordem crescente which is not what I want
+//		 e o ultimo node ta a dar segfault no ft_chunk_cost
 void	ft_chunk_push(t_stack **a, t_stack **b, int s_size)
 {
 	t_chunk	chunki;
@@ -24,7 +36,7 @@ void	ft_chunk_push(t_stack **a, t_stack **b, int s_size)
 	{
 		mini_print_stacks(a, b);
 		ft_chunk_prep(a, b, i);
-		if ((*a)->chunkid == i)
+		if (chunk_search(*a, i))
 		{
 			// I cannot push here bcs push was already done in chunk_prep
 			// ft_stack_push(a, b, 0);

@@ -1,5 +1,9 @@
 # to-do list
 
+## 04/09
+
+- [X] fix: sort 5 with "5 4 3 2 1" has 13 movements, max is 12;
+
 ## 02/09
 
 - [ ] check medium post on chunk sorting, in study-notes.md

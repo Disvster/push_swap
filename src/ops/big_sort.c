@@ -66,7 +66,7 @@ void	ft_big_sort(t_stack **a, t_stack **b, t_stack *target, int rota)
 		else if (rotb == 0)//rrb
 			ft_stack_revrotate(b, 0);
 	}
-	if (tar_cost == 0 && *b == b_high)
+	if (tar_cost == -1 && *b == b_high)
 		ft_stack_push(a, b, 0);
 	b_high = ft_fdhighest(*b, -1);
 	if (b_high != *b)

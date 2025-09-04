@@ -93,23 +93,39 @@ int	ft_node_cost(t_stack *top, t_stack **target)// FIX: size
 
 void	ft_sort_five_a(t_stack **a, t_stack **b)
 {
-	int		size;
-	t_stack *lowest;
-
 	while (ft_stack_size(*a) > 3)
 	{
-		lowest = ft_fdlowest(*a, -1);
-		if ((*a) == lowest)
+		if ((*a)->index == 0 || (*a)->index == 1)
 			ft_stack_push(a, b, 0);
-		else if (ft_node_cost(*a, &lowest))
-			ft_stack_rotate(a, 0);
 		else
-			ft_stack_revrotate(a, 0);
-		if ((*a) == lowest)
-			ft_stack_push(a, b, 0);
+			ft_stack_rotate(a, 0);
 	}
 	ft_tiny_sort_a(a);
-	size = ft_stack_size(*b);
-	while (size--)
-		ft_stack_push(b, a, 1);
+	if ((*b)->index == 0)
+		ft_stack_swap(b, 1);
+	ft_stack_push(b, a, 1);
+	ft_stack_push(b, a, 1);
 }
+
+// void	not_sort_five_a(t_stack **a, t_stack **b)
+// {
+// 	int		size;
+// 	t_stack *lowest;
+//
+// 	while (ft_stack_size(*a) > 3)
+// 	{
+// 		lowest = ft_fdlowest(*a, -1);
+// 		if ((*a) == lowest)
+// 			ft_stack_push(a, b, 0);
+// 		else if (ft_node_cost(*a, &lowest))
+// 			ft_stack_rotate(a, 0);
+// 		else
+// 			ft_stack_revrotate(a, 0);
+// 		if ((*a) == lowest)
+// 			ft_stack_push(a, b, 0);
+// 	}
+// 	ft_tiny_sort_a(a);
+// 	size = ft_stack_size(*b);
+// 	while (size--)
+// 		ft_stack_push(b, a, 1);
+// }
