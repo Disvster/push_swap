@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 20:08:42 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/02 16:56:08 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/03 22:45:26 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_tiny_sort_a(t_stack **a)
 	return (movement);
 }
 
-int	ft_node_cost(t_stack *top, t_stack *target)
+int	ft_node_cost(t_stack *top, t_stack **target)// FIX: size
 {
 	int		ctop;
 	int		cbot;
@@ -65,18 +65,18 @@ int	ft_node_cost(t_stack *top, t_stack *target)
 	ctop = 0;
 	cbot = (ft_stack_size(top) / 2) + 1;
 	bot = ft_stack_middle(top);
-	if (bot->next && bot != target)
+	if (bot->next && bot != *target)
 		bot = bot->next;
 	while (top)
 	{
-		if (top == target || top->next == bot)
+		if (top == *target || top->next == bot)
 			break ;
 		top = top->next;
 		ctop += 1;
 	}
 	while (bot)
 	{
-		if (bot == target)
+		if (bot == *target)
 			break ;
 		bot = bot->next;
 		cbot--;
@@ -84,6 +84,10 @@ int	ft_node_cost(t_stack *top, t_stack *target)
 	top->cost = ctop;
 	if (bot)
 		bot->cost = cbot;
+	if (ctop <= cbot)
+		(*target)->cost = ctop;
+	else
+		(*target)->cost = cbot;
 	return (ctop <= cbot);
 }
 
@@ -97,7 +101,7 @@ void	ft_sort_five_a(t_stack **a, t_stack **b)
 		lowest = ft_fdlowest(*a, -1);
 		if ((*a) == lowest)
 			ft_stack_push(a, b, 0);
-		else if (ft_node_cost(*a, lowest))
+		else if (ft_node_cost(*a, &lowest))
 			ft_stack_rotate(a, 0);
 		else
 			ft_stack_revrotate(a, 0);

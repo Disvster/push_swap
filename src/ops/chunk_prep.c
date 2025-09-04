@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 16:01:34 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/02 16:55:24 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/03 22:44:40 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ void	ft_chunk_prep(t_stack **a, t_stack **b, int chunk)
 	t_stack	*top;
 	t_stack	*bot;
 
-	if ((*a)->chunkid == chunk || ft_stack_size(*a) == 1)
-		return ;
+	// if ((*a)->chunkid == chunk || ft_stack_size(*a) == 1)// FIX: incompatible with big_sort
+	// 	return ;
 	top = *a;
 	bot = ft_stack_middle(*a);
-	if (ft_stack_size(*a) > 3)
+	if (ft_stack_size(*a) > 3)// FIX: incompatible with big_sort
 		bot = bot->next;
 	ft_chunk_cost(&top, &bot, chunk);
 	if (top->chunkid != chunk)
@@ -67,37 +67,26 @@ void	ft_chunk_sendtop(t_stack **a, t_stack **b, t_stack **top, t_stack **bot)
 		return ;
 	if ((*top)->cost <= (*bot)->cost)
 	{
-		// TODO: check here for rr
-		// check if ft_sortb wants to rotate as well
-		// if it does then (rr)
-		// if either one finishes rotating first:
-		//		if b: b is sorted, exit ft_sortb
-		//		if a: finish sort in b, exit ft_sortb
-		// if it doesnt then (rrb) until b is sorted then exit
-		while (*a != (*top))
-		{
-			// if (!ft_checksort(*b, 0, ft_stack_size(*b)))
-			// 	ft_handle_rot(a, b, (*top)->cost);
-			// else
-				ft_stack_rotate(a, 0);
-		}
+		// while (*a != (*top))//ra
+		// {
+		// if (!ft_checksort(*b, 0, ft_stack_size(*b)))
+			ft_big_sort(a, b, *top, 1);
+		// else
+		// {
+		// 	while (*a != (*top))//ra
+		// 		ft_stack_rotate(a, 0);
+		// 	ft_stack_push(a, b, 0);
+		// }
 	}
 	else if ((*bot)->cost < (*top)->cost)
 	{
-		// TODO: check here for rrr
-		// check if ft_sortb wants to rev rotate as well
-		// if it does then (rrr)
-		// if either one finishes rotating first:
-		//		if b: b is sorted, exit ft_sortb
-		//		if a: finish sort in b, exit ft_sortb
-		// if it doesnt then (rb) until b is sorted then exit
-		while (*a != (*bot))
-		{
-			// if (!ft_checksort(*b, 0, ft_stack_size(*b)))
-			// 	ft_handle_revrot(a, b, (*bot)->cost);
-			// else
-				ft_stack_revrotate(a, 0);
-		}
+		// while (*a != (*bot))//rb
+		// {
+		// if (!ft_checksort(*b, 0, ft_stack_size(*b)))
+			ft_big_sort(a, b, *bot, 0);
+		// else
+		// 	ft_stack_revrotate(a, 0);
+		// // }
 	}
 }
 // HACK: debug chunkcost
@@ -106,10 +95,23 @@ void	ft_chunk_sendtop(t_stack **a, t_stack **b, t_stack **top, t_stack **bot)
 // ft_printf("\ntop->cost = %d, bot->cost = %d\n", ctop, cbot);
 // ft_printf("\ntop->cost = %d, bot->cost = %d\n", (*top)->cost,
 // (*bot)->cost);
-
 // HACK: debug prepchunk
 // ft_printf("-----> TOP value -> %d, in chunk -> %d\n",
 // top->value, top->chunkid);
 // ft_printf("-----> BOT1 value -> %d, in chunk -> %d\n",
 // bot->value, bot->chunkid);
 // ft_printf("-----> top cost -> %d, bot cost -> %d\n", top->cost, bot->cost);
+// TODO: check here for rr
+// check if ft_sortb wants to rotate as well
+// if it does then (rr)
+// if either one finishes rotating first:
+//		if b: b is sorted, exit ft_sortb
+//		if a: finish sort in b, exit ft_sortb
+// if it doesnt then (rrb) until b is sorted then exit
+// TODO: check here for rrr
+// check if ft_sortb wants to rev rotate as well
+// if it does then (rrr)
+// if either one finishes rotating first:
+//		if b: b is sorted, exit ft_sortb
+//		if a: finish sort in b, exit ft_sortb
+// if it doesnt then (rb) until b is sorted then exit

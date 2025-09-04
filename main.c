@@ -36,9 +36,6 @@ int	main(int ac, char **av)
 		sa = ft_create_stack_a(ac, av, ltab, c);
 		if (!sa)
 			return (1);
-		// pa = &sa;
-		// test_movements(pa);
-		// print_stack(&sa);
 		b = NULL;
 		mini_print_stacks(&sa, &b);
 
@@ -75,12 +72,8 @@ int	main(int ac, char **av)
 			return (0);
 		}
 		ft_chunk_push(&sa, &b, ac - 1);
-		ft_printf("%d Node(s) from chunk [%d] was pushed to B\n",
-			ft_stack_size(b), c.count - 1);
-		// ft_printf("\nStack B:\n");
-		// print_stack(&b);
-		// ft_printf("\nStack A:\n");
-		// print_stack(&sa);
+		// ft_printf("%d Node(s) from chunk [%d] was pushed to B\n",
+		// 	ft_stack_size(b), c.count - 1);
 		mini_print_stacks(&sa, &b);
 		for (int i = 0, s = ft_stack_size(b); i < s; i++)
 			ft_stack_push(&b, &sa, 1);

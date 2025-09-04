@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 15:35:14 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/02 15:35:59 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/03 21:43:01 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,30 +40,31 @@ t_stack	*ft_fdlowest(t_stack *b, int chunk)
 	return (lowest);
 }
 
-t_stack	*ft_fdhighest(t_stack *a, int chunk)
+t_stack	*ft_fdhighest(t_stack *stack, int chunk)
 {
-	t_stack	*temp;
 	t_stack	*highest;
 
-	temp = a;
 	highest = NULL;
-	if (chunk == -1 && a)
+	if (chunk == -1 && stack)
 	{
-		while (temp)
+		while (stack)
 		{
-			if (!highest || highest->index < temp->index)
-				highest = temp;
-			temp = temp->next;
+			if (!highest || highest->index < stack->index)
+				highest = stack;
+			stack = stack->next;
 		}
 	}
-	else if (chunk >= 0 && a)
+	else if (chunk >= 0 && stack)
 	{
-		while (temp && temp->chunkid == chunk)
+		while (stack)
 		{
-			if (!highest || highest->index < temp->index)
-				highest = temp;
-			temp = temp->next;
+			if (stack->index > chunk)
+				if (!highest || stack->index < highest->index)
+					highest = stack;
+			stack = stack->next;
 		}
 	}
+	else
+		return (NULL);
 	return (highest);
 }

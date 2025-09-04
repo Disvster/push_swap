@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 20:09:11 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/02 16:56:16 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/03 22:44:26 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ t_stack	*ft_fdlowest(t_stack *b, int chunk);
 int		ft_tiny_sort_a(t_stack **a);
 int		ft_tiny_sort_b(t_stack **b);
 void	ft_sort_five_a(t_stack **a, t_stack **b);
-int		ft_node_cost(t_stack *top, t_stack *target);
+int		ft_node_cost(t_stack *top, t_stack **target);
+void	ft_big_sort(t_stack **b, t_stack **a, t_stack *target, int rota);
 
 #endif
