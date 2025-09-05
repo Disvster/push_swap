@@ -21,20 +21,13 @@ int	ft_tiny_sort_b(t_stack **b)
 	lowest = ft_fdlowest(*b, -1);
 	
 	if (*b == lowest)
-		// ft_stack_rotate(b, 1);
-		movement += 1;// I want to rotate b
+		ft_stack_rotate(b, 1);
 	else if ((*b)->next == lowest)
-		// ft_stack_revrotate(b, 1);
-		movement += -1;// I want to rev rotate b
+		ft_stack_revrotate(b, 1);
 	if ((*b)->index < (*b)->next->index)
 		ft_stack_swap(b, 1);
 	return (movement);
 }
-	// HACK: tiny_sort_b debug
-	// ft_printf("topb: value -> %d\nindex -> %d\nin chunk -> %d\n\n",
-	// 	(*b)->value, (*b)->index, (*b)->chunkid);
-	// ft_printf("lowest: value -> %d\nindex -> %d\nin chunk -> %d\n\n",
-	// 	lowest->value, lowest->index, lowest->chunkid);
 
 int	ft_tiny_sort_a(t_stack **a)
 {
@@ -101,10 +94,32 @@ void	ft_sort_five_a(t_stack **a, t_stack **b)
 			ft_stack_rotate(a, 0);
 	}
 	ft_tiny_sort_a(a);
-	if ((*b)->index == 0)
+	if ((*b)->index == 0 && (*b)->next->index == 1)
 		ft_stack_swap(b, 1);
 	ft_stack_push(b, a, 1);
-	ft_stack_push(b, a, 1);
+	if (*b)
+		ft_stack_push(b, a, 0);
+}
+
+void	ft_sort_five_b(t_stack **a, t_stack **b)
+{
+	int		id;
+	t_stack	*temp;
+
+	temp = ft_fdhighest(*b, -1);
+	id = temp->index;
+	while (ft_stack_size(*b) > 3)
+	{
+		if ((*b)->index == id || (*b)->index == id - 1)
+			ft_stack_push(b, a, 1);
+		else
+			ft_stack_rotate(b, 1);
+	}
+	ft_tiny_sort_a(b);
+	if ((*a)->index == id && (*a)->next->index == id - 1)
+		ft_stack_swap(b, 1);
+	while ((*a)->index == id || (*a)->index == id - 1) // care
+		ft_stack_push(b, a, 1);
 }
 
 // void	not_sort_five_a(t_stack **a, t_stack **b)

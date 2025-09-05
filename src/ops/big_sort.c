@@ -22,11 +22,20 @@ void	ft_big_sort(t_stack **a, t_stack **b, t_stack *target, int rota)
 	t_stack *b_high;
 	// int		valtobe;
 	int		rotb;
-	int		i;
+	int	tar_cost = target->cost;
 
 	if (!*b)
-		return (ft_stack_push(a, b, 0));
-	i = 0;
+	{
+		while (tar_cost >= 0 && *a != target)
+		{
+			if (rota == 1)//ra
+				ft_stack_rotate(a, 0);
+			else if (rota == 0)//rra
+				ft_stack_revrotate(a, 0);
+			tar_cost--;
+		}
+		return ;
+	}
 	b_high = ft_fdhighest(*b, -1);//target->chunkid);
 	// b_high_cost = b_high->cost;// NOTE: need to save this so I know how many rb or rrb(based on rotb) I need to put it at the top again
 
@@ -41,7 +50,6 @@ void	ft_big_sort(t_stack **a, t_stack **b, t_stack *target, int rota)
 	// agora eu vou meter o b_high no topo de B
 	// depois vejo se i > 0 entao tenho que voltar a procurar pelo actual HIGHEST
 	// e mete lo no topo da B; i++ vai ser o offset de index entre o target e o b_high
-	int	tar_cost = target->cost;
 	while (tar_cost-- && *b != b_high && rota == rotb)
 	{
 		// eu sei que A quer rodar target->cost numero de vezes
@@ -78,6 +86,7 @@ void	ft_big_sort(t_stack **a, t_stack **b, t_stack *target, int rota)
 		else if (rotb == 0)//rrb
 			ft_stack_revrotate(b, 0);
 	}
+	mini_print_stacks(a, b);
 }
 // t_stack	*ft_find_closest_bigger(t_stack *stack, int target_index)
 // {

@@ -24,6 +24,7 @@ typedef struct s_stack
 	int				index;
 	int				chunkid;
 	int				cost;
+	long			*arr;
 	struct s_stack	*next;
 }					t_stack;
 
@@ -45,7 +46,7 @@ int		ft_sqrt_floor(int nb);
 /*  Stack Related Functions  */
 // void	ft_stack_addfront(t_stack **stack, t_stack *new_nd);
 t_stack	*ft_create_stack_a(int ac, char **av, long *arr, t_chunk chunki);
-t_stack	*ft_stack_newnode(int value, int index, int chunk_size);
+t_stack	*ft_stack_newnode(long *arr, int value, int index, int chunk_size);
 t_stack	*ft_stacklast(t_stack *lst);
 void	ft_stack_clear(t_stack *lst);
 t_chunk	ft_chunkinit(int stack_size);
@@ -64,6 +65,7 @@ void	ft_stack_revrotate(t_stack **top, int which_stack);
 void	ft_revrotate_both(t_stack **topa, t_stack **topb);
 
 /*  Operation Functions  */
+char	chunk_search(t_stack *a, int chunk);
 void	ft_chunk_cost(t_stack **top, t_stack **bot, int chunk);
 void	ft_chunk_prep(t_stack **a, t_stack **b, int chunk);
 void	ft_chunk_push(t_stack **a, t_stack **b, int s_size);
@@ -75,6 +77,7 @@ t_stack	*ft_fdlowest(t_stack *b, int chunk);
 int		ft_tiny_sort_a(t_stack **a);
 int		ft_tiny_sort_b(t_stack **b);
 void	ft_sort_five_a(t_stack **a, t_stack **b);
+void	ft_sort_five_b(t_stack **a, t_stack **b);
 int		ft_node_cost(t_stack *top, t_stack **target);
 void	ft_big_sort(t_stack **b, t_stack **a, t_stack *target, int rota);
 

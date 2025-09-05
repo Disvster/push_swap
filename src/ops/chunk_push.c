@@ -13,6 +13,30 @@
 #include "../../incs/push_swap.h"
 #include "../../incs/testing.h"
 
+/* ============================================ */
+
+void	tiny_chunk_sort(t_stack **a, t_stack **b, t_chunk chunki)
+{
+	int	i;
+	
+	i = 0;
+	while (i < chunki.count - 1)//till A has only nodes from last chunk
+	{
+		if ((*a)->chunkid == i)
+			ft_stack_push(a, b, 0);
+		else if (!chunk_search(*a, i))
+		{
+			if (ft_stack_size(*b) < 3)
+				ft_tiny_sort_b(b);
+			else
+				ft_sort_five_b(a, b);
+			i++;
+		}
+	}
+}
+
+/* ============================================ */
+
 char	chunk_search(t_stack *a, int chunk)
 {
 	while (a)
@@ -32,6 +56,10 @@ void	ft_chunk_push(t_stack **a, t_stack **b, int s_size)
 
 	i = 0;
 	chunki = ft_chunkinit(s_size);
+	if (chunki.size <= 5)
+	{
+		tiny_chunk_sort(a, b, chunki);
+	}
 	while (/*s_size > chunki.size &&*/ i < chunki.count - 1)
 	{
 		mini_print_stacks(a, b);

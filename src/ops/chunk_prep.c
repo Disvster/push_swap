@@ -67,16 +67,18 @@ void	ft_chunk_sendtop(t_stack **a, t_stack **b, t_stack **top, t_stack **bot)
 		return ;
 	if ((*top)->cost <= (*bot)->cost)
 	{
-		// while (*a != (*top))//ra
-		// {
-		// if (!ft_checksort(*b, 0, ft_stack_size(*b)))
-			ft_big_sort(a, b, *top, 1);
+		if (!ft_checksort(*b, 0, ft_stack_size(*b)))
+		{
+			if ((*top)->index / (*top)->chunkid > 5)
+				ft_big_sort(a, b, *top, 1);
+			else // here I send every node from chunk to
+				// B and tiny_sort them in rev
+			{
+				while (*a != (*top))//ra
+					ft_stack_rotate(a, 0);
+			}
+		}
 		// else
-		// {
-		// 	while (*a != (*top))//ra
-		// 		ft_stack_rotate(a, 0);
-		// 	ft_stack_push(a, b, 0);
-		// }
 	}
 	else if ((*bot)->cost < (*top)->cost)
 	{
