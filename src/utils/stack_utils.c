@@ -49,6 +49,7 @@ t_stack	*ft_stack_newnode(long *arr, int value, int index, int chunk_size)
 	new_node->value = value;
 	new_node->index = index;
 	new_node->chunkid = index / chunk_size;
+	new_node->chksize = chunk_size;
 	new_node->arr = arr;
 	new_node->next = NULL;
 	return (new_node);

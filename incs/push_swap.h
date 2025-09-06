@@ -23,6 +23,7 @@ typedef struct s_stack
 	int				value;
 	int				index;
 	int				chunkid;
+	int				chksize;
 	int				cost;
 	long			*arr;
 	struct s_stack	*next;

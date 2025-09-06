@@ -62,33 +62,35 @@ void	ft_chunk_prep(t_stack **a, t_stack **b, int chunk)
 
 void	ft_chunk_sendtop(t_stack **a, t_stack **b, t_stack **top, t_stack **bot)
 {
-	(void)b;
+	int	s;
+	s = ft_checksort(*b, 0, ft_stack_size(*b));
 	if ((*top)->cost == (*bot)->cost && (*top)->cost == INT_MAX)
 		return ;
 	if ((*top)->cost <= (*bot)->cost)
 	{
-		if (!ft_checksort(*b, 0, ft_stack_size(*b)))
-		{
-			if ((*top)->index / (*top)->chunkid > 5)
+		// if (ft_stack_size(*b) > 1)
+		// {
+			if ((*top)->chksize > 5 && !s)
 				ft_big_sort(a, b, *top, 1);
-			else // here I send every node from chunk to
-				// B and tiny_sort them in rev
+			else// here I send every node from chunk to B and tiny_sort them in rev
 			{
-				while (*a != (*top))//ra
+				while (*a != (*top))
 					ft_stack_rotate(a, 0);
 			}
-		}
-		// else
+		// }
 	}
 	else if ((*bot)->cost < (*top)->cost)
 	{
-		// while (*a != (*bot))//rb
+		// if (ft_stack_size(*b) > 1)
 		// {
-		// if (!ft_checksort(*b, 0, ft_stack_size(*b)))
-			ft_big_sort(a, b, *bot, 0);
-		// else
-		// 	ft_stack_revrotate(a, 0);
-		// // }
+			if ((*bot)->chksize > 5 && !s)
+				ft_big_sort(a, b, *bot, 1);
+			else if (!s) // here I send every node from chunk to B and tiny_sort them in rev
+			{
+				while (*a != (*bot))
+					ft_stack_revrotate(a, 0);
+			}
+		// }
 	}
 }
 // HACK: debug chunkcost

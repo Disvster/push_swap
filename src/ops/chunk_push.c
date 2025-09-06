@@ -24,7 +24,9 @@ void	tiny_chunk_sort(t_stack **a, t_stack **b, t_chunk chunki)
 	{
 		if ((*a)->chunkid == i)
 			ft_stack_push(a, b, 0);
-		else if (!chunk_search(*a, i))
+		else
+			ft_chunk_prep(a, b, i);
+		if (!chunk_search(*a, i))
 		{
 			if (ft_stack_size(*b) < 3)
 				ft_tiny_sort_b(b);
@@ -47,6 +49,7 @@ char	chunk_search(t_stack *a, int chunk)
 	}
 	return (0);
 }
+
 // TODO: a stack B ta a ser ordenada em ordem crescente which is not what I want
 //		 e o ultimo node ta a dar segfault no ft_chunk_cost
 void	ft_chunk_push(t_stack **a, t_stack **b, int s_size)
