@@ -125,13 +125,17 @@ void	ft_sort_five_b(t_stack **a, t_stack **b)
 	{
 		if ((*b)->index == id || (*b)->index == id - 1)
 			ft_stack_push(b, a, 1);
+		else if (ft_checksort(*b, 1, 5))
+			return ;
 		else
 			ft_stack_rotate(b, 1);
 	}
 	ft_tiny_sort_a(b);
 	if ((*a)->index == id && (*a)->next->index == id - 1)
 		ft_stack_swap(a, 0);
-	while (node_idsearch(*a, id) || node_idsearch(*a, id - 1))
+	if (node_idsearch(*a, id) || node_idsearch(*a, id - 1))
+		ft_stack_push(b, a, 1);
+	if (node_idsearch(*a, id) || node_idsearch(*a, id - 1))
 		ft_stack_push(b, a, 1);
 	mini_print_stacks(a, b);
 }

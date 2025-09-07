@@ -18,14 +18,16 @@ int	main(int ac, char **av)
 	long		*ltab;
 	t_stack		*sa;
 	t_stack		*b;
-	// t_stack		*tmp;
 	t_chunk		c;
-	// t_stack		**pa;
-	// t_stack		**pb = NULL;
+	char		**nav;
 
 	if (ac > 1)
 	{
-		ltab = ft_create_ltab(ac, av);
+		if (ac == 2)
+			nav = ft_split(av[1], ' ');
+		else
+			nav = av;
+		ltab = create_ltab(ac, av);
 		if (ltab == 0 || !ltab)
 		{
 			//printf("Error\n");
@@ -76,7 +78,13 @@ int	main(int ac, char **av)
 		// 	ft_stack_size(b), c.count - 1);
 		mini_print_stacks(&sa, &b);
 		for (int i = 0, s = ft_stack_size(b); i < s; i++)
+		{
+			if (b->index == 0 && b->next)
+				ft_stack_rotate(&b, 1);
+			if (b->index == 1 && b->next && b->next->index != 0 && b->next->next)
+				ft_stack_rotate(&b, 1);
 			ft_stack_push(&b, &sa, 1);
+		}
 		if (sa->index == 1 && sa->next->index == 0)
 			ft_stack_swap(&sa, 0);
 		mini_print_stacks(&sa, &b);

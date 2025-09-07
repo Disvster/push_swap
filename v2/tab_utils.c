@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/push_swap.h"
+#include "push_swap.h"
 
 int	ft_atol(const char *nptr)
 {
@@ -86,8 +86,8 @@ long	*create_ltab(int ac, char **av)
 	int		i;
 	char	check;
 
-	i = 0;
-	ltab = malloc(sizeof(long) * (ac - 1));
+	i = -1;
+	ltab = malloc(sizeof(long) * ac);
 	if (!ltab)
 		return (NULL);
 	while (av[++i])
@@ -97,9 +97,9 @@ long	*create_ltab(int ac, char **av)
 			free(ltab);
 			return (0);
 		}
-		ltab[i - 1] = ft_atol(av[i]);
+		ltab[i] = ft_atol(av[i]);
 	}
-	check = ft_sort_ltab(ltab, ac - 1);
+	check = ft_sort_ltab(ltab, ac);
 	if (check == 0)
 	{
 		free(ltab);

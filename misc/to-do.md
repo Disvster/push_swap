@@ -2,31 +2,38 @@
 
 ## 04/09
 
+- [ ] try to ditch the chunk logic and just go based on costs
+    * this means going calc the cost for every node (mid-top is ra, mid-bot is rra)
+    * then setting a target node that's the less bigger value in B, calculating the least costly node in A
+    * then calc the cost of targetB to top, then rr or rrr
+
+## 04/09
+
 - [X] fix: sort 5 with "5 4 3 2 1" has 13 movements, max is 12;
 
 ## 02/09
 
-- [ ] check medium post on chunk sorting, in study-notes.md
+- [X] check medium post on chunk sorting, in study-notes.md
 - [X] fix sort_five
     - [X] working for 4 numbers, not working for 5
 
 ## 01/09
 
 - [X] tiny sort done
-- [ ] ft_big_sort missing
-- [ ] A and B are not using (rr) and (rrr)
+- [X] ft_big_sort missing
+- [X] A and B are not using (rr) and (rrr)
 
 ## 31/08
 
-- [ ] make b have a target node to be at the top as well. it should always be the biggest number from its chunk
-- [ ] rot/rev rot until that target is at the top. Thats when you check for rr/rrr
+- [X] make b have a target node to be at the top as well. it should always be the biggest number from its chunk
+- [X] rot/rev rot until that target is at the top. Thats when you check for rr/rrr
 
 ## 30/08
 
 - [X] general cleanup and divided functions with +25  lines
 - [X] added check before long array creation that checks is arguments are digits
 - [X] working functions that calculate costs, send nodes in target chunk to top and pushes said nodes
-- [ ] next step is to sort each chunk after they are sent to stack B
+- [X] next step is to sort each chunk after they are sent to stack B
 - [X] for a stack of size 3 program segfaults, need to hard code a sorting for <= 3
 
 ## 29/08
@@ -40,7 +47,7 @@
     - [X]  NOT DONE, BOT IS ACTING LIKE NODE FURTHREST FROM BOTTOM IS BETTER, THIS IS THE OPPOSITE
     - fixed
 - [X] push all the nodes in target chunk from A to B
-- [ ] start sorting B
+- [X] start sorting B
 
 ## 27/08
 
@@ -80,7 +87,7 @@ Note!
 - [X] libft Makefile
     - needs work, very rough atm
 
-- [ ] valgrind reports conditional jumps when testing movements
+- [X] valgrind reports conditional jumps when testing movements
 
 ## 06/08
 

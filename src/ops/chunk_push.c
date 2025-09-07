@@ -62,25 +62,42 @@ char	chunk_search(t_stack *a, int chunk)
 void	ft_chunk_push(t_stack **a, t_stack **b, int s_size)
 {
 	t_chunk	chunki;
+	t_stack *b_high;
+	int		rotb;
 	int		i;
 
-	i = 0;
+	i = -1;
 	chunki = ft_chunkinit(s_size);
-	// if (chunki.size <= 5)
-	// {
-	// 	tiny_chunk_sort(a, b, chunki);
-	// 	return ;
-	// }
-	while (/*s_size > chunki.size &&*/ i < chunki.count)
+	while (++i < 3)
+		ft_stack_push(a, b, 0);
+	i = 0;
+	ft_tiny_sort_b(b);
+	while (i < chunki.count)
 	{
 		mini_print_stacks(a, b);
 		ft_chunk_prep(a, b, i);
 		if (!chunk_search(*a, i))
 			i++;
 		if (!*a)
+		{
+			b_high = find_highest(*b, -1);
+			rotb = ft_node_cost(*b, &b_high);
+			while (*b != b_high)
+			{
+				if (rotb == 1)//rb
+					ft_stack_rotate(b, 1);
+				else if (rotb == 0)//rrb
+					ft_stack_revrotate(b, 1);
+			}
 			return ;
+		}
 	}
 }
+	// if (chunki.size <= 5)
+	// {
+	// 	tiny_chunk_sort(a, b, chunki);
+	// 	return ;
+	// }
 //			NOTE: this was inside the else statement:
 			// if (ft_stack_size(*b) == 3)
 			// 	ft_tiny_sort_b(b);

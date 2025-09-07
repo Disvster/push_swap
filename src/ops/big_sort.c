@@ -93,13 +93,13 @@ void	ft_big_sort(t_stack **a, t_stack **b, t_stack *target, int rota)
 		else
 			rotb = ft_node_cost(*b, &b_high);
 	}
-	while (*b != b_high)
-	{
-		if (rotb == 1)//rb
-			ft_stack_rotate(b, 1);
-		else if (rotb == 0)//rrb
-			ft_stack_revrotate(b, 1);
-	}
+	// while (*b != b_high)
+	// {
+	// 	if (rotb == 1)//rb
+	// 		ft_stack_rotate(b, 1);
+	// 	else if (rotb == 0)//rrb
+	// 		ft_stack_revrotate(b, 1);
+	// }
 	mini_print_stacks(a, b);
 }
 // t_stack	*ft_find_closest_bigger(t_stack *stack, int target_index)
