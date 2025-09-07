@@ -25,13 +25,20 @@ void	tiny_chunk_sort(t_stack **a, t_stack **b, t_chunk chunki)
 		if ((*a)->chunkid == i)
 			ft_stack_push(a, b, 0);
 		else
-			ft_chunk_prep(a, b, i);
-		if (!chunk_search(*a, i))
 		{
-			if (ft_stack_size(*b) < 3)
+			ft_chunk_prep(a, b, i);
+			ft_stack_push(a, b, 0);
+		}
+		if (chunk_search(*a, i) == 0)
+		{
+			mini_print_stacks(a, b);
+			if (ft_stack_size(*b) <= 3 && ft_stack_size(*b) > 1)
 				ft_tiny_sort_b(b);
-			else
+			else if (ft_stack_size(*b) <= 5)
 				ft_sort_five_b(a, b);
+			while (ft_stack_size(*b) > 0)
+				ft_stack_push(b, a, 1);
+			mini_print_stacks(a, b);
 			i++;
 		}
 	}
@@ -59,24 +66,20 @@ void	ft_chunk_push(t_stack **a, t_stack **b, int s_size)
 
 	i = 0;
 	chunki = ft_chunkinit(s_size);
-	if (chunki.size <= 5)
-	{
-		tiny_chunk_sort(a, b, chunki);
-	}
-	while (/*s_size > chunki.size &&*/ i < chunki.count - 1)
+	// if (chunki.size <= 5)
+	// {
+	// 	tiny_chunk_sort(a, b, chunki);
+	// 	return ;
+	// }
+	while (/*s_size > chunki.size &&*/ i < chunki.count)
 	{
 		mini_print_stacks(a, b);
 		ft_chunk_prep(a, b, i);
-		if (chunk_search(*a, i))
-		{
-			// I cannot push here bcs push was already done in chunk_prep
-			// ft_stack_push(a, b, 0);
-			ft_chunk_prep(a, b, i);
-			s_size--;
-		}
-		else
-			i++;
-			// mini_print_stacks(a, b);
+		if (!chunk_search(*a, i))
+			break;
+			// i++;
+		if (!*a)
+			return ;
 	}
 }
 //			NOTE: this was inside the else statement:

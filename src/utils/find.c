@@ -12,14 +12,14 @@
 
 #include "../../incs/push_swap.h"
 
-t_stack	*ft_fdlowest(t_stack *b, int chunk)
+t_stack	*find_lowest(t_stack *b, int id)
 {
 	t_stack	*temp;
 	t_stack	*lowest;
 
 	temp = b;
 	lowest = NULL;
-	if (chunk == -1 && b)
+	if (id == -1 && b)
 	{
 		while (temp)
 		{
@@ -28,11 +28,11 @@ t_stack	*ft_fdlowest(t_stack *b, int chunk)
 			temp = temp->next;
 		}
 	}
-	else if (chunk >= 0 && b)
+	else if (id >= 0 && b)
 	{
-		while (temp && temp->chunkid == chunk)
+		while (temp)
 		{
-			if (!lowest || temp->index < lowest->index)
+			if ((temp->index < id) && (!lowest || temp->index > lowest->index))
 				lowest = temp;
 			temp = temp->next;
 		}
@@ -40,7 +40,7 @@ t_stack	*ft_fdlowest(t_stack *b, int chunk)
 	return (lowest);
 }
 
-t_stack	*ft_fdhighest(t_stack *stack, int chunk)
+t_stack	*find_highest(t_stack *stack, int chunk)
 {
 	t_stack	*highest;
 

@@ -26,7 +26,7 @@ void	ft_big_sort(t_stack **a, t_stack **b, t_stack *target, int rota)
 
 	if (!*b)
 	{
-		while (tar_cost >= 0 && *a != target)
+		while (*a != target)
 		{
 			if (rota == 1)//ra
 				ft_stack_rotate(a, 0);
@@ -34,23 +34,25 @@ void	ft_big_sort(t_stack **a, t_stack **b, t_stack *target, int rota)
 				ft_stack_revrotate(a, 0);
 			tar_cost--;
 		}
+		ft_stack_push(a, b, 0);
 		return ;
 	}
-	b_high = ft_fdhighest(*b, -1);//target->chunkid);
-	// b_high_cost = b_high->cost;// NOTE: need to save this so I know how many rb or rrb(based on rotb) I need to put it at the top again
+	b_high = find_highest(*b, -1);
 
-	// the while loop below is wrong, I need to search for the bigger number that is not the highest
-	// not the highest AFTER the highest
-	if (target->index < b_high->index)
-		b_high = ft_fdhighest(*b, target->index);
+	if (target->index < b_high->index && ft_stack_size(*b) > 1)
+	{
+		if (target->index == 0)
+			b_high = find_highest(*b, 0);
+		else
+			b_high = find_lowest(*b, target->index);
+		if (!b_high)	
+			b_high = find_highest(*b, target->index);
+	}
 	
 	if (ft_stack_size(*b) > 1)
 		rotb = ft_node_cost(*b, &b_high);
 	
-	// agora eu vou meter o b_high no topo de B
-	// depois vejo se i > 0 entao tenho que voltar a procurar pelo actual HIGHEST
-	// e mete lo no topo da B; i++ vai ser o offset de index entre o target e o b_high
-	while (tar_cost-- && *b != b_high && rota == rotb)
+	while ((*a) != target && *b != b_high && rota == rotb)
 	{
 		// eu sei que A quer rodar target->cost numero de vezes
 		// B quer rodar ate b_highest ser igual ao topo da B
@@ -58,8 +60,9 @@ void	ft_big_sort(t_stack **a, t_stack **b, t_stack *target, int rota)
 			ft_rotate_both(a, b);
 		else if (rota == 0)//rrr
 			ft_revrotate_both(a, b);
+		tar_cost--;
 	}
-	while (tar_cost >= 0)
+	while ((*a) != target)
 	{
 		if (rota == 1)//ra
 			ft_stack_rotate(a, 0);
@@ -70,21 +73,30 @@ void	ft_big_sort(t_stack **a, t_stack **b, t_stack *target, int rota)
 	while (*b != b_high)
 	{
 		if (rotb == 1)//rb
-			ft_stack_rotate(b, 0);
+			ft_stack_rotate(b, 1);
 		else if (rotb == 0)//rrb
-			ft_stack_revrotate(b, 0);
+			ft_stack_revrotate(b, 1);
 	}
-	if (tar_cost == -1 && *b == b_high)
+	// if (tar_cost == 0 && *b == b_high)
 		ft_stack_push(a, b, 0);
-	b_high = ft_fdhighest(*b, -1);
+	b_high = find_highest(*b, -1);
 	if (b_high != *b)
-		rotb = ft_node_cost(*b, &b_high);
+	{
+		if (ft_stack_size(*b) == 3)
+		{
+			ft_tiny_sort_b(b);
+			return ;
+			// rotb = 0;
+		}
+		else
+			rotb = ft_node_cost(*b, &b_high);
+	}
 	while (*b != b_high)
 	{
 		if (rotb == 1)//rb
-			ft_stack_rotate(b, 0);
+			ft_stack_rotate(b, 1);
 		else if (rotb == 0)//rrb
-			ft_stack_revrotate(b, 0);
+			ft_stack_revrotate(b, 1);
 	}
 	mini_print_stacks(a, b);
 }

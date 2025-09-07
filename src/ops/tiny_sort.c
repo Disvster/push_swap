@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../incs/push_swap.h"
+#include "../../incs/testing.h"
 
 int	ft_tiny_sort_b(t_stack **b)
 {
@@ -18,7 +19,7 @@ int	ft_tiny_sort_b(t_stack **b)
 	int		movement;
 
 	movement = 0;
-	lowest = ft_fdlowest(*b, -1);
+	lowest = find_lowest(*b, -1);
 	
 	if (*b == lowest)
 		ft_stack_rotate(b, 1);
@@ -35,7 +36,7 @@ int	ft_tiny_sort_a(t_stack **a)
 	int		movement;
 
 	movement = 0;
-	highest = ft_fdhighest(*a, -1);
+	highest = find_highest(*a, -1);
 	if (*a == highest)
 		ft_stack_rotate(a, 0);
 		// movement += 1;// I want to rotate a
@@ -84,9 +85,20 @@ int	ft_node_cost(t_stack *top, t_stack **target)// FIX: size
 	return (ctop <= cbot);
 }
 
+char	node_idsearch(t_stack *a, int nb)
+{
+	while (a)
+	{
+		if (a->index == nb)
+			return (1);
+		a = a->next;
+	}
+	return (0);
+}
+
 void	ft_sort_five_a(t_stack **a, t_stack **b)
 {
-	while (ft_stack_size(*a) > 3)
+	while (node_idsearch(*a, 0) || node_idsearch(*a, 1))
 	{
 		if ((*a)->index == 0 || (*a)->index == 1)
 			ft_stack_push(a, b, 0);
@@ -106,7 +118,8 @@ void	ft_sort_five_b(t_stack **a, t_stack **b)
 	int		id;
 	t_stack	*temp;
 
-	temp = ft_fdhighest(*b, -1);
+	mini_print_stacks(a, b);
+	temp = find_highest(*b, -1);
 	id = temp->index;
 	while (ft_stack_size(*b) > 3)
 	{
@@ -117,9 +130,11 @@ void	ft_sort_five_b(t_stack **a, t_stack **b)
 	}
 	ft_tiny_sort_a(b);
 	if ((*a)->index == id && (*a)->next->index == id - 1)
-		ft_stack_swap(b, 1);
-	while ((*a)->index == id || (*a)->index == id - 1) // care
+		ft_stack_swap(a, 0);
+	int	i = (*a)->chunkid;
+	while (chunk_search(*a, i))
 		ft_stack_push(b, a, 1);
+	mini_print_stacks(a, b);
 }
 
 // void	not_sort_five_a(t_stack **a, t_stack **b)
@@ -129,7 +144,7 @@ void	ft_sort_five_b(t_stack **a, t_stack **b)
 //
 // 	while (ft_stack_size(*a) > 3)
 // 	{
-// 		lowest = ft_fdlowest(*a, -1);
+// 		lowest = find_lowest(*a, -1);
 // 		if ((*a) == lowest)
 // 			ft_stack_push(a, b, 0);
 // 		else if (ft_node_cost(*a, &lowest))

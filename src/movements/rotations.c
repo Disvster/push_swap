@@ -26,13 +26,12 @@ void	ft_stack_rotate(t_stack **top, int which_stack)
 	*top = first->next;
 	last->next = first;
 	first->next = NULL;
-	ft_printf("r");
 	if (which_stack == 0)
-		ft_printf("a\n");
+		ft_printf("ra\n");
 	else if (which_stack == 1)
-		ft_printf("b\n");
+		ft_printf("rb\n");
 	else if (which_stack == 2)
-		ft_printf("r\n");
+		ft_printf("rr\n");
 	else if (which_stack == -1)
 		return ;
 }
@@ -61,13 +60,12 @@ void	ft_stack_revrotate(t_stack **top, int which_stack)
 	last->next = first;
 	temp->next = NULL;
 	*top = last;
-	ft_printf("rr");
 	if (which_stack == 0)
-		ft_printf("a\n");
+		ft_printf("rra\n");
 	else if (which_stack == 1)
-		ft_printf("b\n");
+		ft_printf("rrb\n");
 	else if (which_stack == 2)
-		ft_printf("r\n");
+		ft_printf("rrr\n");
 	else if (which_stack == -1)
 		return ;
 }

@@ -57,7 +57,7 @@ int	ft_big_sort_b(t_stack **b, int *rot, int target_chunk, int direction)
 	top = *b;
 	bot = ft_stack_middle(*b);
 	bot = bot->next;
-	lowest = ft_fdlowest(*b, target_chunk);
+	lowest = find_lowest(*b, target_chunk);
 	nbr_of_rots_b_wants = 0;
 	if (top->cost <= bot->cost && direction == 1)
 		nbr_of_rots_b_wants += top->cost;

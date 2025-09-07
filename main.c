@@ -77,11 +77,17 @@ int	main(int ac, char **av)
 		mini_print_stacks(&sa, &b);
 		for (int i = 0, s = ft_stack_size(b); i < s; i++)
 			ft_stack_push(&b, &sa, 1);
+		if (sa->index == 1 && sa->next->index == 0)
+			ft_stack_swap(&sa, 0);
 		mini_print_stacks(&sa, &b);
 		
 		// ft_printf("for chunk [%d] cheapest node is:\n", ft_sqrt_floor(ac - 1) - 1);
 		// ft_printf("value -> %d\nindex -> %d\nin chunk -> %d\n\n", tmp->value, tmp->index, tmp->chunkid);
 
+		if (ft_checksort(sa, 0, ac - 1))
+			ft_printf("stack is sorted in ascending order\n");
+		else
+			ft_printf("stack is not sorted\n");
 		free(ltab);
 		ft_stack_clear(sa);
 		// if (b)
