@@ -121,7 +121,7 @@ void	ft_sort_five_b(t_stack **a, t_stack **b)
 	mini_print_stacks(a, b);
 	temp = find_highest(*b, -1);
 	id = temp->index;
-	while (ft_stack_size(*b) > 3)
+	while (node_idsearch(*b, id) || node_idsearch(*b, id - 1))
 	{
 		if ((*b)->index == id || (*b)->index == id - 1)
 			ft_stack_push(b, a, 1);
@@ -131,8 +131,7 @@ void	ft_sort_five_b(t_stack **a, t_stack **b)
 	ft_tiny_sort_a(b);
 	if ((*a)->index == id && (*a)->next->index == id - 1)
 		ft_stack_swap(a, 0);
-	int	i = (*a)->chunkid;
-	while (chunk_search(*a, i))
+	while (node_idsearch(*a, id) || node_idsearch(*a, id - 1))
 		ft_stack_push(b, a, 1);
 	mini_print_stacks(a, b);
 }

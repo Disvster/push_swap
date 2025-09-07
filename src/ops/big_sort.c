@@ -17,13 +17,11 @@ void	ft_big_sort(t_stack **a, t_stack **b, t_stack *target, int rota)
 {
 	// if rot == 1 then I want to rotate A
 	// if rot == 0 then I want to reverse rotate A
-	// how many times either ra or rra will be stored in
-	// target->cost
 	t_stack *b_high;
-	// int		valtobe;
 	int		rotb;
-	int	tar_cost = target->cost;
+	int	tar_cost;
 
+	tar_cost = target->cost;
 	if (!*b)
 	{
 		while (*a != target)
@@ -45,10 +43,10 @@ void	ft_big_sort(t_stack **a, t_stack **b, t_stack *target, int rota)
 			b_high = find_highest(*b, 0);
 		else
 			b_high = find_lowest(*b, target->index);
-		if (!b_high)	
+		if (!b_high)
 			b_high = find_highest(*b, target->index);
 	}
-	
+
 	if (ft_stack_size(*b) > 1)
 		rotb = ft_node_cost(*b, &b_high);
 	
@@ -82,11 +80,15 @@ void	ft_big_sort(t_stack **a, t_stack **b, t_stack *target, int rota)
 	b_high = find_highest(*b, -1);
 	if (b_high != *b)
 	{
-		if (ft_stack_size(*b) == 3)
+		if (ft_stack_size(*b) <= 3)
 		{
 			ft_tiny_sort_b(b);
 			return ;
-			// rotb = 0;
+		}
+		else if (ft_stack_size(*b) <= 5)
+		{
+			ft_sort_five_b(a, b);
+			return ;
 		}
 		else
 			rotb = ft_node_cost(*b, &b_high);
