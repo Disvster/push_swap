@@ -76,8 +76,7 @@ void	ft_chunk_push(t_stack **a, t_stack **b, int s_size)
 		mini_print_stacks(a, b);
 		ft_chunk_prep(a, b, i);
 		if (!chunk_search(*a, i))
-			break;
-			// i++;
+			i++;
 		if (!*a)
 			return ;
 	}
