@@ -1,5 +1,15 @@
 # to-do list
 
+## 06/09
+
+- [ ] change codebase:
+    - all the nodes in A get a target and a num of movs
+    - we choose the chunk to be pushed by calculating the cost for each node, it's `find_nextlow`
+    - cost is:
+	* if node in A and it's target in B have the same sign in move variable then the highest value is the **cost**
+	* if sign is different then we add the **ABS** of both **moves'**, thats our cost
+- [ ] test push swap vizualizer on V1
+
 ## 04/09
 
 - [ ] try to ditch the chunk logic and just go based on costs

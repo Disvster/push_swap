@@ -12,17 +12,47 @@
 
 #include "push_swap.h"
 
-void	handle_stack( char **nav, t_chunk chunki, long *arr, int size)
+void	handle_small_sort(t_stack *a, int size)
+{
+	t_stack	*b;
+	
+	b = NULL;
+	if (size <= 3)
+		sort_three_a(&a);
+	else
+		sort_five_b(&a, &b);
+	return ;
+}
+
+void	handle_stack(char **nav, t_chunk chunki, long *arr, int size)
 {
 	t_stack *a;
 	
-	a = ft_create_stack_a(size, nav, arr, chunki);
+	a = create_stack_a(size, nav, arr, chunki);
 	if (!a)
 	{
 		write(2, "Error\n", 6);
+		handle_free(a, arr);// TODO:
 		exit(1);
 	}
-
+	if (check_sort(a, 0))
+	{
+		ft_printf("stack is sorted in ascending order\n");// HACK:
+		handle_free(a, arr);// TODO:
+		exit(0);
+	}
+	else
+		ft_printf("stack is not sorted\n");// HACK:
+	if (size <= 5)
+		handle_small_sort(a, size);
+	else
+		handle_big_sort(a, size);
+	if (check_sort(a, 0))
+	{
+		ft_printf("stack is sorted in ascending order\n");// HACK:
+		handle_free(a, arr);// TODO:
+		exit(0);
+	}
 }
 
 int	main(int ac, char **av)
@@ -47,5 +77,10 @@ int	main(int ac, char **av)
 		}
 		chunki = ft_chunkinit(size);
 		handle_stack(nav, chunki, arr, size);
+	}
+	else
+	{
+		write(2, "Error\n", 6);
+		return (1);
 	}
 }

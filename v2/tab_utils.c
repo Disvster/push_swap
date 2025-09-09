@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:54:14 by manmaria          #+#    #+#             */
-/*   Updated: 2025/08/25 15:00:32 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/08 22:50:32 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	ft_sort_ltab(long *tab, int size)
 	return (1);
 }
 
-char	ft_validarg(char *s)
+char	check_validarg(char *s)
 {
 	size_t	i;
 
