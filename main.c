@@ -27,7 +27,7 @@ int	main(int ac, char **av)
 			nav = ft_split(av[1], ' ');
 		else
 			nav = av;
-		ltab = create_ltab(ac, av);
+		ltab = create_ltab(ac, nav);
 		if (ltab == 0 || !ltab)
 		{
 			//printf("Error\n");
@@ -35,7 +35,7 @@ int	main(int ac, char **av)
 			return (1);
 		}
 		c = ft_chunkinit(ac - 1);
-		sa = ft_create_stack_a(ac, av, ltab, c);
+		sa = ft_create_stack_a(ac, nav, ltab, c);
 		if (!sa)
 			return (1);
 		b = NULL;

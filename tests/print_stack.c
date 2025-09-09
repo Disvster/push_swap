@@ -1,5 +1,27 @@
 #include "../incs/testing.h"
 
+void	set_mov(t_stack *a)
+{
+	t_stack	*temp;
+	int		i;
+	int		size;
+
+	if (!a)
+		exit(1);// HACK:
+	temp = a;
+	size = ft_stack_size(a);
+	i = 0;
+	while (temp)
+	{
+		if (i <= size / 2)
+			temp->cost = i;
+		else
+			temp->cost = i - size;
+		temp = temp->next;
+		i++;
+	}
+}
+
 void	mini_print_stacks(t_stack **a, t_stack **b)
 {
 	t_stack	*ta;
@@ -7,17 +29,18 @@ void	mini_print_stacks(t_stack **a, t_stack **b)
 
 	ta = *a;
 	tb = *b;
-	ft_printf("\t  A\t\t  B\n");
-	ft_printf("\t------\t\t------\n");
+	set_mov(*a);
+	ft_printf("\t  A\t\t\t  B\n");
+	ft_printf("\t------\t\t\t------\n");
 	while (ta || tb){
 		if (ta){
-			ft_printf("\t %d[%d]\t", ta->index, ta->chunkid);
+			ft_printf("\t %d m[%d] c[%d]\t", ta->index, ta->cost, ta->chunkid);
 			ta = ta->next;
 		}	
 		else
-			ft_printf("\t\t");
+			ft_printf("\t\t\t");
 		if (tb){
-			ft_printf("\t %d[%d]", tb->index, tb->chunkid);
+			ft_printf("\t %d m[%d] c[%d]", tb->index, tb->cost, tb->chunkid);
 			tb = tb->next;
 		}
 		ft_printf("\n");

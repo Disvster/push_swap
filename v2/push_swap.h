@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 20:09:11 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/08 22:53:06 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/09 05:45:40 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ typedef struct s_stack
 	int				chunkid;
 	int				chksize;
 	int				cost;
+	int				mov;
 	long			*arr;
+	struct s_stack	*target;
 	struct s_stack	*next;
 }					t_stack;
 

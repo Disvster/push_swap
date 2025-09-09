@@ -6,11 +6,79 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 14:21:26 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/07 14:21:31 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/09 06:05:39 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_stack	*get_lesscost(t_stack *s)
+{
+	t_stack	*target;
+	t_stack	*temp;
+
+	target = NULL;
+	temp = s;
+	while (temp)
+	{
+		//if (double neg || double pos)
+		//	get_max(abs1, abs2)
+		//else
+		//	ft_max(abs1, abs2)
+	}
+}
+
+void	set_target(t_stack *a, t_stack *b, char w)
+{
+	t_stack	*target;
+	t_stack	*temp;
+
+	if (!a || !b)
+		exit(1);// HACK:
+	target = NULL;
+	if (w == 'a')
+		temp = a;
+	else
+		temp = b;
+	while (temp)
+	{
+		if (w == 'a')
+			target = find_nextlowest(b, temp);
+		else if (w == 'b')
+			target = find_nexthighest(a, temp);
+		temp->target = target;
+		temp = temp->next;
+	}
+}
+
+void	set_mov(t_stack *s)
+{
+	t_stack	*temp;
+	int		i;
+	int		size;
+
+	if (!s)
+		return ;// HACK:
+	temp = s;
+	size = ft_stack_size(s);
+	i = 0;
+	while (temp)
+	{
+		if (i <= size / 2)
+			temp->cost = i;
+		else
+			temp->cost = i - size;
+		temp = temp->next;
+		i++;
+	}
+}
+
+void	handle_big_sort(t_stack *a, int size)
+{
+	t_stack *b;
+
+	b = NULL;
+}
 
 void	handle_small_sort(t_stack *a, int size)
 {

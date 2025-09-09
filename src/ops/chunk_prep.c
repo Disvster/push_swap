@@ -67,8 +67,8 @@ void	ft_chunk_prep(t_stack **a, t_stack **b, int chunk)
 
 void	ft_chunk_sendtop(t_stack **a, t_stack **b, t_stack **top, t_stack **bot)
 {
-	int	s;
-	s = ft_checksort(*b, 0, ft_stack_size(*b));
+	// int	s;
+	// s = ft_checksort(*b, 0, ft_stack_size(*b));
 	if ((*top)->cost == (*bot)->cost && (*top)->cost == INT_MAX)
 		return ;
 	if ((*top)->cost <= (*bot)->cost)
