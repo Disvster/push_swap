@@ -88,7 +88,7 @@ void	handle_small_sort(t_stack *a, int size)
 	if (size <= 3)
 		sort_three_a(&a);
 	else
-		sort_five_b(&a, &b);
+		sort_five_a(&a, &b);
 	return ;
 }
 
@@ -100,13 +100,13 @@ void	handle_stack(char **nav, t_chunk chunki, long *arr, int size)
 	if (!a)
 	{
 		write(2, "Error\n", 6);
-		handle_free(a, arr);// TODO:
+		handle_free(a, arr, nav);// TODO:
 		exit(1);
 	}
 	if (check_sort(a, 0))
 	{
 		ft_printf("stack is sorted in ascending order\n");// HACK:
-		handle_free(a, arr);// TODO:
+		handle_free(a, arr, nav);// TODO:
 		exit(0);
 	}
 	else
