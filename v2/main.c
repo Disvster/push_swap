@@ -17,15 +17,23 @@ t_stack	*get_lesscost(t_stack *s)
 	t_stack	*target;
 	t_stack	*temp;
 
-	target = NULL;
 	temp = s;
+	target = NULL;
 	while (temp)
 	{
-		//if (double neg || double pos)
-		//	get_max(abs1, abs2)
-		//else
-		//	ft_max(abs1, abs2)
+		if (temp->mov > 0 && temp->target->mov >  0)
+			temp->cost = ft_max(temp->mov, temp->target->mov);
+		else if (temp->mov < 0 && temp->target->mov < 0)
+			temp->cost = ft_max(ft_abs(temp->mov), ft_abs(temp->target->mov));
+		else if (temp->mov < 0 && temp->target->mov > 0)
+			temp->cost = ft_abs(temp->mov) + temp->target->mov;
+		else if (temp->mov > 0 && temp->target->mov < 0)
+			temp->cost = temp->mov + ft_abs(temp->target->mov);
+		if (!target || (target->cost < temp->cost))
+			target = temp;
+		temp = temp->next;
 	}
+	return (target);
 }
 
 void	set_target(t_stack *a, t_stack *b, char w)
@@ -34,7 +42,7 @@ void	set_target(t_stack *a, t_stack *b, char w)
 	t_stack	*temp;
 
 	if (!a || !b)
-		exit(1);// HACK:
+		return ;
 	target = NULL;
 	if (w == 'a')
 		temp = a;
@@ -58,16 +66,16 @@ void	set_mov(t_stack *s)
 	int		size;
 
 	if (!s)
-		return ;// HACK:
+		return ;
 	temp = s;
 	size = ft_stack_size(s);
 	i = 0;
 	while (temp)
 	{
 		if (i <= size / 2)
-			temp->cost = i;
+			temp->mov = i;
 		else
-			temp->cost = i - size;
+			temp->mov = i - size;
 		temp = temp->next;
 		i++;
 	}
@@ -75,9 +83,16 @@ void	set_mov(t_stack *s)
 
 void	handle_big_sort(t_stack *a, int size)
 {
+	t_stack *target;
 	t_stack *b;
+	int		i;
 
 	b = NULL;
+	i = -1;
+	while (++i < 3)
+		stack_push(&a, &b, 0);
+	set_mov(a);
+	set_target(a, b, 'a');
 }
 
 void	handle_small_sort(t_stack *a, int size)

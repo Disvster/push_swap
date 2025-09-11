@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 20:08:42 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/03 22:45:26 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/10 20:32:31 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,8 @@ int	ft_tiny_sort_a(t_stack **a)
 	highest = find_highest(*a, -1);
 	if (*a == highest)
 		ft_stack_rotate(a, 0);
-		// movement += 1;// I want to rotate a
 	else if ((*a)->next == highest)
 		ft_stack_revrotate(a, 0);
-		// movement += -1;// I want to rev rotate a
 	if ((*a)->index > (*a)->next->index)
 		ft_stack_swap(a, 0);
 	return (movement);

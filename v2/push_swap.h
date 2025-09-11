@@ -37,6 +37,9 @@ typedef struct s_chunk
 	int	count;
 }				t_chunk;
 
+int	ft_max(int a, int b);
+int	ft_abs(int nb);
+
 /*  Array Related Functions  */
 int		ft_find_index(long *tab, int size, int nbr);
 int		ft_sort_ltab(long *tab, int size);
