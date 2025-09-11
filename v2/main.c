@@ -29,7 +29,7 @@ t_stack	*get_lesscost(t_stack *s)
 			temp->cost = ft_abs(temp->mov) + temp->target->mov;
 		else if (temp->mov > 0 && temp->target->mov < 0)
 			temp->cost = temp->mov + ft_abs(temp->target->mov);
-		if (!target || (target->cost < temp->cost))
+		if (!target || (temp->cost < target->cost))
 			target = temp;
 		temp = temp->next;
 	}
@@ -81,18 +81,57 @@ void	set_mov(t_stack *s)
 	}
 }
 
+void	big_bones(t_stack **sa, t_stack **sb, int *pc)
+{
+	t_stack *a;
+	t_stack *b;
+	t_stack	*targa;
+	int	c;
+
+	c = 0;
+	a = *sa;
+	b = *sb;
+	set_mov(a);
+	set_mov(b);
+	set_target(a, b, 'a');
+	targa = get_lesscost(a);
+	c = targa->cost;
+	while (a != targa || b != targa->target)
+	{
+		if (targa->mov > 0 && targa->target->mov > 0)
+			stack_rr(&a, &b);
+		else if (targa->mov < 0 && targa->target->mov < 0)
+			stack_rrr(&a, &b);
+		else
+		{
+			if (targa->mov > 0)
+				stack_rotate(&a, 0);
+			if (targa->target->mov > 0)
+				stack_rotate(&b, 1);
+			if (targa->mov < 0)
+				stack_revrotate(&a, 0);
+			if (targa->target->mov < 0)
+				stack_revrotate(&b, 1);
+		}
+		c--;
+	}
+	*pc = c;
+}
+
 void	handle_big_sort(t_stack *a, int size)
 {
-	t_stack *target;
+	t_stack *arget;
 	t_stack *b;
-	int		i;
+	int		c;
 
 	b = NULL;
-	i = -1;
-	while (++i < 3)
+	c = -1;
+	while (++c < 3)
 		stack_push(&a, &b, 0);
-	set_mov(a);
-	set_target(a, b, 'a');
+	while (a)
+	{
+		big_bones(&a, &b, &c);
+	}
 }
 
 void	handle_small_sort(t_stack *a, int size)
