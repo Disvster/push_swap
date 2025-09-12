@@ -106,6 +106,8 @@ void	big_bones(t_stack **sa, t_stack **sb, int *pc)
 			stack_rrr(&a, &b);
 		else
 		{
+			if (targa->mov == 0)
+				break ;
 			if (targa->mov > 0)
 				stack_rotate(&a, 0);
 			if (targa->target->mov > 0)
@@ -135,6 +137,7 @@ void	handle_big_sort(t_stack *a)
 		stack_push(&a, &b, 0);
 		mini_print_stacks(&a, &b);
 	}
+	mini_print_stacks(&a, &b);
 	if (!a)
 		return ;
 }
@@ -148,6 +151,7 @@ void	handle_small_sort(t_stack *a, int size)
 		sort_three_a(&a);
 	else
 		sort_five_a(&a, &b);
+	mini_print_stacks(&a, &b);
 	return ;
 }
 
