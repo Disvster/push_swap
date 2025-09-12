@@ -6,10 +6,11 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 14:21:26 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/09 06:05:39 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/12 07:13:38 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "testing.h"
 #include "push_swap.h"
 
 t_stack	*get_lesscost(t_stack *s)
@@ -86,7 +87,7 @@ void	big_bones(t_stack **sa, t_stack **sb, int *pc)
 	t_stack *a;
 	t_stack *b;
 	t_stack	*targa;
-	int	c;
+	int		c;
 
 	c = 0;
 	a = *sa;
@@ -95,6 +96,7 @@ void	big_bones(t_stack **sa, t_stack **sb, int *pc)
 	set_mov(b);
 	set_target(a, b, 'a');
 	targa = get_lesscost(a);
+	// INFINITE LOOP HEREEEEE
 	c = targa->cost;
 	while (a != targa || b != targa->target)// FIX: size
 	{
@@ -118,9 +120,8 @@ void	big_bones(t_stack **sa, t_stack **sb, int *pc)
 	*pc = c;
 }
 
-void	handle_big_sort(t_stack *a, int size)
+void	handle_big_sort(t_stack *a)
 {
-	t_stack *arget;
 	t_stack *b;
 	int		c;
 
@@ -131,7 +132,11 @@ void	handle_big_sort(t_stack *a, int size)
 	while (a)
 	{
 		big_bones(&a, &b, &c);
+		stack_push(&a, &b, 0);
+		mini_print_stacks(&a, &b);
 	}
+	if (!a)
+		return ;
 }
 
 void	handle_small_sort(t_stack *a, int size)
@@ -146,17 +151,20 @@ void	handle_small_sort(t_stack *a, int size)
 	return ;
 }
 
-void	handle_stack(char **nav, t_chunk chunki, long *tab, int size)
+void	handle_stack(char **nav, long *tab, int size, char f)
 {
 	t_stack *a;
 	
-	a = create_stack_a(size, nav, tab, chunki);
+	a = create_stack_a(size, nav, tab);
 	if (!a)
-		exit(handle_free(&a, tab, nav));
+	{
+		write(2, "Error\n", 6);
+		exit(handle_free(&a, tab, nav, f));
+	}
+	mini_print_stacks(&a, NULL);
 	if (check_sort(a, 0))
 	{
 		ft_printf("stack is sorted in ascending order\n");
-		handle_free(&a, tab, nav);
 		return ;
 	}
 	else
@@ -164,11 +172,11 @@ void	handle_stack(char **nav, t_chunk chunki, long *tab, int size)
 	if (size <= 5)
 		handle_small_sort(a, size);
 	else
-		handle_big_sort(a, size);
+		handle_big_sort(a);
 	if (check_sort(a, 0))
 	{
 		ft_printf("stack is sorted in ascending order\n");
-		handle_free(&a, tab, nav);
+		handle_free(&a, tab, nav, f);
 		return ;
 	}
 }
@@ -178,7 +186,6 @@ int	main(int ac, char **av)
 	char	**nav;
 	long	*tab;
 	int		size;
-	t_chunk	chunki;
 	char	flag;
 
 	flag = ac == 2;
@@ -188,18 +195,21 @@ int	main(int ac, char **av)
 		if (ac == 2)
 		{
 			nav = ft_split(av[1], ' ');
-			if (!nav)
-				return (handle_free(NULL, NULL, nav));
+			if (!nav){
+				write(2, "Error\n", 6);
+				return (handle_free(NULL, NULL, nav, flag));}
 		}
 		else
 			nav = ++av;
 		tab = create_ltab(size, nav, flag);
 		if (tab == 0 || !tab)
+		{
+			write(2, "Error\n", 6);
 			return (handle_free(NULL, tab, nav, flag));
-		// chunki = ft_chunkinit(size);//FIX:
-
+		}
 		handle_stack(nav, tab, size, flag);
+		return (0);
 	}
 	else
-		return (handle_free(NULL, tab, nav, flag));
+		return (1);
 }

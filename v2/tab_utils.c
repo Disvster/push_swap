@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:54:14 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/08 22:50:32 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/12 07:09:45 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	check_validarg(char *s)
 	return (i == ft_strlen(s));
 }
 
-long	*create_ltab(int ac, char **av)
+long	*create_ltab(int ac, char **av, char flag)
 {
 	long	*ltab;
 	int		i;
@@ -92,9 +92,10 @@ long	*create_ltab(int ac, char **av)
 		return (NULL);
 	while (av[++i])
 	{
-		if (ft_validarg(av[i]) == 0)
+		if (check_validarg(av[i]) == 0)
 		{
-			free(ltab);
+			write(2, "Error\n", 6);
+			handle_free(NULL, NULL, av, flag);
 			return (0);
 		}
 		ltab[i] = ft_atol(av[i]);
@@ -102,7 +103,8 @@ long	*create_ltab(int ac, char **av)
 	check = ft_sort_ltab(ltab, ac);
 	if (check == 0)
 	{
-		free(ltab);
+		write(2, "Error\n", 6);
+		handle_free(NULL, NULL, av, flag);
 		return (0);
 	}
 	return (ltab);
@@ -121,14 +123,14 @@ long	*create_ltab(int ac, char **av)
 	// }
 	// printf("}\n");
 
-int	ft_find_index(long *tab, int size, int nbr)
+int	find_index(long *tab, int size, int nbr)
 {
 	int	low;
 	int	mid;	
 	int	high;
 
 	low = 0;
-	high = size - 1 ;
+	high = size - 1;
 	while (low <= high)
 	{
 		mid = low + (high - low) / 2;

@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   pushes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/10 20:16:33 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/12 07:04:49 by manmaria         ###   ########.fr       */
+/*   Created: 2025/08/04 18:49:50 by manmaria          #+#    #+#             */
+/*   Updated: 2025/09/12 06:56:58 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-int	ft_abs(int nb)
+void	stack_push(t_stack **a, t_stack **b, int which_stack)
 {
-	if (nb >= 0)
-		return (nb);
+	t_stack	*noda;
+
+	if (!a || !*a)
+		return ;
+	noda = *a;
+	*a = noda->next;
+	noda->next = *b;
+	*b = noda;
+	if (!which_stack)
+		ft_printf("pb\n");
 	else
-		return (nb * -1);
-}
-
-int	ft_max(int a, int b)
-{
-	if (a >= b)
-		return (a);
-	else
-		return (b);
-}
-
-int	handle_free(t_stack **a, long *tab, char **nav, char f)
-{
-	if (a)
-		ft_stack_clear(*a);
-	if (nav && f)
-		free_split(nav);
-	if (tab)
-		free(tab);
-	return (1);
+		ft_printf("pa\n");
+	return ;
 }

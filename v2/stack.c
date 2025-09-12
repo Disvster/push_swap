@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/23 17:09:04 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/12 07:00:56 by manmaria         ###   ########.fr       */
+/*   Created: 2025/09/12 05:36:52 by manmaria          #+#    #+#             */
+/*   Updated: 2025/09/12 06:59:08 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/push_swap.h"
+#include "push_swap.h"
 
-t_stack	*ft_create_stack_a(int ac, char **av, long *arr, t_chunk chunki)
+t_stack	*create_stack_a(int ac, char **nav, long *tab)
 {
 	int			size;
 	int			nbr;
@@ -23,13 +23,13 @@ t_stack	*ft_create_stack_a(int ac, char **av, long *arr, t_chunk chunki)
 	size = ac;
 	temp = NULL;
 	new_nd = NULL;
-	while (--size > 0)
+	while (size-- > 0)
 	{
-		nbr = ft_atoi(av[size]);
-		node_id = ft_find_index(arr, ac - 1, nbr);
-		temp = ft_stack_newnode(arr, nbr, node_id, chunki.size);
-		if (!temp || node_id == -1)
-			return (NULL);
+		nbr = ft_atoi(nav[size]);
+		node_id = find_index(tab, ac, nbr);
+		temp = stack_newnode(nbr, node_id);
+		if (!temp)
+			return (new_nd);
 		if (new_nd)
 			temp->next = new_nd;
 		new_nd = temp;
@@ -39,7 +39,7 @@ t_stack	*ft_create_stack_a(int ac, char **av, long *arr, t_chunk chunki)
 // above I'm creating the stack A in reverse and adding each new node;
 // so for 4 Arguments: 1st-node3 -> size-- -> 2nd-node2 -> size-- -> 3rd-node1
 
-t_stack	*ft_stack_newnode(long *arr, int value, int index, int chunk_size)
+t_stack	*stack_newnode(int value, int index)
 {
 	t_stack	*new_node;
 
@@ -48,9 +48,6 @@ t_stack	*ft_stack_newnode(long *arr, int value, int index, int chunk_size)
 		return (NULL);
 	new_node->value = value;
 	new_node->index = index;
-	new_node->chunkid = index / chunk_size;
-	new_node->chksize = chunk_size;
-	new_node->arr = arr;
 	new_node->next = NULL;
 	return (new_node);
 }
@@ -72,31 +69,14 @@ void	ft_stack_clear(t_stack *lst)
 	lst = NULL;
 }
 
-t_stack	*ft_stacklast(t_stack *lst)
+char	check_sort(t_stack *s, int asc)
 {
 	t_stack	*tmp;
-
-	tmp = lst;
-	if (!lst)
-		return (NULL);
-	while (tmp->next)
-		tmp = tmp->next;
-	return (tmp);
-}
-
-// NOTE:
-// if (asc == 1) // check for ascending order
-// else if (asc == 0) // check for descending order
-char	ft_checksort(t_stack *s, int asc, int range)
-{
-	t_stack	*tmp;
-	int		i;
 
 	tmp = s;
-	i = -1;
 	if (asc == 0 && s)
 	{
-		while (++i < range && tmp->next)
+		while (tmp->next)
 		{
 			if (tmp->index > tmp->next->index)
 				return (0);
@@ -105,7 +85,7 @@ char	ft_checksort(t_stack *s, int asc, int range)
 	}
 	else if (asc == 1 && s)
 	{
-		while (++i < range && tmp->next)
+		while (tmp->next)
 		{
 			if (tmp->index < tmp->next->index)
 				return (0);
@@ -134,27 +114,14 @@ int	ft_stack_size(t_stack *top)
 	return (size);
 }
 
-t_stack	*ft_stack_middle(t_stack *start)
+t_stack	*ft_stacklast(t_stack *lst)
 {
-	int		mid;
-	int		size;
-	int		i;
 	t_stack	*tmp;
 
-	if (!start)
+	tmp = lst;
+	if (!lst)
 		return (NULL);
-	if (start->next == NULL)
-		return (start);
-	mid = ft_stack_size(start) / 2;
-	size = ft_stack_size(start);
-	i = 0;
-	tmp = start;
-	if (size % 2 == 0)
-		mid -= 1;
-	while (i <= mid)
-	{
+	while (tmp->next)
 		tmp = tmp->next;
-		i++;
-	}
 	return (tmp);
 }
