@@ -27,3 +27,15 @@ int	ft_max(int a, int b)
 	else
 		return (b);
 }
+
+int	handle_free(t_stack **a, long *tab, char **nav)
+{
+	if (a)
+		ft_stack_clear(*a);
+	if (nav)
+		free_split(nav);
+	if (tab)
+		free(tab);
+	write(2, "Error\n", 6);
+	return (1);
+}

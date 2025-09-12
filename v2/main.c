@@ -96,7 +96,7 @@ void	big_bones(t_stack **sa, t_stack **sb, int *pc)
 	set_target(a, b, 'a');
 	targa = get_lesscost(a);
 	c = targa->cost;
-	while (a != targa || b != targa->target)
+	while (a != targa || b != targa->target)// FIX: size
 	{
 		if (targa->mov > 0 && targa->target->mov > 0)
 			stack_rr(&a, &b);
@@ -146,63 +146,60 @@ void	handle_small_sort(t_stack *a, int size)
 	return ;
 }
 
-void	handle_stack(char **nav, t_chunk chunki, long *arr, int size)
+void	handle_stack(char **nav, t_chunk chunki, long *tab, int size)
 {
 	t_stack *a;
 	
-	a = create_stack_a(size, nav, arr, chunki);
+	a = create_stack_a(size, nav, tab, chunki);
 	if (!a)
-	{
-		write(2, "Error\n", 6);
-		handle_free(a, arr, nav);// TODO:
-		exit(1);
-	}
+		exit(handle_free(&a, tab, nav));
 	if (check_sort(a, 0))
 	{
-		ft_printf("stack is sorted in ascending order\n");// HACK:
-		handle_free(a, arr, nav);// TODO:
-		exit(0);
+		ft_printf("stack is sorted in ascending order\n");
+		handle_free(&a, tab, nav);
+		return ;
 	}
 	else
-		ft_printf("stack is not sorted\n");// HACK:
+		ft_printf("stack is not sorted\n");
 	if (size <= 5)
 		handle_small_sort(a, size);
 	else
 		handle_big_sort(a, size);
 	if (check_sort(a, 0))
 	{
-		ft_printf("stack is sorted in ascending order\n");// HACK:
-		handle_free(a, arr);// TODO:
-		exit(0);
+		ft_printf("stack is sorted in ascending order\n");
+		handle_free(&a, tab, nav);
+		return ;
 	}
 }
 
 int	main(int ac, char **av)
 {
 	char	**nav;
-	long	*arr;
+	long	*tab;
 	int		size;
 	t_chunk	chunki;
+	char	flag;
 
+	flag = ac == 2;
 	size = ac - 1;
 	if (ac > 1)
 	{
 		if (ac == 2)
-			nav = ft_split(av[1], ' ');
-		else
-			nav = av;
-		arr = create_ltab(size, nav);
-		if (arr == 0 || !arr)
 		{
-			write(2, "Error\n", 6);
-			return (1);
+			nav = ft_split(av[1], ' ');
+			if (!nav)
+				return (handle_free(NULL, NULL, nav));
 		}
-		chunki = ft_chunkinit(size);
-		handle_stack(nav, chunki, arr, size);
+		else
+			nav = ++av;
+		tab = create_ltab(size, nav, flag);
+		if (tab == 0 || !tab)
+			return (handle_free(NULL, tab, nav, flag));
+		// chunki = ft_chunkinit(size);//FIX:
+
+		handle_stack(nav, tab, size, flag);
 	}
 	else
-	{
-		write(2, "Error\n", 6);
-		return (1);
-	}
+		return (handle_free(NULL, tab, nav, flag));
 }

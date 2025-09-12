@@ -43,7 +43,7 @@ static size_t	count_letters(char const *s, char c, char **p_s)
 	return (letters);
 }
 
-static char	**free_split(char **save)
+char	**free_split(char **save)
 {
 	char	**marcemon;
 
@@ -56,7 +56,8 @@ static char	**free_split(char **save)
 		save++;
 	}
 	free(marcemon);
-	return (NULL);
+	save = NULL;
+	return (save);
 }
 
 char	**ft_split(char const *s, char c)

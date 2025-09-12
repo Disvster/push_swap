@@ -39,6 +39,7 @@ typedef struct s_chunk
 
 int	ft_max(int a, int b);
 int	ft_abs(int nb);
+int	handle_free(t_stack **a, long *tab, char **nav);
 
 /*  Array Related Functions  */
 int		ft_find_index(long *tab, int size, int nbr);

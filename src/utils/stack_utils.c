@@ -55,14 +55,6 @@ t_stack	*ft_stack_newnode(long *arr, int value, int index, int chunk_size)
 	return (new_node);
 }
 
-// NOTE: not using func below atm
-//
-// void	ft_stack_addfront(t_stack **stack, t_stack *new_nd)
-// {
-// 	new_nd->next = *stack;
-// 	*stack = new_nd;
-// }
-
 void	ft_stack_clear(t_stack *lst)
 {
 	t_stack	*tmp;
