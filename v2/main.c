@@ -22,13 +22,18 @@ t_stack	*get_lesscost(t_stack *s)
 	target = NULL;
 	while (temp)
 	{
-		if (temp->mov > 0 && temp->target->mov >  0)
+		temp->cost = 0;// if (instead of temp->mov == 0 && temp->target->mov == 0) ...
+		if (temp->mov > 0 && temp->target->mov > 0)
 			temp->cost = ft_max(temp->mov, temp->target->mov);
 		else if (temp->mov < 0 && temp->target->mov < 0)
 			temp->cost = ft_max(ft_abs(temp->mov), ft_abs(temp->target->mov));
-		else if (temp->mov < 0 && temp->target->mov > 0)
+		else if (temp->mov <= 0 && temp->target->mov > 0)
 			temp->cost = ft_abs(temp->mov) + temp->target->mov;
-		else if (temp->mov > 0 && temp->target->mov < 0)
+		else if (temp->mov >= 0 && temp->target->mov < 0)
+			temp->cost = temp->mov + ft_abs(temp->target->mov);
+		else if (temp->mov < 0 && temp->target->mov >= 0)
+			temp->cost = ft_abs(temp->mov) + temp->target->mov;
+		else if (temp->mov > 0 && temp->target->mov <= 0)
 			temp->cost = temp->mov + ft_abs(temp->target->mov);
 		if (!target || (temp->cost < target->cost))
 			target = temp;
@@ -45,14 +50,17 @@ void	set_target(t_stack *a, t_stack *b, char w)
 	if (!a || !b)
 		return ;
 	target = NULL;
-	if (w == 'a')
-		temp = a;
-	else
+	temp = a;
+	if (w == 'b')
 		temp = b;
 	while (temp)
 	{
 		if (w == 'a')
+		{
 			target = find_nextlowest(b, temp);
+			if (temp->index == 0)
+				target = find_nexthighest(b, temp);
+		}
 		else if (w == 'b')
 			target = find_nexthighest(a, temp);
 		temp->target = target;
@@ -98,7 +106,8 @@ void	big_bones(t_stack **sa, t_stack **sb, int *pc)
 	targa = get_lesscost(a);
 	// INFINITE LOOP HEREEEEE
 	c = targa->cost;
-	while (a != targa || b != targa->target)// FIX: size
+	// while (a != targa || b != targa->target)// FIX: size
+	while (c > 0)
 	{
 		if (targa->mov > 0 && targa->target->mov > 0)
 			stack_rr(&a, &b);
@@ -106,8 +115,6 @@ void	big_bones(t_stack **sa, t_stack **sb, int *pc)
 			stack_rrr(&a, &b);
 		else
 		{
-			if (targa->mov == 0)
-				break ;
 			if (targa->mov > 0)
 				stack_rotate(&a, 0);
 			if (targa->target->mov > 0)
@@ -116,6 +123,8 @@ void	big_bones(t_stack **sa, t_stack **sb, int *pc)
 				stack_revrotate(&a, 0);
 			if (targa->target->mov < 0)
 				stack_revrotate(&b, 1);
+			if (targa->mov == 0) //&& targa->target->mov == 0)
+				break ;
 		}
 		c--;
 	}
@@ -131,13 +140,17 @@ void	handle_big_sort(t_stack *a)
 	c = -1;
 	while (++c < 3)
 		stack_push(&a, &b, 0);
+	sort_three_b(&b);
+	ft_printf("\naft sort 3\n");
+	mini_print_stack(&a, &b);
+	c = INT_MAX;
 	while (a)
 	{
 		big_bones(&a, &b, &c);
 		stack_push(&a, &b, 0);
-		mini_print_stacks(&a, &b);
+		mini_print_stack(&a, &b);
 	}
-	mini_print_stacks(&a, &b);
+	mini_print_stack(&a, &b);
 	if (!a)
 		return ;
 }
@@ -151,7 +164,7 @@ void	handle_small_sort(t_stack *a, int size)
 		sort_three_a(&a);
 	else
 		sort_five_a(&a, &b);
-	mini_print_stacks(&a, &b);
+	mini_print_stack(&a, &b);
 	return ;
 }
 
@@ -165,7 +178,7 @@ void	handle_stack(char **nav, long *tab, int size, char f)
 		write(2, "Error\n", 6);
 		exit(handle_free(&a, tab, nav, f));
 	}
-	mini_print_stacks(&a, NULL);
+	mini_print_stack(&a, NULL);
 	if (check_sort(a, 0))
 	{
 		ft_printf("stack is sorted in ascending order\n");
@@ -194,6 +207,8 @@ int	main(int ac, char **av)
 
 	flag = ac == 2;
 	size = ac - 1;
+	if (flag)
+		size = count_words(av[1], ' ');
 	if (ac > 1)
 	{
 		if (ac == 2)

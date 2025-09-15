@@ -71,5 +71,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	**free_split(char **save);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
+size_t	count_words(char const *s, char c);
 
 #endif

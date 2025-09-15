@@ -25,6 +25,19 @@ void	sort_three_a(t_stack **a)
 		stack_swap(a, 0);
 }
 
+void	sort_three_b(t_stack **b)
+{
+	t_stack	*lowest;
+
+	lowest = find_lowest(*b);
+	if (*b == lowest)
+		stack_rotate(b, 1);
+	else if ((*b)->next == lowest)
+		stack_revrotate(b, 1);
+	if ((*b)->index < (*b)->next->index)
+		stack_swap(b, 1);
+}
+
 char	node_idsearch(t_stack *a, int nb)
 {
 	while (a)

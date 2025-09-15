@@ -1,12 +1,14 @@
 #include "testing.h"
 
-void	mini_print_stacks(t_stack **a, t_stack **b)
+void	mini_print_stack(t_stack **a, t_stack **b)
 {
 	t_stack	*ta;
 	t_stack	*tb;
 
-	ta = *a;
+	ta = NULL;
 	tb = NULL;
+	if (a)
+		ta = *a;
 	if (b)
 		tb = *b;
 	ft_printf("\t  A\t\t  B\n");

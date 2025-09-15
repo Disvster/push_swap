@@ -15,6 +15,6 @@
 
 # include "push_swap.h"
 
-void	mini_print_stacks(t_stack **a, t_stack **b);
+void	mini_print_stack(t_stack **a, t_stack **b);
 
 #endif 
