@@ -116,7 +116,7 @@ void	ft_sort_five_b(t_stack **a, t_stack **b)
 	int		id;
 	t_stack	*temp;
 
-	mini_print_stacks(a, b);
+	//mini_print_stacks(a, b);
 	temp = find_highest(*b, -1);
 	id = temp->index;
 	while (node_idsearch(*b, id) || node_idsearch(*b, id - 1))
@@ -135,7 +135,7 @@ void	ft_sort_five_b(t_stack **a, t_stack **b)
 		ft_stack_push(b, a, 1);
 	if (node_idsearch(*a, id) || node_idsearch(*a, id - 1))
 		ft_stack_push(b, a, 1);
-	mini_print_stacks(a, b);
+	//mini_print_stacks(a, b);
 }
 
 // void	not_sort_five_a(t_stack **a, t_stack **b)

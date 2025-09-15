@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   chunk_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 21:12:40 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/02 16:59:19 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/15 20:39:59 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int ac, char **av)
 		if (!sa)
 			return (1);
 		b = NULL;
-		mini_print_stacks(&sa, &b);
+		// mini_print_stacks(&sa, &b);
 
 		/* STACK DIVISION TESTING */
 		// ft_printf("\nmiddle node:\n");
@@ -69,7 +69,7 @@ int	main(int ac, char **av)
 			// 	ft_printf("stack is sorted in ascending order\n");
 			// else
 			// 	ft_printf("stack is not sorted\n");
-			mini_print_stacks(&sa, &b);
+			// mini_print_stacks(&sa, &b);
 			free(ltab);
 			ft_stack_clear(sa);
 			return (0);
@@ -78,7 +78,7 @@ int	main(int ac, char **av)
 		// ft_printf("%d Node(s) from chunk [%d] was pushed to B\n",
 		// 	ft_stack_size(b), c.count - 1);
 		//mini_print_stacks(&sa, &b);
-		mini_print_stacks(&sa, &b);
+		// mini_print_stacks(&sa, &b);
 		for (int i = 0, s = ft_stack_size(b); i < s; i++)
 		{
 			if (b->index == 0 && b->next)
@@ -89,7 +89,7 @@ int	main(int ac, char **av)
 		}
 		if (sa->index == 1 && sa->next->index == 0)
 			ft_stack_swap(&sa, 0);
-		mini_print_stacks(&sa, &b);
+		// mini_print_stacks(&sa, &b);
 		
 		// ft_printf("for chunk [%d] cheapest node is:\n", ft_sqrt_floor(ac - 1) - 1);
 		// ft_printf("value -> %d\nindex -> %d\nin chunk -> %d\n\n", tmp->value, tmp->index, tmp->chunkid);

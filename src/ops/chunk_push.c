@@ -31,14 +31,14 @@ void	tiny_chunk_sort(t_stack **a, t_stack **b, t_chunk chunki)
 		}
 		if (chunk_search(*a, i) == 0)
 		{
-			mini_print_stacks(a, b);
+			//mini_print_stacks(a, b);
 			if (ft_stack_size(*b) <= 3 && ft_stack_size(*b) > 1)
 				ft_tiny_sort_b(b);
 			else if (ft_stack_size(*b) <= 5)
 				ft_sort_five_b(a, b);
 			while (ft_stack_size(*b) > 0)
 				ft_stack_push(b, a, 1);
-			mini_print_stacks(a, b);
+			//mini_print_stacks(a, b);
 			i++;
 		}
 	}
@@ -74,7 +74,7 @@ void	ft_chunk_push(t_stack **a, t_stack **b, int s_size)
 	ft_tiny_sort_b(b);
 	while (i < chunki.count)
 	{
-		mini_print_stacks(a, b);
+		//mini_print_stacks(a, b);
 		ft_chunk_prep(a, b, i);
 		if (!chunk_search(*a, i))
 			i++;

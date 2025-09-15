@@ -29,18 +29,17 @@ void	mini_print_stacks(t_stack **a, t_stack **b)
 
 	ta = *a;
 	tb = *b;
-	set_mov(*a);
-	ft_printf("\t  A\t\t\t  B\n");
-	ft_printf("\t------\t\t\t------\n");
+	ft_printf("\t  A\t\t  B\n");
+	ft_printf("\t------\t\t------\n");
 	while (ta || tb){
 		if (ta){
-			ft_printf("\t %d m[%d] c[%d]\t", ta->index, ta->cost, ta->chunkid);
+			ft_printf("\t %d[%d]\t", ta->index, ta->chunkid);
 			ta = ta->next;
 		}	
 		else
-			ft_printf("\t\t\t");
+			ft_printf("\t\t");
 		if (tb){
-			ft_printf("\t %d m[%d] c[%d]", tb->index, tb->cost, tb->chunkid);
+			ft_printf("\t %d[%d]", tb->index, tb->chunkid);
 			tb = tb->next;
 		}
 		ft_printf("\n");
