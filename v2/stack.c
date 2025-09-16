@@ -78,7 +78,7 @@ char	check_sort(t_stack *s, int asc)
 	{
 		while (tmp->next)
 		{
-			if (tmp->index > tmp->next->index)
+			if (tmp->value > tmp->next->value)
 				return (0);
 			tmp = tmp->next;
 		}
@@ -87,7 +87,7 @@ char	check_sort(t_stack *s, int asc)
 	{
 		while (tmp->next)
 		{
-			if (tmp->index < tmp->next->index)
+			if (tmp->value < tmp->next->value)
 				return (0);
 			tmp = tmp->next;
 		}

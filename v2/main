@@ -56,13 +56,13 @@ void	set_target(t_stack *a, t_stack *b, char w)
 		if (w == 'a')
 		{
 			target = find_nextlowest(b, temp);
-			if (temp->index == 0)
+			if (temp == find_nextlowest(b, temp)) // FIX:
 				target = find_highest(b);
 		}
 		else if (w == 'b')
 		{
 			target = find_nexthighest(a, temp);
-			if (temp->index == 0)
+			if (temp == find_nextlowest(b, temp))
 				target = find_highest(a);
 		}
 		temp->target = target;
@@ -107,30 +107,8 @@ void	single_rotations(t_stack **a, t_stack **b, t_stack *targa, char w)
 			stack_revrotate(a, w);
 		c--;
 	}
-	// TODO:
-	// FIX:
-// b -> 0x20e7fd40
-// targa -> 0x20e7f470
-// top -> 9 // target -> 1
-// 	 A		 B
-// 	------		------
-// 	1		9
-// 	32		47
-// 	34		35
-// 	38		28
-// 	36		23
-// 	48		14
-// 	18	
-// 	25	
-// 	39	
-// 	41	
-// 	42	
-	while (*b != targa->target)
+	while ((*b)->index != targa->target->index)
 	{
-		ft_printf("b -> %p\n", *b);// HACK:
-		ft_printf("targa -> %p\n", targa);// HACK:
-		ft_printf("top -> %d // target -> %d\n", (*b)->index, targa->target->index);
-		mini_print_stack(a, b);// HACK:
 		if (targa->target->mov > 0)
 			stack_rotate(b, !w);
 		else if (targa->target->mov < 0)
@@ -185,8 +163,6 @@ void	nodes_to_a(t_stack **a, t_stack **b)
 	targb = find_highest(*b);
 	while (*b != targb)
 	{
-		ft_printf("b -> %p\n", *b);
-		ft_printf("%p\n", targb);
 		if (targb->mov > 0)
 			stack_rotate(b, 1);
 		if (targb->mov < 0)

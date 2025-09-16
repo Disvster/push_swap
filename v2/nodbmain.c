@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nodbmain.c                                         :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/07 14:21:26 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/15 22:09:31 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/12 07:13:38 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ void	set_target(t_stack *a, t_stack *b, char w)
 	t_stack	*target;
 	t_stack	*temp;
 
-	if (!a || !b)
-		return ;
 	target = NULL;
 	temp = a;
 	if (w == 'b')
@@ -58,11 +56,15 @@ void	set_target(t_stack *a, t_stack *b, char w)
 		if (w == 'a')
 		{
 			target = find_nextlowest(b, temp);
-			if (temp->index == 0)
+			if (temp == find_nextlowest(b, temp)) // FIX:
 				target = find_highest(b);
 		}
 		else if (w == 'b')
+		{
 			target = find_nexthighest(a, temp);
+			if (temp == find_nextlowest(b, temp))
+				target = find_highest(a);
+		}
 		temp->target = target;
 		temp = temp->next;
 	}
@@ -90,7 +92,7 @@ void	set_mov(t_stack *s)
 	}
 }
 
-void	single_rotations(t_stack **a, t_stack **b, t_stack *targa)
+void	single_rotations(t_stack **a, t_stack **b, t_stack *targa, char w)
 {
 	int	c;
 
@@ -100,39 +102,39 @@ void	single_rotations(t_stack **a, t_stack **b, t_stack *targa)
 	while (*a != targa)
 	{
 		if (targa->mov > 0)
-			stack_rotate(a, 0);
+			stack_rotate(a, w);
 		else if (targa->mov < 0)
-			stack_revrotate(a, 0);
+			stack_revrotate(a, w);
 		c--;
 	}
-	while (*b != targa->target)
+	while ((*b)->index != targa->target->index)
 	{
 		if (targa->target->mov > 0)
-			stack_rotate(b, 1);
+			stack_rotate(b, !w);
 		else if (targa->target->mov < 0)
-			stack_revrotate(b, 1);
+			stack_revrotate(b, !w);
 		c--;
 	}
 	targa->cost = c;
 }
 
-void	double_rotations(t_stack **a, t_stack **b, t_stack *targa)
+void	double_rotations(t_stack **a, t_stack **b, t_stack *targ)
 {
 	int	c;
 
-	c = targa->cost;
-	while (*a != targa && *b != targa->target)
+	c = targ->cost;
+	while (*a != targ && *b != targ->target)
 	{
-		if (targa->mov > 0 && targa->target->mov > 0)
+		if (targ->mov > 0 && targ->target->mov > 0)
 			stack_rr(a, b);
-		else if (targa->mov < 0 && targa->target->mov < 0)
+		else if (targ->mov < 0 && targ->target->mov < 0)
 			stack_rrr(a, b);
 		c--;
 	}
-	targa->cost = c;
+	targ->cost = c;
 }
 
-void	big_bones(t_stack **a, t_stack **b, int *pc)
+void	big_bones(t_stack **a, t_stack **b)
 {
 	t_stack	*targa;
 
@@ -147,9 +149,52 @@ void	big_bones(t_stack **a, t_stack **b, int *pc)
 		if ((targa->mov > 0 && targa->target->mov > 0)
 			|| (targa->mov < 0 && targa->target->mov < 0))
 			double_rotations(a, b, targa);
-		single_rotations(a, b, targa);
+		single_rotations(a, b, targa, 0);
 	}
-	*pc = targa->cost;
+}
+
+void	nodes_to_a(t_stack **a, t_stack **b)
+{
+	t_stack *targb;
+	int		c;
+
+	c = -1;
+	set_mov(*b);
+	targb = find_highest(*b);
+	while (*b != targb)
+	{
+		if (targb->mov > 0)
+			stack_rotate(b, 1);
+		if (targb->mov < 0)
+			stack_revrotate(b, 1);
+	}
+	while (*b)
+		stack_push(b, a, 1);
+
+	/* TODO: reverse the sorting for logic to push nodes to A below
+
+	while (++c < 3)
+		stack_push(b, a, 1);
+	sort_three_a(a);
+	while (*b)
+	{
+		mini_print_stack(a, b);// HACK:
+		set_mov(*a);
+		set_mov(*b);
+		set_target(*a, *b, 'b');
+		targb = get_lesscost(*b);
+		while (targb->cost > 0)
+		{
+			if (*a == targb && *b == targb->target)
+				break ;
+			if ((targb->mov > 0 && targb->target->mov > 0)
+				|| (targb->mov < 0 && targb->target->mov < 0))
+				double_rotations(a, b, targb);
+			single_rotations(b, a, targb, 1);
+		}
+		stack_push(b, a, 1);
+	}*/
+	return ;
 }
 
 void	handle_big_sort(t_stack *a)
@@ -162,18 +207,19 @@ void	handle_big_sort(t_stack *a)
 	while (++c < 3)
 		stack_push(&a, &b, 0);
 	sort_three_b(&b);
-	ft_printf("\naft sort 3\n");
-	mini_print_stack(&a, &b);
 	c = INT_MAX;
 	while (a)
 	{
-		big_bones(&a, &b, &c);
+		big_bones(&a, &b);
 		stack_push(&a, &b, 0);
-		mini_print_stack(&a, &b);
 	}
-	mini_print_stack(&a, &b);
-	if (!a)
-		return ;
+	if (!a && b == find_highest(b))
+	{
+		while (b)
+			stack_push(&b, &a, 1);
+	}
+	else if (!a)
+		nodes_to_a(&a, &b);
 }
 
 void	handle_small_sort(t_stack *a, int size)
@@ -185,7 +231,6 @@ void	handle_small_sort(t_stack *a, int size)
 		sort_three_a(&a);
 	else
 		sort_five_a(&a, &b);
-	mini_print_stack(&a, &b);
 	return ;
 }
 
@@ -199,21 +244,17 @@ void	handle_stack(char **nav, long *tab, int size, char f)
 		write(2, "Error\n", 6);
 		exit(handle_free(&a, tab, nav, f));
 	}
-	mini_print_stack(&a, NULL);
+	// mini_print_stack(&a, NULL);
 	if (check_sort(a, 0))
 	{
-		ft_printf("stack is sorted in ascending order\n");
 		return ;
 	}
-	else
-		ft_printf("stack is not sorted\n");
 	if (size <= 5)
 		handle_small_sort(a, size);
 	else
 		handle_big_sort(a);
 	if (check_sort(a, 0))
 	{
-		ft_printf("stack is sorted in ascending order\n");
 		handle_free(&a, tab, nav, f);
 		return ;
 	}
