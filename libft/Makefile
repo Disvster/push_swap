@@ -1,22 +1,26 @@
+# compile:
+# 	$(CC) $(CFLAGS) *srcs/*.c -I incs/
+# 	mv *.o $(OBJS_DIR)/
+
 # FNAMES = find -type f -wholename '*srcs/*.c' -exec basename -s '.c' {} \; | tr '\n' ' '
-SRCS = find -type f -wholename '*srcs/*.c' | tr '\n' ' '
-OBJS = find -type f -wholename '*srcs/*.o' | tr '\n' ' '
-OBJS_DIR = ./objs
+# SRCS = find -type f -wholename '*srcs/*.c' | tr '\n' ' '
+# OBJS = find -type f -wholename '*srcs/*.o' | tr '\n' ' '
+# OBJ := $(patsubst src/%.c,obsj/%.o,$(SRC))
+SRC := $(shell find src -type f -name '*.c')
+OBJ := $(addsuffix .o,$(notdir $(basename $(SRC))))
+SRC_DIR = src
+OBJ_DIR = obj
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -c
 NAME = libft.a
-ARRCS = ar rcs
-# ARRS = ar rs
+AR = ar rcs
 RM = rm -f
 
-# fnames:
-# 	find -type f -wholename '*srcs/*.c' -exec basename -s '.c' {} \; | tr '\n' ' '
+%.o: $(SRC)
+	$(CC) $(CFLAGS) -c $< -o $(OBJ_DIR)/$@
 
-$(NAME): compile
-	$(ARRCS) $(NAME) $(OBJS_DIR)/*.o
-compile:
-	$(CC) $(CFLAGS) *srcs/*.c -I incs/
-	mv *.o $(OBJS_DIR)/
+$(NAME): $(OBJ)
+	$(ARRCS) $(NAME) $(OBJS_DIR)/$(OBJ)
 
 all: $(NAME)
 	

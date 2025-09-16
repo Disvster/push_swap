@@ -75,6 +75,8 @@ char	check_validarg(char *s)
 		i++;
 	if (s[i] == '+' || s[i] == '-')
 		i++;
+	// if (s[i] != ft_isdigit(s[i]) && s[i]) //FIX:
+	// 	return (0);
 	while (ft_isdigit(s[i]))
 		i++;
 	return (i == ft_strlen(s));
@@ -95,8 +97,8 @@ long	*create_ltab(int ac, char **av, char flag)
 		if (check_validarg(av[i]) == 0)
 		{
 			write(2, "Error\n", 6);
-			handle_free(NULL, NULL, av, flag);
-			return (0);
+			handle_free(NULL, ltab, av, flag);
+			exit(1);
 		}
 		ltab[i] = ft_atol(av[i]);
 	}
@@ -104,8 +106,8 @@ long	*create_ltab(int ac, char **av, char flag)
 	if (check == 0)
 	{
 		write(2, "Error\n", 6);
-		handle_free(NULL, NULL, av, flag);
-		return (0);
+		handle_free(NULL, ltab, av, flag);
+		exit (1);
 	}
 	return (ltab);
 }

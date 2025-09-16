@@ -33,8 +33,14 @@ int	handle_free(t_stack **a, long *tab, char **nav, char f)
 	if (a)
 		ft_stack_clear(*a);
 	if (nav && f)
+	{
 		free_split(nav);
+		nav = NULL;
+	}
 	if (tab)
+	{
 		free(tab);
+		tab = NULL;
+	}
 	return (1);
 }

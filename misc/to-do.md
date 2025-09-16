@@ -1,8 +1,15 @@
 # to-do list
 
+## 16/09
+
+- [ ] fix edge cases like:
+    - [ ] general leaks;
+    - [ ] strings like "5 4 3 2 1" leak;
+    - [ ] strings like "1 2 -";
+
 ## 06/09
 
-- [ ] change codebase:
+- [X] change codebase:
     - all the nodes in A get a target and a num of movs
     - we choose the chunk to be pushed by calculating the cost for each node, it's `find_nextlow`
     - cost is:
@@ -12,7 +19,7 @@
 
 ## 04/09
 
-- [ ] try to ditch the chunk logic and just go based on costs
+- [X] try to ditch the chunk logic and just go based on costs
     * this means going calc the cost for every node (mid-top is ra, mid-bot is rra)
     * then setting a target node that's the less bigger value in B, calculating the least costly node in A
     * then calc the cost of targetB to top, then rr or rrr
