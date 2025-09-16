@@ -6,28 +6,11 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:55:02 by manmaria          #+#    #+#             */
-/*   Updated: 2025/04/17 18:08:26 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/16 19:57:29 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/libft.h"
-
-size_t	count_words(char const *s, char c)
-{
-	size_t	cw;
-
-	cw = 0;
-	while (*s)
-	{
-		while (*s == c && *s)
-			s++;
-		if (*s)
-			cw++;
-		while (*s != c && *s)
-			s++;
-	}
-	return (cw);
-}
 
 static size_t	count_letters(char const *s, char c, char **p_s)
 {
