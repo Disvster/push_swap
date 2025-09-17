@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../incs/push_swap.h"
 
 void	sort_three_a(t_stack **a)
 {

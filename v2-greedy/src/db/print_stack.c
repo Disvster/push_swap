@@ -1,4 +1,4 @@
-#include "testing.h"
+#include "../../incs/testing.h"
 
 void	mini_print_stack(t_stack **a, t_stack **b)
 {

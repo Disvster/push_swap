@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "testing.h"
-#include "push_swap.h"
+#include "../../incs/testing.h"
+#include "../../incs/push_swap.h"
 
 t_stack	*get_lesscost(t_stack *s)
 {

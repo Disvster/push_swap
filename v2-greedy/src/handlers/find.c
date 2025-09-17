@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../../incs/push_swap.h"
 
 t_stack	*find_lowest(t_stack *s)
 {

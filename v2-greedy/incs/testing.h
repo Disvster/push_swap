@@ -13,7 +13,7 @@
 #ifndef TESTING_H
 # define TESTING_H
 
-# include "push_swap.h"
+# include "../../incs/push_swap.h"
 
 void	mini_print_stack(t_stack **a, t_stack **b);
 
