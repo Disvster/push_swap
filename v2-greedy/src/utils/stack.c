@@ -6,7 +6,7 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/12 05:36:52 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/12 06:59:08 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/09/17 21:17:16 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ t_stack	*create_stack_a(int ac, char **nav, long *tab)
 	}
 	return (new_nd);
 }
-// above I'm creating the stack A in reverse and adding each new node;
-// so for 4 Arguments: 1st-node3 -> size-- -> 2nd-node2 -> size-- -> 3rd-node1
 
 t_stack	*stack_newnode(int value, int index)
 {
@@ -67,32 +65,6 @@ void	ft_stack_clear(t_stack *lst)
 		node = tmp;
 	}
 	lst = NULL;
-}
-
-char	check_sort(t_stack *s, int asc)
-{
-	t_stack	*tmp;
-
-	tmp = s;
-	if (asc == 0 && s)
-	{
-		while (tmp->next)
-		{
-			if (tmp->value > tmp->next->value)
-				return (0);
-			tmp = tmp->next;
-		}
-	}
-	else if (asc == 1 && s)
-	{
-		while (tmp->next)
-		{
-			if (tmp->value < tmp->next->value)
-				return (0);
-			tmp = tmp->next;
-		}
-	}
-	return (1);
 }
 
 int	ft_stack_size(t_stack *top)

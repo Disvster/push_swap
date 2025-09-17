@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <limits.h>
-# include "../libft/incs/libft.h"
+# include "../../libft/incs/libft.h"
 
 typedef struct s_stack
 {
@@ -28,9 +28,19 @@ typedef struct s_stack
 	struct s_stack	*next;
 }					t_stack;
 
+/* to organize */
 int	ft_max(int a, int b);
 int	ft_abs(int nb);
 int	handle_free(t_stack **a, long *tab, char **nav, char f);
+void	double_rotations(t_stack **a, t_stack **b, t_stack *targ);
+void	single_rotations(t_stack **a, t_stack **b, t_stack *targa, char w);
+void	targets_to_top(t_stack **a, t_stack **b);
+t_stack	*get_lesscost(t_stack *s);
+void	set_target(t_stack *a, t_stack *b, char w);
+void	set_mov(t_stack *s);
+void	targets_to_top(t_stack **a, t_stack **b);
+void	nodes_to_a(t_stack **a, t_stack **b);
+int	write_error(t_stack **a, long *tab, char **nav, char f);
 
 /*  Array Related Functions  */
 int		find_index(long *tab, int size, int nbr);
@@ -68,7 +78,6 @@ void	sort_three_a(t_stack **a);
 void	sort_three_b(t_stack **b);
 void	sort_five_a(t_stack **a, t_stack **b);
 void	sort_five_b(t_stack **a, t_stack **b);
-void	big_sort(t_stack **b, t_stack **a, t_stack *target, int rota);
 
 void	handle_stack(char **nav, long *arr, int size, char f);
 void	handle_small_sort(t_stack *a, int size);

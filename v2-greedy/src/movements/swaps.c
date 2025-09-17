@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../../incs/push_swap.h"
 
 void	stack_swap(t_stack **top, int which_stack)
 {

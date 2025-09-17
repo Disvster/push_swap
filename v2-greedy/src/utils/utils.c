@@ -44,3 +44,36 @@ int	handle_free(t_stack **a, long *tab, char **nav, char f)
 	}
 	return (1);
 }
+
+int	write_error(t_stack **a, long *tab, char **nav, char f)
+{
+	handle_free(a, tab, nav, f);
+	write(2, "Error\n", 6);
+	return (1);
+}
+
+char	check_sort(t_stack *s, int asc)
+{
+	t_stack	*tmp;
+
+	tmp = s;
+	if (asc == 0 && s)
+	{
+		while (tmp->next)
+		{
+			if (tmp->value > tmp->next->value)
+				return (0);
+			tmp = tmp->next;
+		}
+	}
+	else if (asc == 1 && s)
+	{
+		while (tmp->next)
+		{
+			if (tmp->value < tmp->next->value)
+				return (0);
+			tmp = tmp->next;
+		}
+	}
+	return (1);
+}

@@ -1,16 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   big_sort.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/07 14:21:26 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/12 07:13:38 by manmaria         ###   ########.fr       */
+/*   Created: 2025/09/17 21:09:39 by manmaria          #+#    #+#             */
+/*   Updated: 2025/09/17 21:15:39 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../incs/testing.h"
 #include "../../incs/push_swap.h"
 
 t_stack	*get_lesscost(t_stack *s)
@@ -22,7 +21,7 @@ t_stack	*get_lesscost(t_stack *s)
 	target = NULL;
 	while (temp)
 	{
-		temp->cost = 0;// if (instead of temp->mov == 0 && temp->target->mov == 0) ...
+		temp->cost = 0;
 		if (temp->mov > 0 && temp->target->mov > 0)
 			temp->cost = ft_max(temp->mov, temp->target->mov);
 		else if (temp->mov < 0 && temp->target->mov < 0)
@@ -56,7 +55,7 @@ void	set_target(t_stack *a, t_stack *b, char w)
 		if (w == 'a')
 		{
 			target = find_nextlowest(b, temp);
-			if (temp == find_nextlowest(b, temp)) // FIX:
+			if (temp == find_nextlowest(b, temp))
 				target = find_highest(b);
 		}
 		else if (w == 'b')
@@ -92,49 +91,7 @@ void	set_mov(t_stack *s)
 	}
 }
 
-void	single_rotations(t_stack **a, t_stack **b, t_stack *targa, char w)
-{
-	int	c;
-
-	if (*a == targa && *b == targa->target)
-		return ;
-	c = targa->cost;
-	while (*a != targa)
-	{
-		if (targa->mov > 0)
-			stack_rotate(a, w);
-		else if (targa->mov < 0)
-			stack_revrotate(a, w);
-		c--;
-	}
-	while ((*b)->index != targa->target->index)
-	{
-		if (targa->target->mov > 0)
-			stack_rotate(b, !w);
-		else if (targa->target->mov < 0)
-			stack_revrotate(b, !w);
-		c--;
-	}
-	targa->cost = c;
-}
-
-void	double_rotations(t_stack **a, t_stack **b, t_stack *targ)
-{
-	int	c;
-
-	c = targ->cost;
-	while (*a != targ && *b != targ->target)
-	{
-		if (targ->mov > 0 && targ->target->mov > 0)
-			stack_rr(a, b);
-		else if (targ->mov < 0 && targ->target->mov < 0)
-			stack_rrr(a, b);
-		c--;
-	}
-	targ->cost = c;
-}
-
-void	big_bones(t_stack **a, t_stack **b)
+void	targets_to_top(t_stack **a, t_stack **b)
 {
 	t_stack	*targa;
 
@@ -155,7 +112,7 @@ void	big_bones(t_stack **a, t_stack **b)
 
 void	nodes_to_a(t_stack **a, t_stack **b)
 {
-	t_stack *targb;
+	t_stack	*targb;
 	int		c;
 
 	c = -1;
@@ -170,8 +127,10 @@ void	nodes_to_a(t_stack **a, t_stack **b)
 	}
 	while (*b)
 		stack_push(b, a, 1);
-
-	/* TODO: reverse the sorting for logic to push nodes to A below
+	return ;
+}
+	/* TODO: reverse the sorting for logic to push nodes to A above
+	 * draft:
 
 	while (++c < 3)
 		stack_push(b, a, 1);
@@ -194,111 +153,3 @@ void	nodes_to_a(t_stack **a, t_stack **b)
 		}
 		stack_push(b, a, 1);
 	}*/
-	mini_print_stack(a, b);// HACK:
-	return ;
-}
-
-void	handle_big_sort(t_stack *a)
-{
-	t_stack *b;
-	int		c;
-
-	b = NULL;
-	c = -1;
-	while (++c < 3)
-		stack_push(&a, &b, 0);
-	sort_three_b(&b);
-	mini_print_stack(&a, &b);//HACK:
-	c = INT_MAX;
-	while (a)
-	{
-		big_bones(&a, &b);
-		stack_push(&a, &b, 0);
-		mini_print_stack(&a, &b);// HACK:
-	}
-	if (!a && b == find_highest(b))
-	{
-		while (b)
-			stack_push(&b, &a, 1);
-	}
-	else if (!a)
-		nodes_to_a(&a, &b);
-}
-
-void	handle_small_sort(t_stack *a, int size)
-{
-	t_stack	*b;
-	
-	b = NULL;
-	if (size <= 3)
-		sort_three_a(&a);
-	else
-		sort_five_a(&a, &b);
-	mini_print_stack(&a, &b);//HACK:
-	return ;
-}
-
-void	handle_stack(char **nav, long *tab, int size, char f)
-{
-	t_stack *a;
-	
-	a = create_stack_a(size, nav, tab);
-	if (!a)
-	{
-		write(2, "Error\n", 6);
-		exit(handle_free(&a, tab, nav, f));
-	}
-	mini_print_stack(&a, NULL);
-	if (check_sort(a, 0))
-	{
-		ft_printf("stack is sorted in ascending order\n");
-		return ;
-	}
-	else
-		ft_printf("stack is not sorted\n");
-	if (size <= 5)
-		handle_small_sort(a, size);
-	else
-		handle_big_sort(a);
-	if (check_sort(a, 0))
-	{
-		ft_printf("stack is sorted in ascending order\n");
-		handle_free(&a, tab, nav, f);
-		return ;
-	}
-}
-
-int	main(int ac, char **av)
-{
-	char	**nav;
-	long	*tab;
-	int		size;
-	char	flag;
-
-	flag = ac == 2;
-	size = ac - 1;
-	if (flag)
-		size = count_words(av[1], ' ');
-	if (ac > 1)
-	{
-		if (ac == 2)
-		{
-			nav = ft_split(av[1], ' ');
-			if (!nav){
-				write(2, "Error\n", 6);
-				return (write_error(NULL, NULL, nav, flag));}
-		}
-		else
-			nav = ++av;
-		tab = create_ltab(size, nav, flag);
-		if (tab == 0 || !tab)
-		{
-			write(2, "Error\n", 6);
-			return (write_error(NULL, tab, nav, flag));
-		}
-		handle_stack(nav, tab, size, flag);
-		return (0);
-	}
-	else
-		return (1);
-}
