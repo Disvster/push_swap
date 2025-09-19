@@ -1,29 +1,54 @@
-# compile:
-# 	$(CC) $(CFLAGS) *srcs/*.c -I incs/
-# 	mv *.o $(OBJS_DIR)/
+# LIBFT
+LIBFTDIR = src/libft
+LIBFTSRC =	ft_putendl_fd.c ft_isprint.c ft_strlcpy.c ft_atoi.c ft_lstclear_bonus.c \
+			ft_strjoin.c ft_strrchr.c ft_isalpha.c ft_strlen.c ft_lstsize_bonus.c \
+			ft_toupper.c ft_lstadd_back_bonus.c ft_strmapi.c ft_memcpy.c ft_lstdelone_bonus.c \
+			ft_isdigit.c ft_putstr_fd.c ft_striteri.c ft_isalnum.c ft_memset.c \
+			ft_itoa.c ft_split.c ft_calloc.c ft_strlcat.c ft_lstmap_bonus.c \
+			ft_putnbr_fd.c ft_lstlast_bonus.c ft_memchr.c ft_strncmp.c \ 
+			ft_lstadd_front_bonus.c \
+			ft_bzero.c ft_memmove.c ft_substr.c ft_strtrim.c ft_lstnew_bonus.c \
+			ft_strdup.c ft_lstiter_bonus.c ft_strchr.c ft_memcmp.c count_words.c \
+			ft_strnstr.c ft_tolower.c ft_putchar_fd.c ft_isascii.c 
+LIBFTSRCS = $(addprefix $(LIBFTDIR)/, $(LIBFTSRC))
+LIBFTOBJS = $(addprefix $(OBJDIR)/, $(LIBFTSRC))
 
-# FNAMES = find -type f -wholename '*srcs/*.c' -exec basename -s '.c' {} \; | tr '\n' ' '
-# SRCS = find -type f -wholename '*srcs/*.c' | tr '\n' ' '
-# OBJS = find -type f -wholename '*srcs/*.o' | tr '\n' ' '
-# OBJ := $(patsubst src/%.c,obsj/%.o,$(SRC))
-SRC := $(shell find src -type f -name '*.c' | tr '\n' ' ')
-OBJ := $(addsuffix .o,$(notdir $(basename $(SRC))))
-SRC_DIR = src
-OBJ_DIR = obj
+# GET NEXT LINE
+GNLDIR = src/gnl
+GNLSRC = get_next_line_bonus.c get_next_line_utils_bonus.c
+GNLSRCS = $(addprefix $(GNLDIR)/, $(GNLSRC))
+GNLOBJS = $(addprefix $(OBJDIR)/, $(GNLSRC))
+
+# FT_PRINTF
+PRINTFDIR = src/ft_printf
+PRINTFSRC =	ft_printf.c ft_itoa_base.c ft_flags.c ft_itoa_pf.c ft_sub_cpy.c \
+			ft_flags_helper2.c ft_see_format.c ft_indent.c ft_itoa_pt.c \
+			ft_printf_utils2.c ft_flags_helper.c ft_printf_utils.c
+PRINTFSRCS =$(addprefix $(PRINTFDIR)/, $(PRINTFSRC))
+PRINTFOBJS = $(addprefix $(OBJDIR)/, $(PRINTFSRC))
+
+OBJDIR = obj
+INCSDIR = incs/
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 NAME = libft.a
 AR = ar rcs
 RM = rm -f
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+all: $(NAME)
+
+$(LIBFTDIR)/%.o: $(LIBFTDIR)/%.c
+	$(CC) $(FLAGS) -c $< -o $(OBJDIR)/$@ -I $(INCSDIR)
+
+$(PRINTFDIR)/%.o: $(PRINTFDIR)/%.c
+	$(CC) $(FLAGS) -c $< -o $(OBJDIR)/$@ -I $(INCSDIR)
+
+$(GNLDIR)/%.o: $(GNLDIR)/%.c
+	$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
 	$(ARRCS) $(NAME) $(OBJS_DIR)/$(OBJ)
 
-all: $(NAME)
-	
 clean:
 	$(RM) $(OBJS_DIR)/*.o
 
