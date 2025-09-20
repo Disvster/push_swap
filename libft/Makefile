@@ -53,8 +53,8 @@ NAME = libft.a
 AR = ar rcs
 RM = rm -f
 
-all: $(NAME)
-	@echo -e "Compilation complete! libft.a file generated.               "
+all: $(OBJ_DIR) $(NAME)
+	@echo -e "Compilation complete! libft.a file generated.        "
 
 $(OBJ_DIR):
 	@mkdir $@
@@ -74,16 +74,17 @@ $(OBJ_DIR)%.o: $(PRINTF_DIR)/%.c | $(OBJ_DIR)
 $(NAME): $(LIBFT_OBJS) $(GNL_OBJS) $(PRINTF_OBJS)
 	@$(AR) $(NAME) $(LIBFTOBJ) $(GNLOBJ) $(PRINTFOBJ)
 
-clean:
+clean: $(OBJ_DIR)
 	@$(RM) $(LIBFT_OBJS) $(GNL_OBJS) $(PRINTF_OBJS)
 	@echo "Cleaned .o files"
-
-fclean: clean $(OBJ_DIR)
 	@rmdir obj/
+
+fclean: clean 
 	@$(RM) $(NAME)
 	@echo "Cleaned .a file"
 
-re: fclean all
+re: fclean $(OBJ_DIR)
+	@@make --no-print-directory all
 
 .PHONY: all clean fclean re
 # $(LIBFTOBJ): $(LIBFTSRCS)
