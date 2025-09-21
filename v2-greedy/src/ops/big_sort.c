@@ -113,9 +113,7 @@ void	targets_to_top(t_stack **a, t_stack **b)
 void	nodes_to_a(t_stack **a, t_stack **b)
 {
 	t_stack	*targb;
-	int		c;
 
-	c = -1;
 	set_mov(*b);
 	targb = find_highest(*b);
 	while (*b != targb)

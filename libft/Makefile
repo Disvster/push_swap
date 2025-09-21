@@ -1,4 +1,5 @@
 SHELL := /bin/bash
+
 # LIBFT
 LIBFT_DIR = src/libft
 LIBFTSRC =	ft_putendl_fd.c ft_isprint.c ft_strlcpy.c ft_atoi.c ft_lstclear_bonus.c \
@@ -39,16 +40,10 @@ define progress_bar
   echo -ne "Compiling: [$$BAR] ($$COUNT/$(TOTAL_C))\r"
 endef
 
-define oldprogress_bar
-  @COUNT=$$(find obj -type f -name '*.o' | wc -l); \
-  BAR=$$(printf "%-$$(($$COUNT*30/$(TOTAL_C)))s" | tr ' ' '#'); \
-  echo -ne "Compiling: [$$BAR] ($$COUNT/$(TOTAL_C))\r"
-endef
-
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 OBJ_DIR = obj/
-INCS_DIR = incs/
+INC_DIR = incs/
 NAME = libft.a
 AR = ar rcs
 RM = rm -f
@@ -60,19 +55,19 @@ $(OBJ_DIR):
 	@mkdir $@
 
 $(OBJ_DIR)%.o: $(LIBFT_DIR)/%.c | $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INCS_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
 	$(progress_bar)
 
 $(OBJ_DIR)%.o: $(GNL_DIR)/%.c | $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INCS_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
 	$(progress_bar)
 
 $(OBJ_DIR)%.o: $(PRINTF_DIR)/%.c | $(OBJ_DIR)
-	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INCS_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
 	$(progress_bar)
 
 $(NAME): $(LIBFT_OBJS) $(GNL_OBJS) $(PRINTF_OBJS)
-	@$(AR) $(NAME) $(LIBFTOBJ) $(GNLOBJ) $(PRINTFOBJ)
+	$(AR) $(NAME) $(LIBFTOBJ) $(GNLOBJ) $(PRINTFOBJ)
 
 clean: $(OBJ_DIR)
 	@$(RM) $(LIBFT_OBJS) $(GNL_OBJS) $(PRINTF_OBJS)
@@ -84,7 +79,7 @@ fclean: clean
 	@echo "Cleaned .a file"
 
 re: fclean $(OBJ_DIR)
-	@@make --no-print-directory all
+	@make --no-print-directory all
 
 .PHONY: all clean fclean re
 # $(LIBFTOBJ): $(LIBFTSRCS)
@@ -95,3 +90,8 @@ re: fclean $(OBJ_DIR)
 #
 # $(PRINTFOBJ): $(PRINTFSRCS)
 # 	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCS_DIR)
+# define oldprogress_bar
+#   @COUNT=$$(find obj -type f -name '*.o' | wc -l); \
+#   BAR=$$(printf "%-$$(($$COUNT*30/$(TOTAL_C)))s" | tr ' ' '#'); \
+#   echo -ne "Compiling: [$$BAR] ($$COUNT/$(TOTAL_C))\r"
+# endef
