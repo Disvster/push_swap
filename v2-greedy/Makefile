@@ -24,6 +24,18 @@ OBJ = $(addprefix $(OBJ_DIR),$(notdir $(SRCS:.c=.o)))
 LIB = ../libft/libft.a
 LIB_DIR = ../libft/
 
+# PROGRESS BAR
+TOTAL_C := $(shell find src/ -type f -name '*.c' -not -path '*/.*' | wc -l)
+
+define progress_bar
+  @COUNT=$$(find obj -type f -name '*.o' | wc -l); \
+  BAR_WIDTH=30; \
+  NUM_HASHES=$$(( COUNT * BAR_WIDTH / $(TOTAL_C) )); \
+  BAR=$$(printf "%-$${BAR_WIDTH}s" "$$(printf '%0.s#' $$(seq 1 $$NUM_HASHES))"); \
+  echo -ne "Compiling: [$$BAR] ($$COUNT/$(TOTAL_C))\r"
+endef
+
+
 INCS_DIR = incs/
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
@@ -31,7 +43,14 @@ NAME = push_swap
 RM = rm -f
 
 all: $(OBJ_DIR) $(LIB) $(NAME)
-	@echo -e "Compilation complete! push_swap file generated.        "
+	@echo -e "Compilation complete! push_swap file generated.        \n"
+
+print_ps:
+	@echo -e "\n===  Push_Swap  ==="
+
+libft:
+	@echo "=====  Libft  ====="
+	@make --no-print-directory -C $(LIB_DIR)
 
 $(OBJ_DIR):
 	@mkdir $@
@@ -41,16 +60,19 @@ $(LIB):
 	@make --no-print-directory -C $(LIB_DIR)
 
 $(OBJ_DIR)%.o: $(MOV_DIR)%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCS_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INCS_DIR)
+	$(progress_bar)
 
 $(OBJ_DIR)%.o: $(OPS_DIR)%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCS_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INCS_DIR)
+	$(progress_bar)
 
 $(OBJ_DIR)%.o: $(UTILS_DIR)%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INCS_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INCS_DIR)
+	$(progress_bar)
 
-$(NAME): $(OBJ) $(LIB)
-	$(CC) $(CFLAGS) $(OBJ) $(LIB) -o $(NAME)
+$(NAME): print_ps $(OBJ) $(LIB)
+	@$(CC) $(CFLAGS) $(OBJ) $(LIB) -o $(NAME)
 
 clean: $(OBJ_DIR)
 	@echo -e "\n=====  Libft  ====="
@@ -71,4 +93,11 @@ fclean: $(OBJ_DIR)
 re: fclean $(OBJ_DIR)
 	@make --no-print-directory all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re libft print_ps
+# # TESTING
+# TEST_PS = test_ps
+# TEST_DIR = src/db/
+# TEST_SRC = src/db/print_stack.c src/db/main.c
+#
+# $(TEST_PS): print_ps $(OBJ) $(LIB)
+# 	@$(CC) $(CFLAGS) $(OBJ) $(LIB) -o $(TEST_PS)
