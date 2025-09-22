@@ -55,19 +55,19 @@ $(OBJ_DIR):
 	@mkdir $@
 
 $(OBJ_DIR)%.o: $(LIBFT_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
 	$(progress_bar)
 
 $(OBJ_DIR)%.o: $(GNL_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
 	$(progress_bar)
 
 $(OBJ_DIR)%.o: $(PRINTF_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
 	$(progress_bar)
 
 $(NAME): $(LIBFT_OBJS) $(GNL_OBJS) $(PRINTF_OBJS)
-	$(AR) $(NAME) $(LIBFTOBJ) $(GNLOBJ) $(PRINTFOBJ)
+	@$(AR) $(NAME) $(LIBFT_OBJS) $(GNL_OBJS) $(PRINTF_OBJS)
 
 clean: $(OBJ_DIR)
 	@$(RM) $(LIBFT_OBJS) $(GNL_OBJS) $(PRINTF_OBJS)
