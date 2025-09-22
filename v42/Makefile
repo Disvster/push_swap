@@ -21,8 +21,8 @@ OBJ_DIR = obj/
 OBJ = $(addprefix $(OBJ_DIR),$(notdir $(SRCS:.c=.o)))
 
 # LIBFT
-LIB = ../libft/libft.a
-LIB_DIR = ../libft/
+LIB = libft/libft.a
+LIB_DIR = libft/
 
 # PROGRESS BAR
 TOTAL_C := $(shell find src/ -type f -name '*.c' -not -path '*/.*' | wc -l)
