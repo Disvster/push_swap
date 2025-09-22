@@ -52,7 +52,7 @@ t_stack	*find_nextlowest(t_stack *s, t_stack *ref);
 void	stack_swap(t_stack **top, int which_stack);
 void	stack_ss(t_stack **topa, t_stack **topb);
 void	stack_push(t_stack **topa, t_stack **topb, int which_stack);
-void	stack_rotate(t_stack **top,int which_stack);
+void	stack_rotate(t_stack **top, int which_stack);
 void	stack_rr(t_stack **topa, t_stack **topb);
 void	stack_revrotate(t_stack **top, int which_stack);
 void	stack_rrr(t_stack **topa, t_stack **topb);
@@ -72,7 +72,6 @@ void	targets_to_top(t_stack **a, t_stack **b);
 void	nodes_to_a(t_stack **a, t_stack **b);
 int		ft_max(int a, int b);
 int		ft_abs(int nb);
-
 
 /*  Handle Functions  */
 void	handle_stack(char **nav, long *arr, int size, char f);
