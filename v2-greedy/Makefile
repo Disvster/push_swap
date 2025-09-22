@@ -27,12 +27,12 @@ LIB_DIR = ../libft/
 # PROGRESS BAR
 TOTAL_C := $(shell find src/ -type f -name '*.c' -not -path '*/.*' | wc -l)
 
-define progress_bar
-  @COUNT=$$(find obj -type f -name '*.o' | wc -l); \
-  BAR_WIDTH=30; \
-  NUM_HASHES=$$(( COUNT * BAR_WIDTH / $(TOTAL_C) )); \
-  BAR=$$(printf "%-$${BAR_WIDTH}s" "$$(printf '%0.s#' $$(seq 1 $$NUM_HASHES))"); \
-  echo -ne "Compiling: [$$BAR] ($$COUNT/$(TOTAL_C))\r"
+define	progress_bar
+	@COUNT=$$(find obj -type f -name '*.o' | wc -l); \
+	BAR_WIDTH=30; \
+	NUM_HASHES=$$(( COUNT * BAR_WIDTH / $(TOTAL_C) )); \
+	BAR=$$(printf "%-$${BAR_WIDTH}s" "$$(printf '%0.s#' $$(seq 1 $$NUM_HASHES))"); \
+	echo -ne "Compiling: [$$BAR] ($$COUNT/$(TOTAL_C))\r"
 endef
 
 

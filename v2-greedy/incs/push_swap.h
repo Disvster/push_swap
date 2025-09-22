@@ -28,20 +28,6 @@ typedef struct s_stack
 	struct s_stack	*next;
 }					t_stack;
 
-/* to organize */
-int	ft_max(int a, int b);
-int	ft_abs(int nb);
-int	handle_free(t_stack **a, long *tab, char **nav, char f);
-void	double_rotations(t_stack **a, t_stack **b, t_stack *targ);
-void	single_rotations(t_stack **a, t_stack **b, t_stack *targa, char w);
-void	targets_to_top(t_stack **a, t_stack **b);
-t_stack	*get_lesscost(t_stack *s);
-void	set_target(t_stack *a, t_stack *b, char w);
-void	set_mov(t_stack *s);
-void	targets_to_top(t_stack **a, t_stack **b);
-void	nodes_to_a(t_stack **a, t_stack **b);
-int	write_error(t_stack **a, long *tab, char **nav, char f);
-
 /*  Array Related Functions  */
 int		find_index(long *tab, int size, int nbr);
 int		ft_sort_ltab(long *tab, int size);
@@ -49,15 +35,13 @@ char	ft_validarg(char *s);
 long	*create_ltab(int ac, char **av, char flag);
 
 /*  Stack Related Functions  */
-
-// void	ft_stack_addfront(t_stack **stack, t_stack *new_nd);
 t_stack	*create_stack_a(int ac, char **av, long *arr);
 t_stack	*stack_newnode(int value, int index);
 t_stack	*ft_stacklast(t_stack *lst);
-void	ft_stack_clear(t_stack *lst);
-char	check_sort(t_stack *s, int asc);
-
 int		ft_stack_size(t_stack *top);
+char	check_sort(t_stack *s, int asc);
+void	ft_stack_clear(t_stack *lst);
+// Search functions
 t_stack	*node_search(t_stack *s, int nb);
 t_stack	*find_highest(t_stack *a);
 t_stack	*find_nexthighest(t_stack *s, t_stack *ref);
@@ -73,14 +57,28 @@ void	stack_rr(t_stack **topa, t_stack **topb);
 void	stack_revrotate(t_stack **top, int which_stack);
 void	stack_rrr(t_stack **topa, t_stack **topb);
 
-/*  Operation Functions  */
+/*  Sort Operations Functions  */
+t_stack	*get_lesscost(t_stack *s);
 void	sort_three_a(t_stack **a);
 void	sort_three_b(t_stack **b);
 void	sort_five_a(t_stack **a, t_stack **b);
 void	sort_five_b(t_stack **a, t_stack **b);
+void	double_rotations(t_stack **a, t_stack **b, t_stack *targ);
+void	single_rotations(t_stack **a, t_stack **b, t_stack *targa, char w);
+void	targets_to_top(t_stack **a, t_stack **b);
+void	set_target(t_stack *a, t_stack *b, char w);
+void	set_mov(t_stack *s);
+void	targets_to_top(t_stack **a, t_stack **b);
+void	nodes_to_a(t_stack **a, t_stack **b);
+int		ft_max(int a, int b);
+int		ft_abs(int nb);
 
+
+/*  Handle Functions  */
 void	handle_stack(char **nav, long *arr, int size, char f);
 void	handle_small_sort(t_stack **a, int size);
 void	handle_big_sort(t_stack **a);
+int		handle_free(t_stack **a, long *tab, char **nav, char f);
+int		write_error(t_stack **a, long *tab, char **nav, char f);
 
 #endif
