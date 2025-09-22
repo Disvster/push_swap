@@ -12,7 +12,7 @@
 
 #include "../../incs/push_swap.h"
 
-void	handle_big_sort(t_stack *a)
+void	handle_big_sort(t_stack **a)
 {
 	t_stack	*b;
 	int		c;
@@ -20,32 +20,32 @@ void	handle_big_sort(t_stack *a)
 	b = NULL;
 	c = -1;
 	while (++c < 3)
-		stack_push(&a, &b, 0);
+		stack_push(a, &b, 0);
 	sort_three_b(&b);
 	c = INT_MAX;
-	while (a)
+	while (*a)
 	{
-		targets_to_top(&a, &b);
-		stack_push(&a, &b, 0);
+		targets_to_top(a, &b);
+		stack_push(a, &b, 0);
 	}
-	if (!a && b == find_highest(b))
+	if (*a && b == find_highest(b))
 	{
 		while (b)
-			stack_push(&b, &a, 1);
+			stack_push(&b, a, 1);
 	}
-	else if (!a)
-		nodes_to_a(&a, &b);
+	else if (!*a)
+		nodes_to_a(a, &b);
 }
 
-void	handle_small_sort(t_stack *a, int size)
+void	handle_small_sort(t_stack **a, int size)
 {
 	t_stack	*b;
 
 	b = NULL;
 	if (size <= 3)
-		sort_three_a(&a);
+		sort_three_a(a);
 	else
-		sort_five_a(&a, &b);
+		sort_five_a(a, &b);
 }
 
 void	handle_stack(char **nav, long *tab, int size, char f)
@@ -59,11 +59,14 @@ void	handle_stack(char **nav, long *tab, int size, char f)
 		exit(write_error(&a, tab, nav, f));
 	}
 	if (check_sort(a, 0))
+	{
+		handle_free(&a, tab, nav, f);
 		return ;
+	}
 	if (size <= 5)
-		handle_small_sort(a, size);
+		handle_small_sort(&a, size);
 	else
-		handle_big_sort(a);
+		handle_big_sort(&a);
 	if (check_sort(a, 0))
 		handle_free(&a, tab, nav, f);
 }

@@ -77,6 +77,8 @@ char	check_validarg(char *s)
 		i++;
 	while (ft_isdigit(s[i]))
 		i++;
+	while (s[i] == 32 || (s[i] >= 9 && s[i] <= 13))
+		i++;
 	return (i == ft_strlen(s));
 }
 
@@ -93,18 +95,12 @@ long	*create_ltab(int ac, char **av, char flag)
 	while (av[++i])
 	{
 		if (check_validarg(av[i]) == 0)
-		{
-			write(2, "Error\n", 6);
 			exit(write_error(NULL, ltab, av, flag));
-		}
 		ltab[i] = ft_atol(av[i]);
 	}
 	check = ft_sort_ltab(ltab, ac);
 	if (check == 0)
-	{
-		write(2, "Error\n", 6);
 		exit (write_error(NULL, ltab, av, flag));
-	}
 	return (ltab);
 }
 

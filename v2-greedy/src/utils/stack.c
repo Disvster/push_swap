@@ -62,6 +62,7 @@ void	ft_stack_clear(t_stack *lst)
 	{
 		tmp = node->next;
 		free(node);
+		node = NULL;
 		node = tmp;
 	}
 	lst = NULL;

@@ -80,7 +80,7 @@ void	sort_five_a(t_stack **a, t_stack **b);
 void	sort_five_b(t_stack **a, t_stack **b);
 
 void	handle_stack(char **nav, long *arr, int size, char f);
-void	handle_small_sort(t_stack *a, int size);
-void	handle_big_sort(t_stack *a);
+void	handle_small_sort(t_stack **a, int size);
+void	handle_big_sort(t_stack **a);
 
 #endif

@@ -38,7 +38,7 @@ endef
 
 INCS_DIR = incs/
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 NAME = push_swap
 RM = rm -f
 
