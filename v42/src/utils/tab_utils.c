@@ -6,13 +6,13 @@
 /*   By: manmaria <manmaria@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 16:54:14 by manmaria          #+#    #+#             */
-/*   Updated: 2025/09/12 07:09:45 by manmaria         ###   ########.fr       */
+/*   Updated: 2025/10/22 00:55:03 by manmaria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../incs/push_swap.h"
 
-int	ft_atol(const char *nptr)
+long ft_atol(const char *nptr)
 {
 	int		i;
 	int		sign;
